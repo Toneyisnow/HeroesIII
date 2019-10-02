@@ -1,0 +1,4 @@
+Map name: 007 Chases Dr. No
+Author: Frifix
+Size: XL
+Difficulty: Hard

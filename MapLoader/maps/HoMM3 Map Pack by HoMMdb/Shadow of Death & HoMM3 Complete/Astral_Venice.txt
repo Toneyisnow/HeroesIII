@@ -1,0 +1,23 @@
+
+                   MAGELLAN'S MAP SUBMISSION
+
+Map Name:	[Astral venice  (Astral_Venice.h3m)]
+Map Maker:	[Milan M. Cirkovic]
+E-Mail Address:	[arioch@eunet.yu]
+
+Map Type:	[Multiplayer] [4 Humans Or Computer, 3 Computer Only]
+Language:	[English]
+
+Description:	[While aristocratic factions squabble over fabulous wealth of the Most Serene City, evil conspirators plot the overthrow of the Republic. Beware the clandestine Council of Ten (blue), treacherous Papal forces (red) and the Genoese lodge (teal)!]
+
+Special Win:	NONE
+Special Loss:	NONE
+Special Other:	NONE
+
+Narrative:	There are four playable fractions which start rather weak, but have lots of opportunity to grow fast. Computer players are incredibly powerful, but locked in the beginning - as the time passes, their chances of attacking you increase, so the time is of the essence.  Every playable fraction has some special advantage: for instance, Conflux is extremely dependent on the sea power and resources in the beginning, Necropolis has lots of refugee camps, etc. Use them wisely! Navigation is extremely important, as well as the external dwellings (especially those of dragons!). Water walk, Fly and Dimension Door are banned, and can be obtained only in special locations.
+
+
+Play-Testers:	Milos Acimovic at achim@infosky.net
+              	Dejan Todorovic at tdeki@opennet.org
+              	Jelena Mirkovic at enna@ptt.yu
+

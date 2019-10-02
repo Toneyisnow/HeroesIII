@@ -1,0 +1,275 @@
+
+                   HEROES III MAP SUBMISSION
+
+Map Name:	Devilish Pride:Eps.VII,VIII,IX (DEVILI~1.H3M) 
+Date:		September 22, 1999
+Map Maker:	Jason Russell
+E-Mail Address:	jrussell@quark.physics.uwo.ca
+
+Map Size:	XL with Underground
+Map Type:	Singleplayer [1 Human Only, 3 Computers Only]
+Language:	English
+
+Description:	Xyron, the renegade Heretic, has been captured by King Graven and Queen
+		Esta of Alandria and sentenced to work in her Ore mines.
+
+		His secret ambitions will have to wait... but not for long for he knows
+		rescue is on its way.
+
+		This time he's not alone, this time he will succeed.
+
+Special Win:	Transport Artifact (Hourglass of the Evil Hour) to Hell (Inferno Town)
+Special Loss:	Lose the Hero "Xyron"
+
+Special Other:	If Octavia OR The Cyclops King dies, surrenders or retreats BEFORE Xyron is 
+		rescued, the game is Unplayable! Make sure they survive until then!
+		
+
+	¤¤¤	BUG WARNING!
+ 
+	¤¤¤	DO NOT check the scenerio Information during the game. It will CRASH.
+		I do not know why.... maybe a Heroes3 patch will fix it....
+
+		The Loss Condition sometimes changes to "Orrin" for no
+		apparent reason in the middle of the game. (HOMMIII Bug???)
+		
+		Orrin is safely tucked away in a jail at (0,0,0)
+
+		If the Loss Condition does change, remember that it is "Xyron" who cannot
+		die, surrender nor retreat throughout the game.
+
+Narrative:	Episodes VII, VIII, IX
+
+		Xyron has been caught by King Graven and his allies and has been sentenced
+		to work in Queen Esta's Prison Mines near Alaria.
+
+		Before his capture, he sent Octavia, his bride, through a One Way Portal to
+		the Lost Isles where his Secret Laboratory sits abandoned.
+
+		Long ago, Xyron was working on a secret Master Plan in this laboratory. However, 
+		the work remains unfinished because he was captured by his fellow Heretics and
+		sent to Banishment Isle.
+
+		Later, the foolish Overlords released him in their attempt to defeat King Graven
+		and his allies. The Overlords were quickly defeated by the King's more powerful 
+		Angels.
+
+		Sadly, Xyron was weak and ill prepared and he too was captured...
+
+		But Xyron doesn't fear, he knows Octavia will come and rescue him. Soon, both
+		Heaven AND Hell will feel the Power of his might!
+
+Play-Testers:
+		dwieschi
+  		dwieschi@hrz1.hrz.tu-darmstadt.de
+
+		Gwhenwyfar
+		gwhenwyfar@nikocity.de
+
+		yung
+		raven@mars.ark.com
+
+		Nick_Swift
+		wedwards@julian.uwo.ca
+
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		This map is set at Impossible, but it IS Possible.
+
+		
+	Episode VII: Xyron's Rise
+
+		Main Enemy: Red (Goes approx. from Month 1 to 3)
+
+		Octavia has 7 days to find Xyron's Lab.
+		Follow Xyron's advice and head East to the Island where the Demons are.
+		Find everything on this island. Especially those Boots of Levitation!
+		Move fast, don't waste time getting all the Chests! Sail to the far west.
+
+		Discover Xyron's lab from the obelisk. Use Force field to protect your Gogs.
+		
+		It IS possible to find Xyron's lab, dig for the grail and put the grail
+		in the Inferno Town by day 7 (did someone say imps?)
+
+		The Cyclops King has alot of junk in his backpack. Check it out!
+		Think, what should he hold and what should he save for later....
+
+		Don't forget to check for buried things in holes! (Nice Ogre's Club!)
+		
+		The Cyclops King when wearing the appropriate artifacts for battle should 
+		easily outlast the Halbediers, but do NOT fight those Angels. Get on a boat
+		and pick up those free Ogres. (Use visions if you want)
+
+		Astral the Wizard Blocks any further exploration for the Cyclops King.
+		He must DIE!!! He will attack you because he is thinking he is tougher than you.
+		(He does have Zounds of Master Gremlins) So make sure you are ready for him at
+		the end of your turn before he attacks you.
+
+		Astral won't move much, he has a scouting radius. So The Cyclops King can land
+		safely by the Green Tent and pick up some FREE Cyclops (visions would tell you)
+
+		The Cyclops Spell Power is 1! So he better wear that Cloak to increase the
+		duration of his spells. And the Charm of Mana too! He needs it!
+
+		Spells? The Cyclops King did find that shrine with the Forgetfulness spell right?
+
+		Even with all this, The Cyclops King still CAN'T beat Astral. There is one thing
+		missing....
+
+		What is Astral's specialty? What should the Cyclops King wear BEFORE fighting
+		Astral?
+
+		Once Astral is Dead, Visit the Seer. She wants the Orb of Inhibition.
+
+		Have Octavia use her boots to hop from Island to Island. Build her Diplomacy up.
+		Many creatures will join her. Sacrifice some imps to become Demons during battles.
+
+		Get another Hero and have it learn Navigation from the scholar.
+
+		Red Necromancers will be seen by the End of week 2. The are aggresive and use 
+		boats well. Learn spells from the Necromancers using Eagle Eye and the stoic
+		watchman.
+
+		Ore is precious. Forts need to be made. Find the Inferno Town called Gogs 'n Dogs.
+
+		Gem Ponds are only accessable by Boat. So Octavia needs to go sailing too.
+		Beware the danger of whirlpools.
+
+		Red gets powerful quickly. They have a white tent as well, when they get it, all 
+		Bad Necromancers will get at you. Wipe them out... all of them. Did you find the
+		Town Portal Scroll on the Island to the very East?
+
+		There is nothing in the underground lake except a marooned boat that Octavia can't
+		get past.
+
+		Once Red is dead, Go after Xyron and check out the LEGIONS of Giants guarding the
+		Prison mines. (You need the Light Blue Tent there)
+
+		Octavia can not rescue Xyron through this route.
+
+		During all this, The Cyclops King need to recruit some men and build up his
+		own force.
+
+		Clear the southern island. A couple week worth of recruiting will give the King 
+		enough Power to take on the Town there.
+
+		The Town of Longhall can only be reached through the underground passages. Take
+		this town and all the artifacts around it. Return the Seer's Artifact! And
+		get the spell, `Scuttle Boat´
+
+		Scuttle that boat that blocks Octavia's passage.
+
+		Have Octavia and The Cyclops King meet. Trade Artifacts. Octavia needs the spell
+		scrolls. (2 Town Portal and One Magic Mirror)
+
+		Send Octavia down the River where the Warlocks are attempting to rescue Gunnar
+		and Dace from the prison Mines as well.
+
+		Kill Malekith who guards the way. Be careful, his Implosion will take out your
+		stacks. To avoid any losses, use the Garrison and leave everything there except
+		one stack. Use Magic Mirror on that one stack. There is a 40% chance that Malekith
+		will implode his own Troops!
+
+		Or just kill him outright.
+
+		Free Xyron!!!!! Town Portal back home!!!!!
+
+		Send Octavia through the One Way Portal. This is a MUST!!!!!! She has the boots to 
+		do it. Do NOT send anybody else.
+
+		Octavia will visit the Hut of the Magi revealing the Magical Isle. Then she will
+		die at the hands of Verdish, the Hydra Queen. Verdish will take her boots and use 
+		them to escape the island herself. (Verdish will get the Dark Blue Tent and unleash 
+		the Purple Enemy!!!!!!!)
+
+		Have the Cyclops King (or whoever) get the Dark Blue Tent as well. It is guarded by
+		Monks near the beginning of the Cyclops King's adventure.
+
+		Have Xyron return the Sphere of Permanance to the Seer by his Lab. He will get
+		Water Boots as well!
+
+		Xyron can walk to the Magical Isle and continue his Master Plan!
+		
+
+	Episode V:  Retaking Hell
+		
+		Main Enemy: Purple (Months 3 to 4)
+
+
+		Purple will come. They have been growing for a while now.
+
+		Watch out for Verdish the Hydra Queen. 1000+ Hydras.
+		Watch out for Caitlin, she may find the garrison with the 2000+ Giants!!
+
+		There will be tough battles, Your Necro Towns will be Vulnerable.
+		Warlocks will also come from below!!! Even The Cyclops King isn't safe!
+
+		Xyron will need to beef up his Army. The Desert region in the middle is full
+		of creatures that will join you and then you can fight some others sacrificing
+		the new converts as Demons! Fulfill the seer's quest there for more Demons!
+
+		Your goal is to find the way to the Inferno Town called Hell and capture it.
+
+		If you are familiar with Titanic and Angelic Prides, you know that Hell is located
+		through a One Way Portal in the land of the Heretics.
+
+		The way to this land is through a portal found on Redwash Island in the NorthEast.
+
+		The Red Tent is there as well.
+
+		Dimension Door, Fly, and Implosion can be learned in the Land of the Heretics.
+
+		Watch Out for Calid, she knows these spells too.
+
+		Take Hell and get the free Devils!!
+
+		
+
+	Episode VI:  The Hourglass of the Evil Hour
+		
+		Main Enemy: Pink (Months 4 to 6)
+
+
+		Queen Esta has the Hourglass. She may have traded it off to someone so fight
+		everybody using the Shackles so they do not run away.
+
+		Use all your spells and fighting skills to beat these Pink players up. They know 
+		Town Portal.
+
+		The Legion Bug might occur so use the Sacrifice Spell found in the Desert regions.
+
+		If you Rescue Theodorus, he will have lots of Titans to help you in the battle.
+
+		Win the Game by returning the Hourglass to Hell. You do not need to kill everybody.
+		But it is fun to try.
+
+
+		
+	Titanic Pride: Episodes I, II, III now available
+	Angelic Pride: Episodes IV, V, VI now available
+	The End of Pride: Episode X available soon
+	

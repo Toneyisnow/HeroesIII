@@ -1,0 +1,38 @@
+
+                   The Cartographer (sod)
+
+Map Name:	[221 B. Baker st  (SOD).]  Grandmasters Contest
+Map Maker:	[Gregory L. Reeves]
+E-Mail Address:	[akame77@msn.com]
+
+Map Type:	[Singleplayer] [1 Human Only, 7 Computer Only]
+Language:	[English ]
+
+Description:	 Extra, Extra, Extra Large, Expert level, Single Player
+		[Excerpts taken from stories written by Sir Arthur Conan Doyle. This map was designed to provide a constant and increasing level of 			challange that falls into the hard to expert level. You will be required to devise a stratigic battle plan as well as complete certain quests to 			progress through the map. You must manage your resorces wisely, even in the latter stages of the game when they seem to be abundent, you 		will find that you will need them. Spells banned from the map include: Town Portal, Implosion, Summon Boat, Water Walk, Fly, Armageddon 			and Ressurection. Town Portal will be made available during the latter stages of the map. I have allowed for a margin of error, but  if you 			should lose either of your two main Heroes you will find yourself hard pressed to be victorious. In fact you could say they are codependent. 			The map will run on the slow side up until midway, this is due to the complexity of the design and the size of the map (Humongous). So take 			your time, you will not finish it in one sitting. It will usually take from 6 to 7 months Erathia time to complete and roughly 	20 hrs real time. The 		map may be played in  two modes, (Detective Mode or Regular Mode) If you wish to receive an honorary ranking at the end of the map then 			don't visit the signs that contain the answers. The signs that contain answers will always be proceeded with a warning. If this doesn't appeal to 		you, then simply visit the signs and the answers will be revealed to you. 
+
+		PS I have spotted a certain bug that happens sometimes. I don't know if its this map or a bug in the software. Sometimes when you use clone 		on your Arch Angels all of them are removed from your troops.  	
+		    
+Special Win:	[none]
+Special Loss:	[Lose Watson]
+Special Other:	[NONE]
+
+Testers:		[ Play tester 1 ns_sophiel@bezeqint.net>]	
+		[ Play tester 2 <jagan@powersurfr.com>]
+		[ Play tester 3<fopkovic@noordbrabant.net>
+
+
+Narrative:		[The worlds greatest detective and his sidekick embark on one of their most challenging cases to date. The very survival of London depends 			not only on their tactical combat skills, but also on their deductive reasoning. During their adventure they will encounter many mysteries that 		they must solve to be victorious. Murder, kidnappings, stolen artifacts, shifting alliances, encrypted messages and an ancient brotherhood will 		all come into play before this case is solved. So what are you waitning for? THE GAME IS AFOOT!!!   ]
+              		[Play-Tester1 ns_sophie@bezeqqint.net}
+              		[Play-Tester2 jagan@powersurfr.com]					
+		[Play-tester3 <fopkovic@noordbrabant.net>]
+
+SPECIAL ACKNOWLEDGEMENTS:  As usual fresh eyes always seem to see things more clearly. There hasn't been one map I've made that the testers didn't have a 			good idea to add. This time was no exception. Thanks again for your time and wisdom. 
+		
+
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+		
+		Come on now. You are playing the role of the worlds greatest detective. What need could you possibly have for hints? It should be 				ELEMENTRY. 

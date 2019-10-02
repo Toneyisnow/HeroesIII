@@ -1,0 +1,103 @@
+Map Name : 2 Friends
+Author : Jukka Mikkonen
+email : jukka_mikkonen@hotmail.com
+
+Size : XL, 2-layer
+Players : 6 of which 2 humans
+Type : 2-player co-operative
+Expansions : SoD and AB
+Playtesting : By author
+
+Description :
+Two-player co-op map with a storyline. 
+Survive through exile in hostile enemy lands 
+and conquer your homelands back with whatever 
+you acquire and finally get your revenge. 
+Lots of quests - some of them a must for 
+completion. Easy pace, but don't just fool 
+around, it'll come back at you...
+
+Version : 1.2 (dated 23.9.2001)
+
+Version history :
+1.2 
+-Disabled Nagash as one of the recruitable
+ heroes, duh! :)
+-Disabled taverns in the early towns and
+ made some unwanted skills unavailable.
+-Some miscellaneous bugfixes.
+-Alternate version created (No taverns)
+1.1 Fixed some storyline bugs and made it
+harder to obtain cheap superheroes by
+beating those megaheroes patrolling the
+early areas and recruiting them for oneself.
+Also added some more side quests and
+miscellaneous help texts.
+1.0 Original release
+
+*
+*
+*
+*
+*
+*
+*
+
+*=======SPOILER ALERT!!!!!!!!============*
+
+*
+*
+*
+*
+*
+*
+*
+*
+*
+
+The map may be tough for beginners, so here
+are some clues to aid in your journeys.
+
+1) Yes, you need to travel all the way across
+the continent, both under the sun and underworld.
+There is no easy shortcuts other than cheating.
+Don't worry, the map is designed to allow for even
+one-month travel times.
+
+2) RUN to get to the first city. Otherwise
+you'll lose the game b/c of being banned. Don't
+worry about defending your home city, it's futile.
+Getting the mercury is a start, you figure rest.
+
+3) Passage into a new area is usually hidden.
+Scout areas intensively.
+
+4) NEVER sacrifice necromancy artefacts.
+
+5) To get to the Mage Plains, you need the
+Sword of Judgement. It can be found somewhat
+near the quest gate, and VERY heavily defended,
+and naturally hidden from sight, ie. on a monster.
+There's a side quest to help with this battle if
+need be.
+
+6) To get to the orange and violet AI players's
+main areas, you MUST get the Amulet of the Undertaker.
+It's a quest reward, requiring a skeleton warrior,
+which can be found as a quest reward or by visiting
+the middle island.
+
+7) To get to the middle island without getting
+killed, you need 2 items. You buy the other one.
+Latter requires a trip to the Lost River with your
+MAIN hero. No one else will do.
+
+8) You need to conquer either orange or violet
+AI to get to the city you need to get to. If not,
+well, prepare for some quite bitter battles. :)
+
+9) Find and accomplish side quests that trade
+a number of low-level troops for higher ones.
+
+10) There are two especially well hidden cities.
+Find them!

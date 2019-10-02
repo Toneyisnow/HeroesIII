@@ -1,0 +1,5 @@
+Map name: Riverworld
+Author: Cap.Zak
+Size: XL
+Players: 6/5
+Difficulty: Expert

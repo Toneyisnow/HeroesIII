@@ -1,0 +1,5 @@
+Map name: The Gate of Destiny
+Author: Vladchief
+Size: XL
+Players: 8/8
+Difficulty: Normal

@@ -1,0 +1,148 @@
+Empworld II.txt
+Text File
+
+Map Name: 	"The Empire of the world II"
+Map Maker:	Darklord
+Email Address:	hap654b@tninet.se
+
+Map Type:	Single Player (1 Human, 7 Computer)
+Difficulty:     Impossible
+Language:	English
+
+Description:	This is the adventure of Maximus,a warrior from Rome.
+                He was banished from his homeland.He went away by sea.
+                The ship sank.Maximus was the only survivor.He woke up
+                on a beach,with no memory of what have happened.
+                Now Maximus must find his way back to Rome. 
+
+Special Win:	None
+Special Loss:	None
+Play Testers:	My self(Lots of times)
+		And my brother  jo.kispalko@tninet.se
+		
+Game Edition: 	Heroes 3+SOD
+Map Size:	Extra Large
+Underworld:	Yes
+Starting Town:	Castle
+Starting Hero:	Maximus(Knight)
+Starting Bonus:	Random
+Player's Color:	Purple
+
+_____
+NOTES
+
+(1) This is episode 2 of the map "The empire of the world".You don`t
+    have to have played the first to play this map.
+
+(2) Read all signs, take note of all events.Some are very important.
+
+(3) I have put the grail in for some fun and to get an extra bonus.
+    IMPORTANT NOTE:If you find the grail,don`t put it in a tower.It will
+    reveal the whole map and spoil the game.
+
+(4) This is an adventure single player map(with a story).You play the role of 
+    Maximus.He will do all the great battles.If you lose him,consider the
+    game lost.
+ 
+(5) Down below i will have a game strategy and some spoiler information.
+    Read only if you have no clue of what to do next in the game.
+
+ 
+
+
+
+
+
+
+
+WARNING!!!!GAME SPOILERS!!!!READ ONLY IF YOU HAVE NO CLUE OF WHAT TO DO!!!!
+
+
+
+
+(1) Follow the road to the south.Kill the guard and pass through the 
+    subterranean gate.The road north leads to the castle Longbow.Visit
+    the stable again to upgrade your cavaliers.Fight and kill the Cleric
+    Longbow.The castle will be built the next week,but not the Portal
+    of glory.
+(2) The next 2-3 weeks you should take control of the area around Longbow.
+    You should build the Portal of glory before the end of month 1.
+    If you don`t have enough resources,visit the Trading post.
+(3) When you have about 7-10 Arch Angels in your army go northeast to
+    the Unknown castle and take it.And free the prisoner there.Remember
+    the seer`s hut behind the prison for later.It will give you The
+    Tome of earth artifact.Go to the subterranean gate behind the castle
+    to visit the blue keymasters tent.
+(4) When you have about 15-20 Arch Angels you should go south from your
+    castle Longbow to the blue border guards.Follow the river by boat
+    til`you get to the Sherwood forest.Take the Crown of the supreme magi
+    from the Dendroid guards first.Kill Robin Hood.But be careful
+    that he don`t flee with your boat,then all will be lost.
+(5) Now Cristian can pass the border guard south of the unknown castle
+    and visit the green keymasters tent.And Maximus can visit the seer`s
+    hut to the north of Sherwood forest to learn water walk.Let Maximus 
+    water walk his way back west towards the unknown castle and visit the
+    seer`s hut to get the Tome of earth artifact.
+(6) Now it`s time for Maximus to go to the hall of gods.Just behind Longbow
+    is a two way monolith that leads to it.Don`t be afraid of the gods,
+    they can`t move.Kill only God of water.Then you can pass to the south
+    on the river that lead to sherwood forest.
+(7) Go straight to the east and land your boat.Then go south towards Brother Tuck.
+    Kill Brother Tuck.Free Marion just behind Brother Tucks castle.
+(8) Go by boat again(visit the islands)til`you get to the island where
+    Prince John and King Arthur lives.To get to King Arthur you have to
+    water walk.
+(9) Now when you have killed King Arthur you can pass the border guard
+    that leads to the WHIRLPOOL.
+(10)You will get to the island where Xyron lives.You can not kill him.
+    Listen very careful to the peasants.They are your only chance to pass
+    Xyron.Take the one way monolith that leads to Mongolia(don`t town portal
+    back for more troops til`you get to the next castle).
+(11)Now you are in the black sea.Summon a boat.Get to land.
+    You don`t have to fight the Green Dragons to get the artifact.
+    When you reach the border guard that needs 4000 wood,you shold go north
+    between the two Gorgon`s lair(hidden passage)to the subterranean gate.
+    There to the south you will find a castle and the wood you need.
+    To the south of the castle is a hidden passage.You will need the Dragons.
+    Go back to the border guard.
+(12)Kill everything in Mongolia if you can.The Chaos hydras for gold,the
+    Fearie Dragons for primary skills.Water walk to the west where the sign
+    says "swimming only"to get the Cornuccopia.
+    To the west of the magic well is the hidden passage that gets you
+    further into Mongolia.
+(13)Kill the Red Keeper at King Lugasus grave to visit the red keymasters tent.
+    Summon a boat after you have killed Arjuna.Come back later for the Seer´s hut.
+(14)Go by boat to the Chaos Island.Kill Semgal Khan to open the Quest guard.
+    You can open the pandoras box there to(no guards).
+    Go west til`you get to the garrison.You don`t have to fight the troops
+    in the garrison,there is another way in.
+    Kill Genghis Khan.
+(15)Now you can pass the Quest guard at Kings castle.
+(16)Search through the ocean,go north first and visit the Lighthouses(water walk).
+    Remember the Quest guard there for later(important).The Seer`s hut will
+    give you "Orb of vulnebarity"when you reach level 50.
+    Go south west by boat.You don`t have to fight God of fire yet,to pass
+    the Quest guard.Go further west first.Visit The Pit lords island.
+    And you don`t have to fight all the Crystal Dragons to get to the
+    monolith.You can come back much later.
+(17)Go to the Hall of the gods.Kill God of fire.
+(18)Go back to the Quest guard in the ocean that has the garrison behind.
+    Leave all your troops except a couple of Arch Angels in the garrison.
+    Go north.Don`t open the red border guard,go through the red border gate.
+    When yo reach the last red border guard,stay there 
+    through the night.Then pass it to get to the purple keymasters tent.
+    Remember to build a tavern in Kings castle first.Surrender when
+    Merlin attacks you.Then rehire Maximus in Kings castle`s tavern.
+    Go back for the troops in the garrison.
+(19)Now you can go south from Brother Tucks castle,and pass the purple
+    border guard.You have to kill the Faerie dragons.Go through the subterranean
+    gate.
+(20)Kill the guard to get to the two way monolith.It will lead yo to 
+    "Shadowlands".There are only 3 heroes in shadowlands.Kill all.
+(21)Now you have to find the hidden passage Below the Unknown castle,west.
+    Then you will reach a border guard.Kill God of earth in "the hall of
+    the gods"to pass it.
+(22)Now you enter the "wild barbarians land"Lookout for hidden passages.
+    
+    About half of the map is covered now.If you have any problems with 
+    the rest of the map,please email me.//Darklord     

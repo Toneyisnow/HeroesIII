@@ -1,0 +1,5 @@
+Map name: Abilities
+Author: 
+Size: XL
+Players: 8/2
+Difficulty: Expert

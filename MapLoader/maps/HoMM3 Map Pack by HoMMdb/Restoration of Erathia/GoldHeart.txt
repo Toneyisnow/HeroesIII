@@ -1,0 +1,111 @@
+HOMM3 Map - Readme File  PLEASE READ ***ENTIRE*** FILE BEFORE PLAYING!!!
+THIS is the HARDER version of GoldHeart (Expert Difficulty).  If you would prefer to play the EASIER version, download GoldHeartNO.zip (more details below).  Please read this entire text file before playing.  (Note: GoldHeartSP.zip is available upon request - see details below).
+
+Gold Heart        H3M01
+
+A HOMM3 Map by Timothy Duncan (Corribus)
+
+"In Everyone, Young or Old,
+ Lives a Demon, Made of Gold."
+     -Arythian Nursury Rhyme
+
+"The Darkest Stains Are Invisible."
+     - Saline the Hermit
+
+Starring (Cast of Characters):
+-Apro Mort, the Unknown Hero.
+-King Sorlan Ani IV, King of Aryth.
+-Princess Ellabel Ani, Princess of Aryth, Eldest Daughter of Sorlan.
+-Princess Annabel Ani, Princess Aryth, Youngest Daughter of Sorlan.
+-Lord Valan Erloen, Lord of Erlos, Eastern Province of Aryth.
+-Lord Roger Valkos, Lord of Valkynborg, Western Province of Aryth.
+-Koltair Agundenson, a Nomad from Borderpost.
+-Grag Inatson, a Nomad from Borderpost.
+-Elga, Nomad Chieftain, Mother of Koltair Agundenson.
+-Inshamam, a Water Spirit.
+-Akamaresh, a Fire Spirit, Imprisoned Millenia ago for his misdeeds.
+-Telemoth, Minotaur Lord of Undearth and Overseer of the Sunken Kingdom (Crossvein Caverns).
+-Chemosh, the God of Bones, Worshipped exclusively by Goblins and Trolls.
+-Illandra, a Witch.
+-Lady Saria Lor, Lady of the Forest Province of Wildwoode.
+-Lord John Calabrand, Lord of Innabrook.
+-Algemosh, known as the Watcher, the Creator of Aryth.
+-Celestial Navigator (Toreth), an Air Spirit and the Scribe of Aryth.
+
+
+Version: 1.2 a/b
+File Name: GoldHeartex.H3M and GoldHeartno.h3m
+Mapmaker's Email Address: tduncan@haverford.edu
+
+***UPDATED ON 4/26/99 -- SEE VERY BOTTOM OF THIS TEXT FOR LIST OF CHANGES***
+
+Victory Condition - Normal
+
+Loss Condition - Lose Hero 
+
+Special Thanks to MommaDragon, Ivo, RAGE, Nameless and Benedict Chui for playtesting this map.  Their feedback was invaluable.
+
+Special Notes:
+Please read the following play notes before loading up the map.
+
+1. I have attempted a different method of telling the story in this map (notice, no extra text files, save the epilogue! :).  I would appreciate comments from anyone who has played my previous maps about this new style.  Also, please note that yes 200 events was not enough for my long-windedness.  Some events are on signposts, so make sure you visit signposts, especially in the Path of Time.  The player should also note that on more than one occasion, a signpost will inform you about the disposition of a monster stack.
+
+2. There are many garrisons that you are not meant to breach.  However, I suggest you walk up to them (but not attack), as there are events in front of most of them that will tell you what to do instead.
+
+3. Ahh, yes.  Alas, NWC still hasn't implemented a way for us mapmakers to put a concluding passage in the map for when you finally achieve victory.  Below is the Epilogue to the map. It is sort of long <g>, but I figured since you've already beaten the map by this point, getting out of the game to read it isn't a big deal.  Of course, you don't HAVE to read it, but it will tie things up rather nicely.
+
+4. My testers have indicated that the Diplomacy skill really makes the map less enjoyable.  I have decided not to restrict your choices by filling your starting hero's slots up with other skills in order to prevent you from acquiring Diplomacy.  You might want to refrain from selecting diplomacy, however, in the interest of preserving the difficulty of the map.
+
+5. The following spells you should not be able to acquire by normal means: View Earth, Water Walk, Fly and Dimension Door or Summon Boat.  If you should acquire them due to some lapse in my planning, I encourage you not to use them.  Some or all of these spells may be used in special cases throughout the map - you'll know when these cases are.
+
+6. Directions.  Reading the events carefully is mandatory, as many of them provide specific directions about what you are supposed to do. My mapmakers have indicated some confusion at times, and I have tried to make these directions as clear as possible.  I will elucidate two of them right here, so that there is no confusion later on.  1.) From your starting point, go south.  Going north immediately will get you killed and will totally throw story events out of order.  2.) A good deal of my testers have indicated difficulty in finding the black tent. Carefully reading chapter six should give you a hint as to where it is located.  And while I'm here, get the red tent when you come to it - don't wait, or you'll have to do a lot of backtracking.
+
+7. This is a late addition note.  There are three versions of GoldHeart available to play.  Two of the playtesters have indicated that the map is too difficult to win.  I suspect this is because they took too long to get through the Chemosh Caverns (see special tips).  I however have played the map and won it, so I know it is possible (although I knew where everything was).  Therefore, I have created both an easier version of the map and a harder version of the map.  The only difference between the two is the time when the AI begins to explore the map.  Thus, whereas the hard version (Goldheartex) will demand that the player move as fast as possible towards Erlos, the first objective, the easier version (goldheartno) will give the player a little bit of extra time to move at a more leisurely pace (although you should by no means poke around :-).  Both versions of the map are included in this zip file, and the player should determine beforehand which map he would rather play.  It should be noted that due to the fact that I am unable to regulate AI resources (Grrr....), if you play the easier map and get through the first section quickly, you may find the rest of the map to be very very easy.  I personally suggest the hard version, but once again I have given you both options.  There is a third version of the map, GoldHeartSP, which is built for those that play the hard version of the map and find it too difficult because it took you too long to get through the beginning of the map.  If you play GoldHeartEX and find the armies of the AI are too strong (note - they will be strong regardless, I'm talking no chance at all for you to win), GoldHeartSP is available upon request.  It will start you at the exit of the Chemosh Caverns so that you don't have to begin the map all over again and will make sure that the AI is more manageable.  Ok, that's a lot of information.  If you have questions, let me know!  Here's a summary of those map files:
+
+GoldHeartEX.H3m - Harder Version 
+GoldheartNO.H3m - Easier Version
+GoldHeartSP.H3M - Special Version for you to begin the map over again at a midpoint if AI is too strong.
+
+8. Questions/Comments?  Please write me at tduncan@haverford.edu and tell me what you think. Only by reading player feedback can I make my maps better!
+
+
+SPECIAL TIPS.  Though the section below contains no story spoilers, some players prefer to play a map cold, i.e. without help from the mapmaker.  The tips below will help assure that you can finish the map without any really ultra "creative" tactics.  I suggest you read them before playing, but if you prefer not to, go ahead and start the map.  You've read everything you NEED to already to begin playing.
+
+1. The most important thing you can do to win this map is NOT dilly-dally.  Though the first third of the map is more of an exploration type of setting, you should try to get to Erlos as soon as possible.  The AI begins to receive resources on the first day of week six (day 42 for EX version), so to have a fair chance at winning you need to have exited the Chogosh caverns into the Aryth swamps by this date.  It IS possible to get there by about week 5 if you really hurry and know where you are going, and in this case, the AI will be pretty easy, at least Teal.  But I expect week 6 is a more likely goal for someone who hasn't played the map before.  In other words, enjoy yourself, but don't wait around for troop recruitment sites to regenerate at the end of the week - it'll only hurt you in the long run.  You'll have enough troops to get to Erlos, if you play wisely, by just going straight through.
+
+2. Some care must be taken when choosing your secondary skills.  Because you won't have access to magic for some time, you will probably be tempted to take mostly combat oriented skills.  However, I advise that you acquire a few spell skills, as some of the bosses towards the end of the map are quite magic-proficient.  The map may not be winnable without some higher level spells.  At the minimum, I'd suggest wisdom and one or two elemental skills (particularly water or earth).  Fire may also be useful, for a reason I will not mention here.  
+
+3. The holy grail quest is probably not worth it, as you're going to need the troops for other purposes.  I have not attempted to get the grail (although I know where it was) in any of my playtests.
+
+4. There is a quest given to you by a guy in a mushroom hut that may be a good idea to complete, but I'd only do so if you feel you absolutely must, as it will take you a long way out of your way to do so.
+
+5. Buy a ballista in borderpost!
+
+That's about it for now.  Good luck - if you need further help, please email me!
+
+
+***UPDATE MODIFICATIONS as of 4/26/99***
+
+Special Thanks to Everyone who sent in comments to make this update as comprehensive as possible.  Extra Special Thanks go to Keith Williams for his multi-volumed report with comments and typographical error list.
+
+The Following things were modified/changed as of this update:
+1. All Narrator Events can now be triggered more than once.
+2. The Narrator's beginning town is now blocked off so that you can't town portal there.
+3. The End Hero was made stronger by two weeks worth of troops.
+4. More troops were added to the "booby traps" near the end of the map.
+5. Large monster stacks near the end of the map were programmed to never join.
+6. Hundreds of typographical errors and spelling mistakes were fixed.
+7. More resources were added to the beginning of the map.
+8. A signpost was added to make the location of chapter 4 more easily recognized.
+9. The WaterWalk Spell was replaced by the WaterWalk boots (in case you don't get wisdom).
+10. Some chapter headings and labels were corrected.
+11. Another purple tent was added for those who wish to fight their way through the garrisons in front of Undearth.
+12. The potential for summon boat in the town, "The Tomb" has been removed.
+
+The following minor bugs are still outstanding, either because I haven't figured out a way to deal with them or because they were brought to my attention after these updated zip files were compiled:
+1. AI resouce bug still makes computer strength management difficult.  Provided you stick to a schedule (see above), the map will work fine.
+2. Sometimes, random level 4 monsters set themselves to water elemental.  These will not join you, as all water elemental stacks are supposed to.
+3. Water elementals also will attack you if you try to go to a derelict ship; this is once again contrary to story elements.
+4. The hiring of heroes who start with summon boat has not been controlled.  I still encourage you not to use this spell, as you may mess up the story sequence.
+
+Thanks again for all your comments and please continue to send them in!

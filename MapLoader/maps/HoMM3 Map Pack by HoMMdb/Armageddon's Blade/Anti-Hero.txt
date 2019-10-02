@@ -1,0 +1,32 @@
+
+                   MAGELLAN'S MAP SUBMISSION
+
+Map Name:	Anti-hero v1.3
+Map Maker:	Koen Segers
+E-Mail Address:	Have none, but contact via maurice.engelaer@pandora.be
+
+Map Type:	Armageddon's blade,  Singleplayer,  0 humans only, 1 human, 5 computer players,
+
+Language:	English
+
+Description:	Lots of fighting and puzzling. Where are the behemoth crags?
+
+Special Win:	accumulate 2 behemoths
+Special Loss:	lose the hero 'Black widow'
+Special Other:	NONE
+
+Narrative:	Once in a thousand years a real hero, a saviour is born. Each year, thousands of would-be heroes are unleashed. You, the Anti-Hero, belong to the latter category. I created you to wipe out all differences between mankind, in fact to wipe out mankind. Make them equal, turn them all into skeletons.
+
+Play-Testers:	Maurice Engelaer at maurice.engelaer@pandora.be
+              	Willy Fleerackers at willy.fleerackers@pandora.be
+              	
+
+
+
+
+
+
+
+==============================================================================
+
+

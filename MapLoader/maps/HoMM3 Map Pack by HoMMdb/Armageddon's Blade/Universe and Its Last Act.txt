@@ -1,0 +1,17 @@
+Universe and Its Last Act v.1.1
+A map by Dragonfly, Pekka Lampinen (dragonfly@mightandmagic.com)
+Requires Armageddon's Blade
+L map w/ underground
+8 players, 1 playable (green & orange vs. purple & teal vs. the rest)
+Special victory condition: Defeat monster
+Special loss condition: Lose hero
+Scenario description: Her golden hair waves in the wind as she rides her pure white pegasus. The mount's flaming wings discourage her enemies, along with the blades of balance the elven warrior maiden wields. When this happens, the universe is to blink its eyes for the very last time.
+Other playtesters: Cattleman, Chole and Scrowe. Huge thanks to Bethel for correcting all the typos and such of the huge text file.
+
+-Elsenrail and Glomenthal are swords in Might & Magic VIII. Their descriptions in the game gave me a plot idea.
+-This map might suffer from a bug, thanks to which all border gates and guards are accessible without visiting the tent. If the computer players can do that too, the map is ruined.
+-Thanks to Bethel I no longer have to include my "bad English" disclaimer.
+
+Enjoy. Comments are welcome.
+
+Dragonfly

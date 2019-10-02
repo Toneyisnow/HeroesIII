@@ -1,0 +1,225 @@
+Map Name:       Vengeance is mine
+Map Maker:      Andrew Tanzi
+E-Mail Address: commando_avatar@libero.it
+
+Map Type:       1H 7C SoD or Heroes Complete
+Map Size:       Extra Large
+Difficulty:     Expert
+Language:       English; some town & hero names are also in Spanish, Romanian (hmm...need some
+                more practice there! =)), Latin & transliterated Hindi
+
+Special Win:    Defeat hero
+Special Loss:   None, but try not to lose either Commando (I hate the executioner's video =))
+
+Special other:  If the Past dies before meeting the Future, all is lost. The
+                Future, obviously, must never die (uhm...so maybe there IS a loss condition!) 
+                No taverns are available; Orange cannot be permanently
+                defeated and will crawl around until the bitter end. 
+
+Reading events is mandatory - failure to do so may very well result in faulty choices that could wreck the game!!! Precise clues are provided, especially during the first two weeks - there are no excuses for failure! 
+
+I have done my very best to make sure "Month of the creature" events will not impair gameplay. Nevertheless, I suggest reloading each time those silly little creatures pop up out of the blue - just in case, you know? "Month of the plague" events may weaken the AI and thus reduce the challenge - carry on if you wish, but I would call forth the autosave. 
+
+Banned spells:  
+
+Fly, Dimension Door, Summon Ship, Scuttle Ship, View Earth, Berserk.
+
+Restricted spells (available only via placed events, seers' huts, etc.): 
+
+Town Portal, Water Walk, Clone, Prayer, View Air, Resurrection and Teleport (I think - well, in the beginning at least =))
+
+
+I would like to thank Victor-Angel Bolzoni (bolzoni@skynet.be) for all the time and patience he put into testing this map, for his priceless suggestions and for his immense feedback in general. This quest would never have been completed without your help, Victor - ¡muchas gracias!
+
+Other very helpful testers: 
+
+* Pat                          longshanks@aol.com
+* Viktor Coyot Urban           coyot@pinknet.cz
+
+
+Some town & hero names are taken from the Ultima Series by Origin - gotta love it!
+
+Yes, I know...the trimmings in the unreachable necro area are disgusting...but wait! How do you know??? Did you peek at the map with the editor?!?!?! CHEATER!!!!!!!!! =P 
+
+
+Hints/Tips (no spoilers yet)
+
+- The first week leaves no room for mistakes...move swiftly and surely, lest
+  your quest fail miserably! Always scan text for clues and keep your eyes peeled for secret paths and hidden goodies... 
+
+- The Grail is somewhere in there...you don't have to find it, but if you do
+  then congratulations!
+
+- The biggest army doesn't always win, and resources may grow scarse. Choose wisely. 
+
+Of course, you may even find this map to be extremely easy if you squander months upon months waiting for your resource & creature availability to grow...how boring, though! But if you're really stuck...
+
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+*** SPOILERS!!! ***
+
+So desperate, are we? Okay, here you go: 
+
+- Commando/Tazar (CT for short): ignore campfire and gold pile; join ogre mage, buy ammo cart & first aid tent, kill battle dwarves, sail southwest, move through swamp in a straight line (no side-tracking!) and head for underground passage. Read brown tent. Release Commando/Dessa (CD for short). Wait.
+
+- CD: Take shield from behind volcano with border guard. Pass quest guard and sail north. Take black tent & inferno. Gather resources (wood, ore) but ignore monsters & tree of knowledge. Go through 2-way monolith behind inferno. Choose secondary skills - I'd go for Offense, Armourer, Tactics & Air Magic(in any case fill all slots before attacking overlords!). Kill Pink (pit lords have a nice special so use it). Arena creatures are optional (newbies can practice Archdevil tactics =)). Head back to inferno and bring down border guard asking for badge of courage BY THE END OF MONTH 1!!! Take sulphur pit once Ratatule (that blue-faced idiot who half-chases CT in the beginning) is dead. Sleep. 
+
+- CT: Gather dragons. Take Fortress. Kill Ratatule (whoops, already said that). Hand over dragons. Take abandoned mines. Kill Tan (easy).
+
+- Where's Blue? Secret paths... 
+
+- Tired of rushing backwards and forwards to gather troops? Want a squire? Secret paths...
+
+- Vanquish Blue (easy). 
+
+- Take boat, head for Utopiae. Take everything (might get components for Titan's Thunder - useless combo. Might even get TWO if you're lucky =)). Take two-way monolith. Visit area with lighthouse for storyline purposes (secret paths...). Head for other destination (strip of land with hill fort). Nothing there? Secret paths... 
+
+- Check out seers' huts. Take the first inferno. Take the second one. Take the...oh, just two? Nope! Secret paths...
+
+- Liar has 450 sharpshooter, 540 marksmen, 300 crusaders, 240 champions, 300 zealots, 420 royal griffins and 300 enchanters; stats are, uh, better than yours (watch out for implosion!). Choose troops and artifacts carefully because you won't be able to pass them on to CD for a long, long time. Leave all you can behind (especially Mighty Gorgons!!!). 
+
+- Read white tent. Sleep. Let the real fun begin! 
+
+- Archdevils are among the most underestimated units in the game. Learn Sacrifice and bring along plenty of cannonfodder when attacking the wizards (secret paths, by the way...). No cyclops kings, no thunderbirds...just archdevils, mighty gorgons, chaos hydrae & some fast-moving troops for retaliation absorption and shooter blocking.
+
+- Purple is down (fairly easy), but where to next? Visit the leprechauns' magic garden (only with CD!)...
+
+- Cast water walk before entering underground passage. Take Covetous. Take goodies from behind inferno. Pass quest guard (visited previously) requiring helm of heavenly enlightenment. Prepare for war! 
+
+- First rampart is easy and has a treasury. Other three are easy as well but have no treasury =) The last one... 
+
+- ...the last one is guarded by Lord Draxinusom. His troops are TOTALLY IMMUNE to your spells but not to his own (provided they are beneficial)! Watch out for Armageddon and Teleport. Move consequently, and bear in mind that defeating him is NOT a question of numbers (i.e. armies) - there are a few winning tactics, just find the one that suits you best. 
+
+- Once green is down, release CT!
+
+- Before passing the triple border guards, complete the quest for the seer's hut near Nitamb to get the orb of mystic mana (use a squire). 
+
+- One option is to give the orb to CD, send him along the mountain path (thus releasing the necromancers) and enter the one-way portal. Move northeast then west (secret paths...), take the boat, head for the Conflux. Can't find your way in? Secret paths (and water walk)... Learn town portal. You might lose Minoc to the necromancers - retake it. But don't let the three main necromancers join forces or you'll be going up against 3000+ Ghost Dragons, 6000+ Vampire Lords, 3600+ Dread Knights and a load of other rotting critters! 
+
+- The necros have only three large armies but will always re-recruit their fallen heroes (plus some others, maybe. Can't remember, sorry =)). Leave CT in Minoc to fend off their attacks (he can also learn town portal from one of the seers' huts north of Destard). 
+
+- Go south of Covetous to enter the final area. Beh Lem will teach you View Air - use it! Mritiu cannot be defeated - just steer clear of it and everything will be fine. Get rid of the other four teal heroes (long battles which can, however, be won without casualties). Visit the blue tent (far east, just north of Asahanscilta, hidden behind a volcano - must cast water walk) and pass the border gate and quest guard. Archangels will join you and give you the remaining parts for the Angelic Alliance! You can also get azure dragons from the frozen peaks near Clopotnita (not strictly necessary but very helpful!).
+
+- Andhera casts expert clone and expert cure. Watch out for those fairy dragons! The battle can be won without casualties, but you need to get everything right (waiting for months and months as your army and treasury build up is NOT necessary if you play properly, and as I may have already mentioned it's no fun that way). Winning may take a few tries, but it's worth it =) 
+
+
+* Angelic Alliance components * 
+
+1) Armour of wonder: bonus for killing Pink
+2) Sandals of the Saint: hidden behind thatched hut accessible via two-way monolith near New Magincia
+3) Celestial necklace of bliss: reward for bringing 1 Rust Dragon to seer's hut just north of New Magincia 
+4) Lion's shield of courage: bonus for passing blue border gate and successive quest guard
+5) Sword of judgement: Reward for bringing 1 magma elemental to seer's hut hidden just north of Trinsic
+6) Helm of heavenly enlightenment (the one you get to keep!): given back by Beh Lem upon entering Teal area. 
+
+
+* Finding the Grail and the statue of legion (optional) * 
+
+One necro castle is accessible via the underground passage just south of the Dragon Utopiae. Take it, pass the quest guard and head west. Waterwalk to a spot just behind the rogue's cavern. Move along the secret path, free the 'hero' and dismiss him, take the inexhaustible cart of lumber, exchange it for the four-leaf clover at the seer's hut north of Destard. Pass through the one-way monolith after Minoc and find a tree of knowledge to the east, move southwest along the secret path (water-walking is also needed at some point), pass the quest guard. The statue of legion is there in plain sight; the Grail is where nobody else has dug (save for the point where the statue was <--- no kidding!). Place the Grail anywhere you like but try to refrain from building a skyship (uhm, maybe I banned the skyship from all towers anyway...can't remember, getting senile =)). A castle would be a good place (extra Archangels and +2 morale are helpful). 
+
+
+* All that glitters is not necessarily a magic plain * 
+
+1200000 gold coins are hidden behind the hovel near Minoc. What more could you want? How about 7*9999 War Unicorns guarding the treasure? (cloned Archdevils, anyone?) 
+
+* Defeating the overlords * 
+
+There are many ways to wipe out the overlords (and for those of you who think it's too hard, try out one of H3Trio's battlemaps!). This is probably the best tactic (thanks Victor!): 
+
+Leave familiars in Nar Mattaru. Split Efreeti Sultans into two stacks: 1 & 35. Cast mass haste, send the single Efreeti Sultan to attack the Black Dragons and watch the Scorpicores get roasted! Send the Cerberi to take all damage until they are killed, then resurrect them as Daemons while the other troops concentrate on the Black Dragons (Pit Lords, Horned Daemons, Magogs, Archdevils in second round). The Archdevils attack the Minotaur Kings or the Medusa Queens, the Efreeti Sultans kill off the rest of the Scorpicores. If you have no dead stacks to resurrect as Daemons, you can always have the Harpy Hags kill off a stack and THEN resurrect it! Repeat with slight variations where necessary, and crushing Pink will be easy! 
+
+
+For any problems not covered in this section drop me a line: commando_avatar@libero.it

@@ -1,0 +1,68 @@
+Map Name:	Ringing of Victory (THEPOW~1.H3M)
+Map Maker:	Tang Wen En, The Fiery Phoenix
+E-Mail Address:	p3dantic@yahoo.com.sg
+
+Map Type:	Singleplayer 1h 5C
+Language:	Malay, kidding =) English
+
+Description:	As an innocent village boy (with a not-so-innocent pet), Cohlen wanted adventure. And that was what he got, having fallen in love and promising (to an unknown woman) to go to the edge of the world (literally) to find her stolen ring. Little did he know what the (evil) thief had in store for him... 
+
+Special Win:	Transport Artifact  
+Special Loss:	Lose Hero
+Special Other:	You should not lose ANY of your pre-set (or given) heroes as it makes the game unplayable. 
+
+Town Portal, Fly and Dimension Door should NOT appear in any mage guild. So if they do, you're dreaming =)
+
+Pray excuse the (various) spelling mistakes, after a TERRIBLE experience with the import export function, I *tried* to check each event individually. But I may have missed some or overlooked mistakes, so excuse them... 
+
+Finally! After 7 months of collecting cyber dust in my computer, two name changes (Curiousity Killed the Cat & The Power of Love {which a certain Moo-man objected to =) }) and countless playtesting (all, of course, done by others =) this map is ready for the posting. BUT... there might still be bugs and whatnot, so would you PLEASE email me if you come across a problem? Or if you have any other feedback, please email me. May I request all players to pay attention to the final battle (NOT the LAST battle, and this should be clear when you finish the map) and tell me if it is hard enough? Thanks! 
+
+Many thanks to Cattleman for the inspiration to create this map and for being the first and most influencial (sp?) playtester ever. In fact, (and this is for others to know, for he knows already) one of the characters is called "Niuren", which in chinese means COW/bull man =) How's that for a dedication? Try to lose him/get him killed =)
+
+
+As this is the final individual Heroes 3 map I'm making/posting (getting quite sick/tired of Homm), I sincerely hope (and you'd Better!) enjoy the map.
+
+I have included a peripheral quest for your enjoyment/annoyance. The aim of this quest is simple, to get a certain artifact to a certain seer to gain a powerful (but mostly useless) artifact. You will notice some inaccessible or strange areas on the map. Be assured that these have some connection to the quest and are not mistakes. If you do complete this quest, please email me the saved game and I'll, well, congratulate you =)
+
+Listing of previous maps (aren't I brazen? =)
+
+-Northern Darkness
+-Sentinel Recognition
+-The Imp
+-Time of Testing (collaboration with Cattleman)
+-The Nighon Competition
+
+
+Listing of incomplete maps
+
+-Statute Quandry
+-Eye for a Spell
+-To Kill for Power
+-Presents
+
+These maps may never be posted if no one will help me complete them. People who are interested, have decent trimming, story telling and map designing skills please email me.
+
+
+
+
+Play-Testers:	Behemoth----------------behemoth@valhalla.com.pl
+                Cattleman---------------cattleman@h3trio.com
+                Greybeard---------------Zowiepa@aol.com
+                Ciriaco-----------------steni808@student.liu.se
+                TVW---------------------tvwsons@pacbell.net 
+                Scrowe------------------Simon_Crowe@excite.com
+                Gandalf-----------------mnokhrin@netscape.net
+                Grand Poo Bah-----------goyich@earthlink.net
+
+Hints/tips (no spoilers):
+
+Secret passages figure quite prominently in several places. Do NOT look in the editor if you find you can't go on, just pay attention to the text and open your eyes... OPEN YOUR EYES!!!
+
+
+Be quick in taking castles in the first month as you may miss out on goodies if you don't.
+
+
+Make sure that NO enemy retreats. You're given the Shackles of War, use it!
+
+
+More shall be added.... 'soon'... (euphemism for hmm........ =)

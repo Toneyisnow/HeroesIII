@@ -1,0 +1,29 @@
+   ____  __  __   _  __  ___    __   __
+  /  _/ / /_/ /  / |/ / / . |  /. \ / /
+ /  /_ / __  /  / _  / / _  | / _ / \ \
+ |___//_/ /_/  /_//_/ /_/ |_|/_/    /_/
+    HTTP://WWW.CELESTIALHEAVENS.COM                          
+
+--------------
+MAP SUBMISSION
+--------------
+
+Map Name:      [Podarok 2001 eng.h3m]
+Author:        [Dim]
+Home Page:     [http://www.dimline.boom.ru/] 
+E-mail Address:[dimline@mail.ru]
+Version:       [1.0]
+
+Map Type:      [Singleplayer][1 Human, 7 Computers]
+Map Size:      [Extra-Large with Underground]
+Game Version:  [HOMM3 SoD]
+Language:      [English]
+
+Special Win:   [Defeat Hero or Defeat all Enemies]
+Special Loss:  [Lose Hero]
+Special Other: [NONE]
+
+Description:   [A map made as a present for a girl. An elaborate map created with
+                love and humour. Very popular in Russia. Now it's in English!]
+
+Additional Info: [All credits go to the author of this map]

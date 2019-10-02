@@ -1,0 +1,5 @@
+Map name: The Belgariad
+Author: Stephane Delizaso
+Size: XL
+Players: 8/7
+Difficulty: Impossible

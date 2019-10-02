@@ -1,0 +1,5 @@
+Map name: The Gholam
+Author: ???
+Size: XL
+Players: 5/1
+Difficulty: Hard

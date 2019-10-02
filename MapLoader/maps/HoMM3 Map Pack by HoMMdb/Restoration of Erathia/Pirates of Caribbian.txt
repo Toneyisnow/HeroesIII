@@ -1,0 +1,5 @@
+Map name: Pirates of Caribbian
+Author: jerolimdu
+Size: XL
+Players: 8/2
+Difficulty: Normal

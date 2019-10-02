@@ -1,0 +1,25 @@
+
+                   MAGELLAN'S MAP SUBMISSION
+
+Map Name:	Battle of Glory (Battle of Glory.H3m)
+Map Maker:	Jukka Heinonen
+E-Mail Address:	batronord@hotmail.com
+
+Map Type:	Single or Multiplayer (8 players)
+Map Size:	XL, 2 levels
+Language:	English
+
+Description: 	Are you able to defeat your enemy kingdoms and unite the lands, that once formed one great empire.
+
+Special Win:	NONE
+Special Loss:	NONE
+
+Play-Testers:	Arto Nokela : anokela@paju.oulu.fi
+		Ilkka Kayhko: ilkka.kayhko@sonera.fi
+		Janne Kukkonen: klaisus@hotmail.com
+		Tarja Heinonen: ceril_sabik@hotmail.com
+		Topi Simula: tosimula@freenet.hut.fi
+
+              	
+Other information:
+		Recommended only for experienced H3 players. Very challenging and time consuming (several days)in 		multiplayer game. Try with Expert or Impossible difficulty!!!

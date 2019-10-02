@@ -1,0 +1,5 @@
+Map name: Bridges to War
+Author: Eric
+Size: XL
+Players: 8/8
+Difficulty: Hard

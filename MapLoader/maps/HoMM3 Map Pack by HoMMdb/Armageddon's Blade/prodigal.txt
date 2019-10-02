@@ -1,0 +1,19 @@
+Map name:  Prodigal (prodigal)
+Map Maker: : Cattleman (David Wells)
+Email: dawells@ozemail.com.au
+
+Map Type: XL single player
+
+Description:  That was some party last night. 
+		You hope you didn't do anything too stupid.
+
+Special win: Return artifact to town.
+Special loss: none
+special other: none
+
+Play testers: Gwhenwyfar (Gwhenwyfar@h3trio.com) 
+	      Quinn the Ancient Mariner (Nereus_QAM@att.net)
+
+
+HINT: Its a very good idea to take notice of the messages. 
+If you don't then its going to be very difficult.

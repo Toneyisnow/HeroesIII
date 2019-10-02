@@ -1,0 +1,66 @@
+
+
+Map Name:	Middle Earth  {MdEarth}
+                Middle Earth (allies) {MdEarthA}
+Map Maker:	Steve Strayer
+E-Mail Address:	strayer@bigfoot.com
+
+Map Type:	Multiplayer/Singleplayer [7/7 Humans Or Computer]
+Language:	English
+
+Description:	One ring to rule them all,
+		one ring to find them,
+		one ring to bring them all,
+		and in the darkness bind them,
+		in the land of Mordor where the shadows lie.
+		The War of the Ring is about to begin at the
+		end of the Third Age. Can the races of Middle Earth
+		survive the rise of the Dark Lord Sauron?
+
+Special Win:	Middle Earth - NONE
+		Middle Earth (allies) - transport an artifact
+Special Loss:	NONE
+Special Other:	NONE
+
+Narrative:	
+
+REQUIREMENTS
+------------
+Heroes III Shadows of Death with Armageddon's Blade
+
+
+Play-Testers:	Joe Shipp at brandonshipp@hotmail.com
+              	Nathan Everett at never25@gtcom.net
+              	Aaron Cole at colemun@home.com
+
+
+
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+
+
+Fans of Tolkien will be familiar with Middle Earth, for others, a jpg file picture of Middle Earth is also enclosed, just in-case you wanted to look at what Middle Earth roughly looks like, it is identical to this map, so don't look if you want to be surprised!
+
+
+CHOOSING YOUR SIDE
+------------------
+I have left all sides open for both the "random" map and the allies map.  Please remember, that the map difficulty reduces if you choose to play as the Dark Lord Sauron... he is after all, the Dark Lord Sauron!
+
+The "random" map is standard "conquer the world stuff", and is fairly well suited for balanced games or multiplay.  It's every man for himself or herself on the random map.  On the "allies" Middle Earth map, this is much more in-line with the events in the book... it is intended to be played as the Western Allies side, whereas you must get the Ruling Ring to Mordor and destroy the ring... note however, you can play any side you want, so choose carefully.  Both maps for all three versions have the same color/side settings as follows:
+
+Red - Mordor/Sauron *evil*
+Blue - Gondor *good*
+Tan - Isengard/Saruman *evil*
+Green - Mirkwood/Elves *good*
+Orange - Haradrim/barbarians *evil*
+Purple - Western Allies/Shire *good*
+Teal - Rohan *good*
+
+
+NOTES
+-----
+This is my FIRST finished map (set of maps) for Heroes III.  I've never done a map for this game before (though I have made maps, scenarios and campaigns for more mainstream wargames before), so please be understanding if it ain't top-notch... I've done my best to put forward a quality product here... This isn't my first attempt at a Heroes map, but it is my first FINISHED attempt (I once started this SAME Middle Earth project for Heroes II, but gave-up halfway through... somehow I really wanted to finish this project).
+
+Obviously Tolkien's world of fantasy and Heroes III aren't 100% identical, so obviously there will be things that aren't true to the book, that's to be expected when working with a game engine not designed on the book I made the scenario for, so please, no nitpicks saying Sauron didn't use undead or demons, hey I gotta have some creative freedom here!

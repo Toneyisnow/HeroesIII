@@ -1,0 +1,238 @@
+
+                   HEROES III MAP SUBMISSION
+
+Map Name:	Titanic Pride:Eps.I,II,III (TITANI~1.H3M)	
+Date:		updated!!! September 22, 1999
+Map Maker:	Jason Russell
+E-Mail Address:	jrussell@quark.physics.uwo.ca
+
+Map Type:	Singleplayer [1 Human Only, 3 Computers Only]
+Map Size:	XL with underground
+Language:	English
+
+Description:	Gunnar, an evil Overlord, desires to pillage the world.
+
+		Unfortunately, King Graven is travelling around and assisting his allies
+		with his cursed Angels.
+
+		In order to rule the land, King Graven and his Angels must fall. If
+		the Overlords are to win, they will need to find assistance somewhere...
+
+Special Win:	Defeat the Hero "King Graven"
+Special Loss:	Lose the Hero "Theodorus"
+
+Special Other:	Theodorus AND Dace must NOT die, surrender nor retreat or the game is Unplayable.
+		They BOTH must survive.
+
+		BUG WARNING! The Loss Condition sometimes changes to "Orrin" for no
+		apparent reason in the middle of the game. (HOMMIII Bug???)
+		
+		Orrin is safely tucked away in a jail at (0,0,1)
+
+Narrative:	Episodes I, II, III
+
+		Gunnar, an evil Overlord, is determined to have everyone bow under his
+		power. In order to accomplish this task, He will need to establish a strong
+		presence underground and then wipe out the infestations above ground.
+
+		Unfortunately, there is no Sulfur around so the power of the Dragons will
+		have to wait. Because of this, Gunnar has sent his brother, Dace, to search 
+		the underground caverns for the precious Sulfur.
+
+		There is also word that King Graven and his Wizard friend, Theodorus, are
+		travelling throughout the land and assisting their allies with the King's
+		Angels.
+
+		In order to rule the land, King Graven and his Angels must fall. It will be
+		tough, so Gunnar will need to find help somewhere...
+		
+
+Play-Testers:	Brian Combs
+		bcombs@hom.net
+
+		dwieschi
+  		dwieschi@hrz1.hrz.tu-darmstadt.de
+
+		Jeff Fike
+		JTFIKE@VISI.com and 
+		
+		Julie Fike
+		JAFIKE@visi.com
+
+		Gwhenwyfar
+		gwhenwyfar@nikocity.de
+
+		Paul Tanganelli
+		ptanganelli@hotmail.com
+
+		yung
+		raven@mars.ark.com
+
+
+		
+
+
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+SPOILERS:	WARNING!!!  SPOILER INFORMATION FOLLOWS PROCEED AT YOUR OWN RISK!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		This map is set at Impossible, but it IS Possible.
+
+		There are enough resources around to build a good, strong Castle.
+
+	Episode I: Separations
+		
+		Main Enemy: Red (Goes approx. from Month 1 to 3)
+
+		Do NOT attempt to Kill King Graven Right away and try to win the game!
+		Your goal is to defeat King Graven but not now! He is too strong for Theodorus.
+
+		Do NOT visit the Swan Pond. King Graven will Kill you. The Swan Pond is used to 
+		slow the King down so Theodorus has a chance to get away.
+
+		Theodorus MUST get the Neckalace of Ocean Guidance and the Sea Captains Hat in
+		order to escape the King. Make sure he is WEARING these artifacts! If you 
+		choose Random Artfact in the beginning, Theodorus might already be wearing a hat
+		or necklace at the beginning!
+
+		Gunnar can build a Castle, Portal of Summoning, Harpy Loft by day 7
+
+		Troglodites are not affected by the Medusa stare!
+
+		Get the Arms of Legion for +9 Minotaurs per week!
+
+		Red will appear in the Southern Cavern by week 3.
+
+		Dace can easily kill the surrounding beasts. Remember, Wraiths will drain All
+		of Dace's spell points.
+
+		Dace needs those Gold Mines.
+
+		Follow the instructions given to Dace by the Diamond and Gold Golems. Fulfill their
+		quest!
+
+		In order for Theodorus to escape the King, He can not pick up any loose wood. That
+		would slow him down. Leave the wood, King Graven will waste HIS time to get it!
+
+		After Theodorus lands, he will be too weak to fight the Dragons, or the elves in 
+		the garrison. There is another way for him to escape!
+
+		The Sea Captains Hat gives Theodorus the ability to Cast "Summon Boat". Use it on 
+		the other side of the cape.
+
+		Have Theodorus visit the Seer, he is safe there from the King. Notice what the King
+		picks up along the way! (anti Blind artifact, Orb of Silt, Tome of Earth Magic)
+
+		Theodorus will end up in the swamp. 
+
+		Theodorus CAN kill the 3 Chaos Hydra guarding the Fortress!
+		Remember, Chaos Hydra love to chew on catapults. Use Shield and have it work on it
+		while his Titan moves far enough away to hit it with hs lightning.
+
+		The Witch Styg is too Powerful to kill by Theodorus alone. She has 99 Spell Power
+		with Ice Bolt and Ice Ring!
+
+		Dace must collect the Resistant Clothes along his journeys. He needs 200-300 Golems
+		in order to kill the 401 Iron Golems protecting the Black tent.
+
+		Before going through the black Border Guard in the underground Dace needs about 
+		100 or so Golems in order to kill all Pit Lords down there.
+
+		Dace MUST free Xyron and Flee from him. He can not fight him!
+
+		Quickly, Dace and Theodorus must meet! Around M2 W2 maybe.
+
+		Red will find its own Red Tent by M2 W2, Beware! The Red Guards not only protect 
+		Gunnar from the Barbarians but also prevent Red from joining forces!
+		
+	Episode II:  The Sulfur
+
+		Main Enemy: Blue (Months 3 to 4)
+
+		Once Dace has the Blue Tent, Xyron will get it, Then Blue will swarm the swamp!
+
+		Quickly, Dace can give Theodorus the Resistant clothing and Kill Styg for her 
+		Seer Artifact. Theodorus can be up to 45% resistant! Dace can teach Theodorus
+		Protection from Water and give Theodorus his Resistant Golems!
+
+		Choice: Use the little Sulfur to give Theodorus The Chaos Hydra (Before the town 
+		is Lost) OR use it to buy Red Dragons for Gunnar. (I'd take the Hydra before 
+		Blue does)
+
+		Send Theodorus back to return the Seer Artifact. Dimension Door! Now he can visit
+		the Scholar there! Town Portal! 
+
+		On Magic Plains, Theodorus can use those spells at Expert Ability. Theodorus MUST
+		visit the Brown Tent before Town Portalling to where Gunnar is.
+
+		Gunnar can get Town Portal too! In the Northern cavern where the Seer's Hut is.
+
+		Dace is at a point where he has quick access to the Sulfur Stockpiles (via the 
+		underground) It'll be tricky, but if he can quickly grab them before getting caught
+		by Blue there is about 60-70 sulfur per stockpile!
+
+		60-70 Sulfur! Did someone say Black Dragons!!!!! They have been growing since the 
+		beginning of the game in the Dungeons!
+
+		Eliminate Red. Blue will come at Gunnar first through the Snowy Alchemist Land.
+		Soon, Blue will find the White and Red Tents, then they will Join forces and come
+		after Gunnar from ALL directions.
+
+		You do NOT need to kill Blue Heroes to win the game, but it will be a challenge.
+
+		Theodorus is the only one with Dimension Door to Visit the Wizard Tower called
+		Spire Height. Titans are there!!!
+
+		Send Theodorus through the one way Portal to get the Light Blue Tent.
+		Once there, Theodorus can sleep for the rest of the game.
+
+		Gunnar can now go after King Graven!!!
+
+	Episode III: Fall of Angels. Rise of Titans
+
+		Main Enemy: Pink (Months 4 to 6)
+
+		With Town Portal, Gunnar can get Theodorus' artifacts and Titans.
+
+		Give Dace the Sea Captains Hat, he is the Expert on the water.
+
+		Dace can get the Hourglass of the Evil Hour for the Seer to get the Wizards Hat!
+
+		There are two ways to get into Alandria (Pink Territory) Use either. Or surround
+		them!
+
+		King Graven is in Alandria. He should have by M6, 100 angels and 150 Green Dragons. 
+		Or more depending on when you enter Alandria.
+
+		King Graven knows Dimension Door, Town Portal, Implosion and Resurrection.
+
+		Kill him to win the game.
+
+		To save time on computer turns, King Graven is the ONLY Pink Hero. 
+
+		There is a HOMMIII bug that gives the Computer legions of Creatures for no apparent
+		reason. IF this happens, (it only happened once to me), there is a cave where you
+		get 10 free Black Dragons everytime you land on it. BE WARNED do not use it UNLESS
+		King Graven has more than 400 Angels, OR THE ENDING IS RUINED!!!!!
+
+	Angelic Pride: Episodes IV, V, VI now available
+	Devilish Pride: Episodes VII, VIII, IX now available
+	The End of Pride: Episode X available soon

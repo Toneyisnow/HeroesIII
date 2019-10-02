@@ -1,0 +1,5 @@
+Map name: Eight Players Cutthroat
+Author: ???
+Size: XL
+Players: 8/8
+Difficulty: Expert

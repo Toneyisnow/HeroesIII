@@ -1,0 +1,5 @@
+Map name: All you Want
+Author: Frifix
+Size: XL
+Players: 8/1
+Difficulty: Expert
