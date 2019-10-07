@@ -18,7 +18,7 @@ namespace H3MapLoader
 
         static void Main(string[] args)
         {
-            Test();
+            TestStream();
 
 
             Console.ReadKey();
@@ -43,9 +43,28 @@ namespace H3MapLoader
         
 
 
+        static void TestStream()
+        {
+            MemoryStream memory = new MemoryStream();
+            byte[] bytes = new byte[4] { (byte)'0', (byte)'1', (byte)'2', (byte)'3' };
+
+            memory.Write(bytes, 0, 4);
+            memory.Write(bytes, 2, 2);
+
+            Console.WriteLine("Length: " + memory.Length);
+
+            memory.Seek(0, SeekOrigin.Begin);
+
+            byte[] output = new byte[4];
+            memory.Read(output, 0, 4);
+            Console.WriteLine(string.Format("Output: {0} {1} {2} {3}", output[0], output[1], output[2], output[3]));
+
+            int size = memory.Read(output, 0, 4);
+            Console.WriteLine(string.Format("Output: {0} {1} {2} {3} (Size={4})", output[0], output[1], output[2], output[3], size));
+        }
         /// /////////////////////////////////////////////////////////
 
-        
+
 
     }
 

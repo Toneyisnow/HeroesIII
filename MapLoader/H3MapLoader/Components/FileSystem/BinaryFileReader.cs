@@ -26,6 +26,11 @@ namespace H3MapLoader.Components.FileSystem
             }
         }
 
+        public void Reset()
+        {
+            this.fileStream.Seek(0, SeekOrigin.Begin);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -108,6 +113,14 @@ namespace H3MapLoader.Components.FileSystem
             fileStream.Read(cache, 0, 1);
 
             return cache[0];
+        }
+
+        public byte[] ReadBytes(int length)
+        {
+            byte[] cache = new byte[length];
+            fileStream.Read(cache, 0, length);
+
+            return cache;
         }
 
         public UInt16 ReadUInt16()
