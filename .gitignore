@@ -40,3 +40,5 @@ MapLoader/packages/
 MapLoader/H3MapLoader/bin
 MapLoader/H3MapLoader/obj
 
+packages/
+H3Engine/bin/
