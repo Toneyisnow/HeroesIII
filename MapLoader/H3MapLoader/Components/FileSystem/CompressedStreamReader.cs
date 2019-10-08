@@ -22,7 +22,12 @@ namespace H3MapLoader.Components.FileSystem
 
         private ZStream inflateState = null;
 
-        private UInt64 Position
+        private UInt64 ReadPosition
+        {
+            get; set;
+        }
+
+        private UInt64 WritePosition
         {
             get; set;
         }
@@ -32,6 +37,10 @@ namespace H3MapLoader.Components.FileSystem
             this.inputReader = reader;
             this.compressedBuffer = new byte[InflateBlockSize];
             this.buffer = new MemoryStream();
+
+            this.ReadPosition = 0;
+            this.WritePosition = 0;
+
             ////this.buffer.Length
 
             this.inflateState = new ZStream();
@@ -54,20 +63,24 @@ namespace H3MapLoader.Components.FileSystem
 
         public void Dispose()
         {
-            this.inflateState.inflateEnd();
+            if (this.inflateState != null)
+            {
+                this.inflateState.inflateEnd();
+            }
         }
 
         public UInt64 Read(byte[] data, UInt64 size)
         {
-            EnsureSize(this.Position + size);
+            EnsureSize(this.ReadPosition + size);
 
-            var toRead = Math.Min(size, (ulong)buffer.Length - this.Position);
+            var toRead = Math.Min(size, (ulong)buffer.Length - this.ReadPosition);
             /// buffer.Seek(this.Position, SeekOrigin.Begin);
             
             if (toRead > 0)
             {
+                buffer.Seek((long)this.ReadPosition, SeekOrigin.Begin);
                 buffer.Read(data, 0, (int)toRead);
-                this.Position += toRead;
+                this.ReadPosition += toRead;
             }
 
             return toRead;
@@ -75,45 +88,19 @@ namespace H3MapLoader.Components.FileSystem
 
         public void EnsureSize(UInt64 size)
         {
-            while(buffer.Length < (long)size && this.endOfFileReached)
+            while(buffer.Length < (long)size && !this.endOfFileReached)
             {
                 var initialSize = buffer.Length;
-                var currentStep = Math.Min((long)size, initialSize);
-                currentStep = (currentStep < 1024 ? 1024 : currentStep);
+                var currentStep = (long)size - initialSize;
+                currentStep = (currentStep < 2048 ? 2048 : currentStep);
                 UInt64 readSize = this.ReadMore((ulong)currentStep);
+                if (readSize == 0)
+                {
+                    this.endOfFileReached = true;
+                }
             }
-
-            /*
-            while((ulong)buffer.Count < size && !this.endOfFileReached)
-            {
-                UInt64 initialSize = (UInt64)buffer.Count;
-                UInt64 currentStep = Math.Min(size, initialSize);
-                currentStep = (currentStep < 1024 ? 1024 : currentStep);
-
-                UInt64 readSize = this.ReadMore(initialSize, currentStep);
-            }
-            */
         }
-
-        public UInt64 Seek(UInt64 position)
-        {
-            EnsureSize(position);
-
-            this.Position = Math.Min(position, (ulong)(buffer.Length - 1));
-
-            return this.Position;
-        }
-
-        public UInt64 Tell()
-        {
-            return this.Position;
-        }
-
-        public UInt64 Skip(UInt64 delta)
-        {
-            return 0;
-        }
-
+        
         public UInt64 GetSize()
         {
             return (UInt64)buffer.Length;
@@ -121,7 +108,8 @@ namespace H3MapLoader.Components.FileSystem
 
         public void Reset()
         {
-            this.Position = 0;
+            this.ReadPosition = 0;
+            this.WritePosition = 0;
             this.endOfFileReached = false;
         }
 
@@ -147,6 +135,7 @@ namespace H3MapLoader.Components.FileSystem
 
             this.inflateState.avail_out = (int)size;
             this.inflateState.next_out = data;
+            this.inflateState.next_out_index = 0;
 
             do
             {
@@ -154,7 +143,7 @@ namespace H3MapLoader.Components.FileSystem
                 {
                     byte[] newBuffer = inputReader.ReadBytes(compressedBuffer.Length);
                     int availSize = newBuffer.Length;
-                    compressedBuffer = newBuffer;
+                    //// compressedBuffer = newBuffer;
                     if (availSize != compressedBuffer.Length)
                     {
                         this.inputReader.Reset();
@@ -162,37 +151,54 @@ namespace H3MapLoader.Components.FileSystem
                     }
 
                     this.inflateState.avail_in = availSize;
-                    this.inflateState.next_in = compressedBuffer;
+                    this.inflateState.next_in = newBuffer;
+                    this.inflateState.next_in_index = 0;
                 }
 
-                int ret = this.inflateState.inflate(FlushStrategy.Z_NO_FLUSH);
-
-                if (this.inflateState.avail_in == 0 && inputReader == null)
+                try
                 {
-                    fileEnded = true;
+                    int ret = this.inflateState.inflate(FlushStrategy.Z_NO_FLUSH);
+
+                    if (this.inflateState.avail_in == 0 && inputReader == null)
+                    {
+                        fileEnded = true;
+                    }
+
+                    switch (ret)
+                    {
+                        case 0: // Z_OK
+                            break;
+                        case 1: // Z_STREAM_END
+                            endLoop = true;
+                            //// this.inflateState.inflate(FlushStrategy.Z_FULL_FLUSH);
+                            break;
+                        case -5: // Z_BUF_ERROR
+                            endLoop = true;
+                            break;
+                        default:
+                            throw new Exception("Inflate Error: " + this.inflateState.msg);
+                    }
                 }
-
-                switch (ret)
+                catch(Exception ex)
                 {
-                    case 0: // Z_OK
-                        break;
-                    case 1: // Z_STREAM_END
-                        endLoop = true;
-                        break;
-                    case -5: // Z_BUF_ERROR
-                        endLoop = true;
-                        break;
-                    default:
-                        throw new Exception("Inflate Error: " + this.inflateState.msg);
+                    endLoop = true;
                 }
 
             }
             while (!endLoop && inflateState.avail_out != 0);
 
+            /*
+            buffer.Seek((long)this.WritePosition, SeekOrigin.Begin);
             buffer.Write(data, 0, data.Length);
+            this.WritePosition += (ulong)data.Length;
+            */
+            long newDecompressed = inflateState.total_out - decompressed;
 
-            decompressed = inflateState.total_out - decompressed;
+            buffer.Seek(0, SeekOrigin.End);
+            buffer.Write(data, 0, (int)newDecompressed);
 
+            //// this.WritePosition = (ulong)inflateState.total_out;
+            decompressed = inflateState.total_out;
             if (fileEnded)
             {
                 this.inflateState.inflateEnd();
