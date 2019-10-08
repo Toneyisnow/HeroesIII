@@ -1,4 +1,5 @@
-﻿using H3MapLoader.Components.Mapping;
+﻿using H3MapLoader.Components.FileSystem;
+using H3MapLoader.Components.Mapping;
 using H3MapLoader.Mapping;
 using Newtonsoft.Json;
 using System;
@@ -18,7 +19,7 @@ namespace H3MapLoader
 
         static void Main(string[] args)
         {
-            TestStream();
+            TestCompressedStream();
 
 
             Console.ReadKey();
@@ -41,6 +42,31 @@ namespace H3MapLoader
 
         }
         
+        static void TestCompressedStream()
+        {
+            string pathSource = @"D:\Toney\Personal\Git\toneyisnow\HeroesIII\MapLoader\maps\HoMM3 Map Pack by HoMMdb\Shadow of Death & HoMM3 Complete\Andrews Exploits\Andrews Exploits";
+
+            using (FileStream sw = new FileStream(@"D:\Temp\compressedout.out", FileMode.Create, FileAccess.Write))
+            {
+                using (BinaryFileReader fileReader = new BinaryFileReader(pathSource))
+                {
+                    using (CompressedStreamReader reader = new CompressedStreamReader(fileReader, false, 100000))
+                    {
+                        int batchSize = 300;
+                        byte[] tempData = new byte[batchSize];
+                        ulong readSize = 0;
+                        int count = 0;
+                        do
+                        {
+                            readSize = reader.Read(tempData, (ulong)batchSize);
+                            sw.Write(tempData, 0, (int)readSize);
+                        }
+                        while (readSize > 0 && count ++ < 100);
+                    }
+                }
+            }
+
+        }
 
 
         static void TestStream()

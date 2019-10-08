@@ -1,4 +1,17 @@
-﻿using ComponentAce.Compression.Libs.ZLib;
+﻿
+#define Z_OK           // 0
+#define Z_STREAM_END   // 1
+#define Z_NEED_DICT    // 2
+#define Z_ERRNO        //(-1)
+#define Z_STREAM_ERROR //(-2)
+#define Z_DATA_ERROR   //(-3)
+#define Z_MEM_ERROR    //(-4)
+#define Z_BUF_ERROR    //(-5)
+#define Z_VERSION_ERROR // (-6)
+
+
+
+using ComponentAce.Compression.Libs.ZLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -94,9 +107,17 @@ namespace H3MapLoader.Components.FileSystem
                 var currentStep = (long)size - initialSize;
                 currentStep = (currentStep < 2048 ? 2048 : currentStep);
                 UInt64 readSize = this.ReadMore((ulong)currentStep);
+<<<<<<< HEAD
                 if (readSize == 0)
                 {
                     this.endOfFileReached = true;
+=======
+
+                if (readSize != (ulong)currentStep)
+                {
+                    endOfFileReached = true;
+                    return;
+>>>>>>> Update.
                 }
             }
         }
@@ -112,6 +133,8 @@ namespace H3MapLoader.Components.FileSystem
             this.WritePosition = 0;
             this.endOfFileReached = false;
         }
+
+
 
         /// <summary>
         /// Read more data into Buffer
@@ -201,6 +224,7 @@ namespace H3MapLoader.Components.FileSystem
             decompressed = inflateState.total_out;
             if (fileEnded)
             {
+                this.endOfFileReached = true;
                 this.inflateState.inflateEnd();
                 this.inflateState = null;
             }
