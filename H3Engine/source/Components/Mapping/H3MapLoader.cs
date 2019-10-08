@@ -1,5 +1,5 @@
-﻿using H3MapLoader.Components.Core;
-using H3MapLoader.Components.FileSystem;
+﻿using H3Engine.Components.Core;
+using H3Engine.Components.FileSystem;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H3MapLoader.Components.Mapping
+namespace H3Engine.Components.Mapping
 {
     public class MapLoaderH3M
     {
-        private HMMap mapObject = null;
+        private H3Map mapObject = null;
 
         private string h3mFileFullPath = null;
 
@@ -20,9 +20,9 @@ namespace H3MapLoader.Components.Mapping
             this.h3mFileFullPath = fileFullPath;
         }
 
-        public HMMap LoadMap()
+        public H3Map LoadMap()
         {
-            mapObject = new HMMap();
+            mapObject = new H3Map();
             
             using (BinaryFileReader reader = new BinaryFileReader(h3mFileFullPath))
             {
@@ -183,7 +183,7 @@ namespace H3MapLoader.Components.Mapping
                     }
 
                     var townPosition = reader.ReadPosition();
-                    Console.WriteLine(string.Format("Main Town Position: {0}, {1}, {2}", townPosition.PosX, townPosition.PosY, townPosition.PosZ));
+                    Console.WriteLine(string.Format("Main Town Position: {0}, {1}, {2}", townPosition.PosX, townPosition.PosY, townPosition.Level));
                     playerInfo.MainTownPosition = townPosition;
                 }
 
@@ -217,10 +217,10 @@ namespace H3MapLoader.Components.Mapping
                     int heroCount = reader.ReadUInt8();
                     reader.Skip(3);
 
-                    playerInfo.HeroIds = new List<HeroIdentifier>();
+                    playerInfo.HeroIds = new List<H3HeroId>();
                     for (int pp = 0; pp < heroCount; ++pp)
                     {
-                        HeroIdentifier heroId = new HeroIdentifier();
+                        H3HeroId heroId = new H3HeroId();
                         heroId.Id = reader.ReadUInt8();
                         heroId.Name = reader.ReadString();
                         playerInfo.HeroIds.Add(heroId);

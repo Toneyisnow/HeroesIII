@@ -43,7 +43,7 @@ namespace H3Engine.Components.FileSystem
             get; set;
         }
 
-        public CompressedStreamReader(Stream input, bool isGZip, UInt64 decompressedSize)
+        public CompressedStreamReader(Stream input, bool isGZip)
         {
             this.inputStream = input;
             this.compressedBuffer = new byte[InflateBlockSize];

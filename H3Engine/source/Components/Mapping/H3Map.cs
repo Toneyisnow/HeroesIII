@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H3MapLoader.Components.Mapping
+namespace H3Engine.Components.Mapping
 {
-    public class HMMap
+    public class H3Map
     {
         
-        public HMMap()
+        public H3Map()
         {
             this.Header = new MapHeader();
         }

@@ -37,10 +37,12 @@ namespace H3Engine.Components.FileSystem
         /// <param name="count"></param>
         public void Skip(int count)
         {
-            for (int i = 0; i < count; i++)
-            {
-                ReadByte();
-            }
+            this.fileStream.Seek(count, SeekOrigin.Current);
+        }
+
+        public void Seek(int position)
+        {
+            this.fileStream.Seek(position, SeekOrigin.Begin);
         }
 
         /// <summary>

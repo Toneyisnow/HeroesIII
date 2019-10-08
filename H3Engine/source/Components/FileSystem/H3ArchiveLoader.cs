@@ -38,17 +38,139 @@ namespace H3Engine.Components.FileSystem
     }
     public class H3ArchiveLoader
     {
+        private BinaryFileReader reader = null;
 
+        private List<FileInfo> fileInfos = null;
+
+        public H3ArchiveLoader(string lodFileFullPath)
+        {
+            reader = new BinaryFileReader(lodFileFullPath);
+            LoadHeader();
+        }
+
+        private void LoadHeader()
+        {
+            reader.Seek(8);
+            uint count = reader.ReadUInt32();
+
+            fileInfos = new List<FileInfo>();
+            reader.Seek(92);
+
+            for (int fileIndex = 0; fileIndex < count; fileIndex++)
+            {
+                byte[] buffer = new byte[16];
+                for (int i = 0; i < 16; i++)
+                {
+                    buffer[i] = reader.ReadByte();
+                }
+                string filename = System.Text.Encoding.ASCII.GetString(buffer);
+
+                filename = filename.Substring(0, filename.IndexOf('\0'));
+                uint offset = reader.ReadUInt32();
+                uint size = reader.ReadUInt32();
+                uint placeholder = reader.ReadUInt32();
+                uint csize = reader.ReadUInt32();
+                
+                FileInfo info = new FileInfo();
+                info.FileName = filename;
+                info.Offset = offset;
+                info.Size = size;
+                info.CSize = csize;
+
+                fileInfos.Add(info);
+            }
+
+        }
+
+        public void DumpAllFiles(string outputFolder)
+        {
+            for (int fileIndex = 0; fileIndex < fileInfos.Count; fileIndex++)
+            {
+                FileInfo info = fileInfos[fileIndex];
+
+                Dump(info, outputFolder);
+            }
+        }
+
+        public void DumpFile(string fileName, string outputFolder)
+        {
+            for (int fileIndex = 0; fileIndex < fileInfos.Count; fileIndex++)
+            {
+                FileInfo info = fileInfos[fileIndex];
+
+                if (info.FileName.Equals(fileName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    Dump(info, outputFolder);
+                }
+            }
+        }
+
+        private void Dump(FileInfo fileInfo, string outputFolder)
+        {
+            try
+            {
+                Directory.CreateDirectory(outputFolder);
+            }
+            catch (Exception)
+            {
+                ///
+            }
+            
+            reader.Seek((int)fileInfo.Offset);
+            byte[] content;
+
+            string filename =Path.Combine(outputFolder, fileInfo.FileName);
+
+            using (var outputStream = new FileStream(filename, FileMode.Create, FileAccess.Write))
+            { 
+                if (fileInfo.CSize > 0)
+                {
+                    content = reader.ReadBytes((int)fileInfo.CSize);
+                    MemoryStream inputStream = new MemoryStream(content);
+                    DecompressStream(inputStream, outputStream);
+                }
+                else
+                {
+                    content = reader.ReadBytes((int)fileInfo.Size);
+                    outputStream.Write(content, 0, content.Length);
+                }
+            }
+        }
+
+        private void DecompressStream(Stream inputStream, Stream ouputStream, bool isGZip = false)
+        {
+            if (inputStream == null || !inputStream.CanRead)
+            {
+                return;
+            }
+
+            if (ouputStream == null || !ouputStream.CanWrite)
+            {
+                return;
+            }
+
+            using (CompressedStreamReader compressedStream = new CompressedStreamReader(inputStream, isGZip))
+            {
+                ulong bucketSize = 1024;
+                byte[] buffer = new byte[bucketSize];
+                ulong readSize = 0;
+
+                do
+                {
+                    readSize = compressedStream.Read(buffer, bucketSize);
+                    if (readSize > 0)
+                    {
+                        ouputStream.Write(buffer, 0, (int)readSize);
+                    }
+                }
+                while (readSize > 0);
+            }
+        }
     }
 
-
-
-
-
-
-    class Program
+    class Program2
     {
-        static void Main(string[] args)
+        static void Main2(string[] args)
         {
             TestZStream();
 
@@ -63,7 +185,7 @@ namespace H3Engine.Components.FileSystem
             using (FileStream output = new FileStream(@"D:\Temp\Dwelling.txt", FileMode.Create, FileAccess.Write))
             using (BinaryFileReader reader = new BinaryFileReader(filename))
             {
-                using (CompressedStreamReader compressedStream = new CompressedStreamReader(reader, false, 500000))
+                using (CompressedStreamReader compressedStream = new CompressedStreamReader(null, false))
                 {
                     ulong bucketSize = 1024;
                     byte[] buffer = new byte[bucketSize];
@@ -151,7 +273,7 @@ namespace H3Engine.Components.FileSystem
             {
                 FileInfo info = fileList[fileIndex];
 
-                reader.Seek(info.Offset);
+                //// reader.Seek(info.Offset);
                 byte[] content;
                 string filename = @".\output\" + info.FileName;
                 if (info.CSize > 0)
