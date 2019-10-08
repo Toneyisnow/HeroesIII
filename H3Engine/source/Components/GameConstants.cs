@@ -84,14 +84,13 @@ namespace H3Engine.Components
         SAME_PLAYER
     };
 
-    public enum ESecondarySkillLevel
+    public enum EPlayerColor
     {
-        NONE,
-        BASIC,
-        ADVANCED,
-        EXPERT,
-        LEVELS_SIZE
-    };
+        Zero = 0,
+        One = 1,
+        Two = 2,
+        Eigth = 8
+    }
 
     public enum EDateType
     {
@@ -417,7 +416,7 @@ namespace H3Engine.Components
         COMMANDER1 = 0, COMMANDER2, COMMANDER3, COMMANDER4, COMMANDER5, COMMANDER6, COMMANDER_AFTER_LAST    // Only for WoG
     };
 
-    public enum EArtifactID
+    public enum EArtifactId
     {
         NONE = -1,
         SPELLBOOK = 0,
@@ -447,7 +446,7 @@ namespace H3Engine.Components
         //SLAVAS_RING_OF_POWER = 155
     };
 
-    public enum ECreatureID
+    public enum ECreatureId
     {
         NONE = -1,
         CAVALIER = 10,
@@ -477,7 +476,7 @@ namespace H3Engine.Components
         ARROW_TOWERS = 149
     };
 
-    public enum EBuildingID
+    public enum EBuildingId
     {
         DEFAULT = -50,
         NONE = -1,
@@ -549,7 +548,7 @@ namespace H3Engine.Components
         NEUTRAL
     };
 
-    public enum ESpellID
+    public enum ESpellId
     {
         PRESET = -2,
         NONE = -1,
@@ -622,6 +621,21 @@ namespace H3Engine.Components
 	    PERMANENT
     };
 
+    public enum EPrimarySkill
+    {
+        ATTACK, DEFENSE, SPELL_POWER, KNOWLEDGE,
+        EXPERIENCE = 4      //for some reason changePrimSkill uses it
+    };
+
+    public enum ESecondarySkillLevel
+    {
+        NONE,
+        BASIC,
+        ADVANCED,
+        EXPERT,
+        LEVELS_SIZE
+    };
+
     public enum ESecondarySkill
     {
         WRONG = -2,
@@ -630,12 +644,6 @@ namespace H3Engine.Components
         LUCK, BALLISTICS, EAGLE_EYE, NECROMANCY, ESTATES, FIRE_MAGIC, AIR_MAGIC, WATER_MAGIC, EARTH_MAGIC,
         SCHOLAR, TACTICS, ARTILLERY, LEARNING, OFFENCE, ARMORER, INTELLIGENCE, SORCERY, RESISTANCE,
         FIRST_AID, SKILL_SIZE
-    };
-
-    public enum PrimarySkill
-    {
-        ATTACK, DEFENSE, SPELL_POWER, KNOWLEDGE,
-        EXPERIENCE = 4      //for some reason changePrimSkill uses it
     };
 
 }

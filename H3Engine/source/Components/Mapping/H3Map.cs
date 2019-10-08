@@ -1,4 +1,5 @@
-﻿using System;
+﻿using H3Engine.Components.MapObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,14 @@ namespace H3Engine.Components.Mapping
             get; private set;
         }
 
+        public List<H3Object> Objects
+        {
+            get; set;
+        }
 
+        public List<ObjectTemplate> ObjectTemplates
+        {
+            get; set;
+        }
     }
 }

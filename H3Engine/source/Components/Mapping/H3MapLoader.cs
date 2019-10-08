@@ -1,5 +1,6 @@
 ﻿using H3Engine.Components.Core;
 using H3Engine.Components.FileSystem;
+using H3Engine.Components.MapObjects;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace H3Engine.Components.Mapping
 {
-    public class MapLoaderH3M
+    public class H3MapLoader
     {
         private H3Map mapObject = null;
 
         private string h3mFileFullPath = null;
 
-        public MapLoaderH3M(string fileFullPath)
+        public H3MapLoader(string fileFullPath)
         {
             this.h3mFileFullPath = fileFullPath;
         }
@@ -43,7 +44,7 @@ namespace H3Engine.Components.Mapping
 
                 ReadObjectTemplates(reader);
 
-
+                // ReadObjects(reader);
 
             }
 
@@ -618,14 +619,16 @@ namespace H3Engine.Components.Mapping
 
         private void ReadObjectTemplates(BinaryFileReader reader)
         {
-            uint defAmount = reader.ReadUInt32();
-            Console.WriteLine("ReadObjectTemplates totally:" + defAmount);
+            uint templateCount = reader.ReadUInt32();
+            Console.WriteLine("ReadObjectTemplates totally:" + templateCount);
 
             // Read custom defs
-            for (int idd = 0; idd < defAmount; ++idd)
+            for (int idd = 0; idd < templateCount; ++idd)
             {
-                string animationFile = reader.ReadString();
-                Console.WriteLine("Object Animation File:" + animationFile);
+                ObjectTemplate objectTemplate = new ObjectTemplate();
+
+                objectTemplate.AnimationFile = reader.ReadString();
+                Console.WriteLine("Object Animation File:" + objectTemplate.AnimationFile);
 
                 int[] blockMask = new int[6];
                 int[] visitMask = new int[6];
@@ -645,8 +648,12 @@ namespace H3Engine.Components.Mapping
                 reader.ReadUInt16();
                 int terrMask = reader.ReadUInt16();
 
-                uint objectId = reader.ReadUInt32();
-                uint objectSubId = reader.ReadUInt32();
+                objectTemplate.Type = (EObjectType)reader.ReadUInt32();
+                objectTemplate.SubId = (int)reader.ReadUInt32();
+
+                Console.WriteLine(string.Format("Object Type: {0} SubId: {1}", objectTemplate.Type, objectTemplate.SubId));
+
+                // This type is not the template type, used in isOnVisitableFromTopList
                 int type = reader.ReadUInt8();
                 int printPriority = reader.ReadUInt8() * 100;
 
@@ -656,6 +663,212 @@ namespace H3Engine.Components.Mapping
             }
         }
 
+        private void ReadObjects(BinaryFileReader reader)
+        {
+            H3Object resultObject = null;
+
+            int objectCount = (int)reader.ReadUInt32();
+            Console.WriteLine(string.Format("Totally {0} objects.", objectCount));
+            
+            for(int ww = 0; ww < objectCount; ww ++)
+            {
+                int objectId = this.mapObject.Objects.Count();
+
+                MapPosition objectPosition = reader.ReadPosition();
+                int objectTemplateIndex = (int)reader.ReadUInt32();
+
+                ObjectTemplate objTemplate = mapObject.ObjectTemplates[objectTemplateIndex];
+
+                reader.Skip(5);
+
+                switch(objTemplate.Type)
+                {
+                    case EObjectType.EVENT:
+
+                        H3Event h3event = new H3Event();
+                        ReadMessageAndGuards(reader, h3event);
+
+                        var gainedExp = reader.ReadUInt32();
+                        var manaDiff = reader.ReadUInt32();
+                        var moraleDiff = reader.ReadUInt8();
+                        var luckDiff = reader.ReadUInt8();
+
+                        ReadResouces(reader);
+
+                        for(int x = 0; x < 4; x++)
+                        {
+                            var primSkill = (EPrimarySkill)reader.ReadUInt8();
+                        }
+
+                        int gainedAbilities = reader.ReadUInt8();
+                        for (int i = 0; i < gainedAbilities; i++)
+                        {
+                            h3event.Abilities.Add((ESecondarySkill)reader.ReadUInt8());
+                        }
+
+                        int gainedArtifacts = reader.ReadUInt8();
+                        for (int i = 0; i < gainedArtifacts; i++)
+                        {
+                            if (mapObject.Header.Version == EMapFormat.ROE)
+                            {
+                                var artId = (EArtifactId)reader.ReadUInt8();
+                            }
+                            else
+                            {
+                                var artId = (EArtifactId)reader.ReadUInt16();
+                            }
+                        }
+
+                        int gainedSpells = reader.ReadUInt8();
+                        for (int i = 0; i < gainedSpells; i++)
+                        {
+                            var spellId = (ESpellId)reader.ReadUInt8();
+                        }
+
+                        int gainedCreatures = reader.ReadUInt8();
+                        var creatureSet = ReadCreatureSet(reader, gainedCreatures);
+
+                        reader.Skip(8);
+
+                        var availableForPlayer = reader.ReadUInt8();
+                        var computerActivate = reader.ReadUInt8();
+                        var removeAfterVisit = reader.ReadUInt8();
+                        var humanActivate = true;
+
+                        reader.Skip(4);
+                        break;
+
+                    case EObjectType.HERO:
+                    case EObjectType.RANDOM_HERO:
+                    case EObjectType.PRISON:
+
+                        resultObject = ReadHero(reader, objectId, objectPosition);
+                        break;
+
+                    case EObjectType.MONSTER:  //Monster
+                    case EObjectType.RANDOM_MONSTER:
+                    case EObjectType.RANDOM_MONSTER_L1:
+                    case EObjectType.RANDOM_MONSTER_L2:
+                    case EObjectType.RANDOM_MONSTER_L3:
+                    case EObjectType.RANDOM_MONSTER_L4:
+                    case EObjectType.RANDOM_MONSTER_L5:
+                    case EObjectType.RANDOM_MONSTER_L6:
+                    case EObjectType.RANDOM_MONSTER_L7:
+
+                        // Create Creature
+
+
+                        break;
+
+                    case EObjectType.OCEAN_BOTTLE:
+                    case EObjectType.SIGN:
+                        {
+
+                            break;
+                        }
+                    case EObjectType.SEER_HUT:
+                        {
+                            
+                            break;
+                        }
+                    case EObjectType.WITCH_HUT:
+                        {
+                            
+                            break;
+                        }
+                    case EObjectType.SCHOLAR:
+                        {
+                            
+                            break;
+                        }
+                    case EObjectType.GARRISON:
+                    case EObjectType.GARRISON2:
+                        {
+                            
+                            break;
+                        }
+                    case EObjectType.ARTIFACT:
+                    case EObjectType.RANDOM_ART:
+                    case EObjectType.RANDOM_TREASURE_ART:
+                    case EObjectType.RANDOM_MINOR_ART:
+                    case EObjectType.RANDOM_MAJOR_ART:
+                    case EObjectType.RANDOM_RELIC_ART:
+                    case EObjectType.SPELL_SCROLL:
+                        {
+                            
+                            break;
+                        }
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private H3Object ReadHero(BinaryFileReader reader, int objectId, MapPosition objectPosition)
+        {
+
+
+            return null;
+        }
         
+        private void ReadMessageAndGuards(BinaryFileReader reader, H3Event eventObject)
+        {
+
+        }
+
+        private void ReadResouces(BinaryFileReader reader)
+        {
+            for (int x = 0; x < 7; ++x)
+            {
+                var num = reader.ReadUInt32();
+            }
+        }
+
+        private object ReadCreatureSet(BinaryFileReader reader, int numberToRead)
+        {
+            bool isHighVersion = mapObject.Header.Version > EMapFormat.ROE;
+            int maxID = isHighVersion ? 0xffff : 0xff;
+
+            for (int ir = 0; ir < numberToRead; ++ir)
+            {
+                ECreatureId creatureId;
+
+                if (isHighVersion)
+                {
+                    creatureId = (ECreatureId)(reader.ReadUInt16());
+                }
+                else
+                {
+                    creatureId = (ECreatureId)(reader.ReadUInt8());
+                }
+
+                int amount = reader.ReadUInt16();
+
+                // Empty slot
+                if ((int)creatureId == maxID)
+                    continue;
+
+                // Create StackInstance
+                //auto hlp = new CStackInstance();
+                // hlp->count = count;
+
+                if ((int)creatureId > maxID - 0xf)
+                {
+                    //this will happen when random object has random army
+                    //hlp->idRand = maxID - (int)creatureId - 1;
+                }
+                else
+                {
+                    //hlp->setType((int)creatureId);
+                }
+
+		        // out->putStack(SlotID(ir), hlp);
+            }
+
+            //out->validTypes(true);
+
+            return null;
+        }
     }
 }
