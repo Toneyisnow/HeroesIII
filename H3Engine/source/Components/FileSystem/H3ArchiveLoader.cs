@@ -121,8 +121,8 @@ namespace H3Engine.Components.FileSystem
 
             string filename =Path.Combine(outputFolder, fileInfo.FileName);
 
-            using (var outputStream = new FileStream(filename, FileMode.Create, FileAccess.Write))
-            { 
+            using (MemoryStream outputStream = new MemoryStream())
+            {
                 if (fileInfo.CSize > 0)
                 {
                     content = reader.ReadBytes((int)fileInfo.CSize);
@@ -133,6 +133,21 @@ namespace H3Engine.Components.FileSystem
                 {
                     content = reader.ReadBytes((int)fileInfo.Size);
                     outputStream.Write(content, 0, content.Length);
+                }
+
+                
+                using (var outputFile = new FileStream(filename, FileMode.Create, FileAccess.Write))
+                {
+                    outputStream.Seek(0, SeekOrigin.Begin);
+
+                    if (IsPCX(outputStream))
+                    {
+                        WritePCXFile(outputStream, outputFile);
+                    }
+                    else
+                    {
+                        outputStream.CopyTo(outputFile);
+                    }
                 }
             }
         }
@@ -165,6 +180,49 @@ namespace H3Engine.Components.FileSystem
                 }
                 while (readSize > 0);
             }
+        }
+
+        private bool IsPCX(Stream stream)
+        {
+            long position = stream.Position;
+            BinaryReader reader = new BinaryReader(stream);
+            
+            int size = reader.ReadInt32();
+            int width = reader.ReadInt32();
+            int height = reader.ReadInt32();
+
+            stream.Seek(position, SeekOrigin.Begin);
+
+            return (size == width * height || size == width * height * 3);
+        }
+
+        private void WritePCXFile(Stream inputStream, Stream outputFile)
+        {
+            BinaryReader reader = new BinaryReader(inputStream);
+            BinaryWriter writer = new BinaryWriter(outputFile);
+
+            int size = reader.ReadInt32();
+            int width = reader.ReadInt32();
+            int height = reader.ReadInt32();
+
+            // PCX ID
+            writer.Write((byte)0x0A);
+
+            // Version
+            writer.Write((byte)0x05);
+
+            // Encoding Format
+            writer.Write((byte)0x05);
+            
+            if (size == width * height)
+            {
+
+            }
+            else if (size == width * height * 3)
+            {
+
+            }
+            
         }
     }
 
