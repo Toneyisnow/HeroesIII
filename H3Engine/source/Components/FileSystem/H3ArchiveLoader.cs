@@ -120,6 +120,11 @@ namespace H3Engine.Components.FileSystem
             byte[] content;
 
             string filename =Path.Combine(outputFolder, fileInfo.FileName);
+            string ext = Path.GetExtension(filename);
+            if (Path.GetExtension(filename) == ".pcx")
+            {
+                filename = Path.ChangeExtension(filename, ".png");
+            }
 
             using (MemoryStream outputStream = new MemoryStream())
             {
