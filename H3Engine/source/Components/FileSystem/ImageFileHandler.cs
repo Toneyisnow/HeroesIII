@@ -55,9 +55,9 @@ namespace H3Engine.Components.FileSystem
                 inputStream.Seek(size, SeekOrigin.Current);
                 for (int i = 0; i < 256; i++)
                 {
-                    red[i] = reader.ReadByte();
-                    green[i] = reader.ReadByte();
                     blue[i] = reader.ReadByte();
+                    green[i] = reader.ReadByte();
+                    red[i] = reader.ReadByte();
                 }
 
                 inputStream.Seek(12, SeekOrigin.Begin);
