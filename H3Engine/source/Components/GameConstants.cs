@@ -216,9 +216,11 @@ namespace H3Engine.Components
         WINDMILL = 112,
         WITCH_HUT = 113,
         HOLE = 124,
+
         RANDOM_MONSTER_L5 = 162,
         RANDOM_MONSTER_L6 = 163,
         RANDOM_MONSTER_L7 = 164,
+
         BORDER_GATE = 212,
         FREELANCERS_GUILD = 213,
         HERO_PLACEHOLDER = 214,
@@ -426,8 +428,11 @@ namespace H3Engine.Components
         BALLISTA = 4,
         AMMO_CART = 5,
         FIRST_AID_TENT = 6,
-        //CENTAUR_AXE = 7,
-        //BLACKSHARD_OF_THE_DEAD_KNIGHT = 8,
+        CENTAUR_AXE = 7,
+        BLACKSHARD_OF_THE_DEAD_KNIGHT = 8,
+        GREATER_GNOLLS_FAIL = 9,
+
+
         ARMAGEDDONS_BLADE = 128,
         TITANS_THUNDER = 135,
         //CORNUCOPIA = 140,

@@ -1,0 +1,331 @@
+Time: 10/9/2019 3:01:57 PM (09.10.2019 22:01:57 UTC)
+Windows Version 6.2 
+
+Exception EReadError in module DefPreview.exe at 0006FFBF.
+Def file is invalid.
+
+Function Calls:
+
+0046FFBA | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6FFBA
+0047BCE9 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7BCE9
+0047C0DB | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7C0DB
+004432C0 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 432C0
+00466624 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 66624
+00468871 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 68871
+004677D7 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 677D7
+004436C4 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 436C4
+00443746 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 43746
+004419B3 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 419B3
+00442DBB ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 42DBB
+7622844E ? C:\WINDOWS\System32\gdi32full.dll + 8844E
+76A032F0 ? C:\WINDOWS\System32\GDI32.dll + 32F0
+759D6FAF ? C:\WINDOWS\System32\msvcrt.dll + 76FAF
+771E01C4 ? C:\WINDOWS\SYSTEM32\ntdll.dll + 601C4
+75E0E0D5 ? C:\WINDOWS\System32\combase.dll + 10E0D5
+75A7E935 ? C:\WINDOWS\System32\oleaut32.dll + 1E935
+75A7E8AC ? C:\WINDOWS\System32\oleaut32.dll + 1E8AC
+75B5622B ? C:\WINDOWS\System32\MSCTF.dll + 4622B
+75B5623B ? C:\WINDOWS\System32\MSCTF.dll + 4623B
+00468810 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 68810
+00468795 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 68795
+00442A48 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 42A48
+00446765 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 46765
+00446A9E ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 46A9E
+75B3E8C4 ? C:\WINDOWS\System32\MSCTF.dll + 2E8C4
+0046068D ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6068D
+0046E5B5 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6E5B5
+0046E5F9 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6E5F9
+0044639C ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 4639C
+0041CA64 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 1CA64
+752E48E9 | C:\WINDOWS\System32\user32.dll + 448E9
+752C6137 | C:\WINDOWS\System32\user32.dll + 26137
+771F1DAA ? C:\WINDOWS\SYSTEM32\ntdll.dll + 71DAA
+752E0915 ? C:\WINDOWS\System32\user32.dll + 40915
+752C5F85 ? C:\WINDOWS\System32\user32.dll + 25F85
+752C5289 | C:\WINDOWS\System32\user32.dll + 25289
+752DA2C4 ? C:\WINDOWS\System32\user32.dll + 3A2C4
+752DEE7B | C:\WINDOWS\System32\user32.dll + 3EE7B
+0045E59C | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 5E59C
+0045E5D6 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 5E5D6
+0045E7F6 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 5E7F6
+0047F920 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7F920
+75FB6357 | C:\WINDOWS\System32\KERNEL32.DLL + 16357
+771E7B72 | C:\WINDOWS\SYSTEM32\ntdll.dll + 67B72
+771E7B3F | C:\WINDOWS\SYSTEM32\ntdll.dll + 67B3F
+
+Registers:
+
+EAX = 00000000
+EBX = 02391650
+ECX = 00000000
+EDX = 00000000
+ESI = 022C45BA
+EDI = 022DCC80
+EBP = 0019FA2C
+ESP = 0019F9FC
+
+Stack Trace:
+
+0019F9FC: 0019FA08 | TExcFrame.next
+0019FA00: 0046FFDB | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6FFDB
+0019FA04: 0019FA2C | TExcFrame.hEBP
+0019FA08: 0019FA34 | TExcFrame.next
+0019FA0C: 00403CE9 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 3CE9
+0019FA10: 0019FA2C | TExcFrame.hEBP
+0019FA14: 02391650
+0019FA18: 00468860
+0019FA1C: 02358EF0
+0019FA20: 022C41F8
+0019FA24: 01403D15
+0019FA28: 022C39F8
+0019FA2C: 0019FA94 | Last EBP
+0019FA30: 0047BCEE | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7BCEE
+0019FA34: 0019FA40 | TExcFrame.next
+0019FA38: 0047BCFD | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7BCFD
+0019FA3C: 0019FA94 | TExcFrame.hEBP
+0019FA40: 0019FA9C | TExcFrame.next
+0019FA44: 0047C04E | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7C04E
+0019FA48: 0019FA94 | TExcFrame.hEBP
+0019FA4C: 022DCC80
+0019FA50: 00468860
+0019FA54: 02358EF0
+0019FA58: 00000000
+0019FA5C: 00000000
+0019FA60: 00000000
+0019FA64: 00000000
+0019FA68: 00000000
+0019FA6C: 00000000
+0019FA70: 00000000
+0019FA74: 00000000
+0019FA78: 00000000
+0019FA7C: 00000000
+0019FA80: 00000000
+0019FA84: 00000000
+0019FA88: 01000000
+0019FA8C: 02358EF0
+0019FA90: 022C39F8
+0019FA94: 0019FAB0 | Last EBP
+0019FA98: 0047C0E0 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7C0E0
+
+================================================================================
+
+Time: 10/9/2019 3:02:28 PM (09.10.2019 22:02:28 UTC)
+Windows Version 6.2 
+
+Exception EReadError in module DefPreview.exe at 0006FFBF.
+Def file is invalid.
+
+Function Calls:
+
+0046FFBA | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6FFBA
+0047BCE9 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7BCE9
+0047C0DB | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7C0DB
+004432C0 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 432C0
+00466624 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 66624
+00468871 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 68871
+004677D7 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 677D7
+004436C4 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 436C4
+00443746 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 43746
+75B5678C ? C:\WINDOWS\System32\MSCTF.dll + 4678C
+00442DBB ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 42DBB
+759D6FAF ? C:\WINDOWS\System32\msvcrt.dll + 76FAF
+771E01C4 ? C:\WINDOWS\SYSTEM32\ntdll.dll + 601C4
+75E0E0D5 ? C:\WINDOWS\System32\combase.dll + 10E0D5
+75A7E935 ? C:\WINDOWS\System32\oleaut32.dll + 1E935
+75A7E8AC ? C:\WINDOWS\System32\oleaut32.dll + 1E8AC
+75B5622B ? C:\WINDOWS\System32\MSCTF.dll + 4622B
+75B5623B ? C:\WINDOWS\System32\MSCTF.dll + 4623B
+00468810 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 68810
+00468795 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 68795
+00442A48 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 42A48
+00446765 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 46765
+00446A9E ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 46A9E
+75B3E8C4 ? C:\WINDOWS\System32\MSCTF.dll + 2E8C4
+0046068D ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6068D
+0046E5B5 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6E5B5
+0046E5F9 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6E5F9
+0044639C ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 4639C
+0041CA64 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 1CA64
+752E48E9 | C:\WINDOWS\System32\user32.dll + 448E9
+752C6137 | C:\WINDOWS\System32\user32.dll + 26137
+771F1DAA ? C:\WINDOWS\SYSTEM32\ntdll.dll + 71DAA
+752E0915 ? C:\WINDOWS\System32\user32.dll + 40915
+752C5F85 ? C:\WINDOWS\System32\user32.dll + 25F85
+752C5289 | C:\WINDOWS\System32\user32.dll + 25289
+752DA2C4 ? C:\WINDOWS\System32\user32.dll + 3A2C4
+752DEE7B | C:\WINDOWS\System32\user32.dll + 3EE7B
+0045E59C | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 5E59C
+0045E5D6 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 5E5D6
+0045E7F6 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 5E7F6
+0047F920 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7F920
+75FB6357 | C:\WINDOWS\System32\KERNEL32.DLL + 16357
+771E7B72 | C:\WINDOWS\SYSTEM32\ntdll.dll + 67B72
+771E7B3F | C:\WINDOWS\SYSTEM32\ntdll.dll + 67B3F
+
+Registers:
+
+EAX = 00000000
+EBX = 00B91650
+ECX = 00000000
+EDX = 00000000
+ESI = 00AE4A7A
+EDI = 00ADCC80
+EBP = 0019FA2C
+ESP = 0019F9FC
+
+Stack Trace:
+
+0019F9FC: 0019FA08 | TExcFrame.next
+0019FA00: 0046FFDB | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6FFDB
+0019FA04: 0019FA2C | TExcFrame.hEBP
+0019FA08: 0019FA34 | TExcFrame.next
+0019FA0C: 00403CE9 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 3CE9
+0019FA10: 0019FA2C | TExcFrame.hEBP
+0019FA14: 00B91650
+0019FA18: 00468860
+0019FA1C: 00B58EF0
+0019FA20: 00AE46B8
+0019FA24: 0146158C
+0019FA28: 00AE3EB8
+0019FA2C: 0019FA94 | Last EBP
+0019FA30: 0047BCEE | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7BCEE
+0019FA34: 0019FA40 | TExcFrame.next
+0019FA38: 0047BCFD | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7BCFD
+0019FA3C: 0019FA94 | TExcFrame.hEBP
+0019FA40: 0019FA9C | TExcFrame.next
+0019FA44: 0047C04E | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7C04E
+0019FA48: 0019FA94 | TExcFrame.hEBP
+0019FA4C: 00ADCC80
+0019FA50: 00468860
+0019FA54: 00B58EF0
+0019FA58: 00000000
+0019FA5C: 00000000
+0019FA60: 00000000
+0019FA64: 00000000
+0019FA68: 00000000
+0019FA6C: 00000000
+0019FA70: 00000000
+0019FA74: 00000000
+0019FA78: 00000000
+0019FA7C: 00000000
+0019FA80: 00000000
+0019FA84: 00000000
+0019FA88: 01000000
+0019FA8C: 00B58EF0
+0019FA90: 00AE3EB8
+0019FA94: 0019FAB0 | Last EBP
+0019FA98: 0047C0E0 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7C0E0
+
+================================================================================
+
+Time: 10/9/2019 3:03:10 PM (09.10.2019 22:03:10 UTC)
+Windows Version 6.2 
+
+Exception EReadError in module DefPreview.exe at 0006FFBF.
+Def file is invalid.
+
+Function Calls:
+
+0046FFBA | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6FFBA
+0047BCE9 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7BCE9
+0047C0DB | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7C0DB
+004432C0 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 432C0
+00466624 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 66624
+00468871 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 68871
+004677D7 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 677D7
+004436C4 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 436C4
+00443746 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 43746
+004419B3 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 419B3
+00442DBB ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 42DBB
+7622844E ? C:\WINDOWS\System32\gdi32full.dll + 8844E
+76A032F0 ? C:\WINDOWS\System32\GDI32.dll + 32F0
+759D6FAF ? C:\WINDOWS\System32\msvcrt.dll + 76FAF
+771E01C4 ? C:\WINDOWS\SYSTEM32\ntdll.dll + 601C4
+75E0E0D5 ? C:\WINDOWS\System32\combase.dll + 10E0D5
+75A7E935 ? C:\WINDOWS\System32\oleaut32.dll + 1E935
+75A7E8AC ? C:\WINDOWS\System32\oleaut32.dll + 1E8AC
+75B5622B ? C:\WINDOWS\System32\MSCTF.dll + 4622B
+75B5623B ? C:\WINDOWS\System32\MSCTF.dll + 4623B
+00468810 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 68810
+00468795 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 68795
+00442A48 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 42A48
+00446765 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 46765
+00446A9E ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 46A9E
+75B3E8C4 ? C:\WINDOWS\System32\MSCTF.dll + 2E8C4
+0046068D ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6068D
+0046E5B5 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6E5B5
+0046E5F9 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6E5F9
+0044639C ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 4639C
+0041CA64 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 1CA64
+752E48E9 | C:\WINDOWS\System32\user32.dll + 448E9
+752C6137 | C:\WINDOWS\System32\user32.dll + 26137
+771F1DAA ? C:\WINDOWS\SYSTEM32\ntdll.dll + 71DAA
+752E0915 ? C:\WINDOWS\System32\user32.dll + 40915
+752C5F85 ? C:\WINDOWS\System32\user32.dll + 25F85
+752C5289 | C:\WINDOWS\System32\user32.dll + 25289
+752DA2C4 ? C:\WINDOWS\System32\user32.dll + 3A2C4
+752DEE7B | C:\WINDOWS\System32\user32.dll + 3EE7B
+0045E59C | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 5E59C
+0045E5D6 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 5E5D6
+0045E7F6 ? D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 5E7F6
+0047F920 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7F920
+75FB6357 | C:\WINDOWS\System32\KERNEL32.DLL + 16357
+771E7B72 | C:\WINDOWS\SYSTEM32\ntdll.dll + 67B72
+771E7B3F | C:\WINDOWS\SYSTEM32\ntdll.dll + 67B3F
+
+Registers:
+
+EAX = 00000000
+EBX = 00B91650
+ECX = 00000000
+EDX = 00000000
+ESI = 00AE5B47
+EDI = 00ADCC80
+EBP = 0019FA2C
+ESP = 0019F9FC
+
+Stack Trace:
+
+0019F9FC: 0019FA08 | TExcFrame.next
+0019FA00: 0046FFDB | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 6FFDB
+0019FA04: 0019FA2C | TExcFrame.hEBP
+0019FA08: 0019FA34 | TExcFrame.next
+0019FA0C: 00403CE9 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 3CE9
+0019FA10: 0019FA2C | TExcFrame.hEBP
+0019FA14: 00B91650
+0019FA18: 00468860
+0019FA1C: 00B58EF0
+0019FA20: 00AE57B8
+0019FA24: 01403D15
+0019FA28: 00AE4FB8
+0019FA2C: 0019FA94 | Last EBP
+0019FA30: 0047BCEE | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7BCEE
+0019FA34: 0019FA40 | TExcFrame.next
+0019FA38: 0047BCFD | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7BCFD
+0019FA3C: 0019FA94 | TExcFrame.hEBP
+0019FA40: 0019FA9C | TExcFrame.next
+0019FA44: 0047C04E | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7C04E
+0019FA48: 0019FA94 | TExcFrame.hEBP
+0019FA4C: 00ADCC80
+0019FA50: 00468860
+0019FA54: 00B58EF0
+0019FA58: 00000000
+0019FA5C: 00000000
+0019FA60: 00000000
+0019FA64: 00000000
+0019FA68: 00000000
+0019FA6C: 00000000
+0019FA70: 00000000
+0019FA74: 00000000
+0019FA78: 00000000
+0019FA7C: 00000000
+0019FA80: 00000000
+0019FA84: 00000000
+0019FA88: 01000000
+0019FA8C: 00B58EF0
+0019FA90: 00AE4FB8
+0019FA94: 0019FAB0 | Last EBP
+0019FA98: 0047C0E0 | D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\Tools\DefPreview\DefPreview.exe + 7C0E0
+
+================================================================================
+

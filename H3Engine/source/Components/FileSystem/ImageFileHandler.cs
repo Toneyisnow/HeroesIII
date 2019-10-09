@@ -53,11 +53,17 @@ namespace H3Engine.Components.FileSystem
 
                 // Read pallete first
                 inputStream.Seek(size, SeekOrigin.Current);
+                List<byte> transparentColorIndexes = new List<byte>();
                 for (int i = 0; i < 256; i++)
                 {
                     blue[i] = reader.ReadByte();
                     green[i] = reader.ReadByte();
                     red[i] = reader.ReadByte();
+
+                    if (red[i] == 0 && blue[i] == 255 && green[i] == 255)
+                    {
+                        transparentColorIndexes.Add((byte)i);
+                    }
                 }
 
                 inputStream.Seek(12, SeekOrigin.Begin);
@@ -65,10 +71,22 @@ namespace H3Engine.Components.FileSystem
                 for (int i = 0; i < width * height; i++)
                 {
                     byte colorIndex = reader.ReadByte();
-                    data[o++] = red[colorIndex];
-                    data[o++] = green[colorIndex];
-                    data[o++] = blue[colorIndex];
-                    data[o++] = 0;
+
+                    if (colorIndex == 0 || transparentColorIndexes.Contains(colorIndex))
+                    {
+                        // Transparent bit
+                        data[o++] = 0;
+                        data[o++] = 0;
+                        data[o++] = 0;
+                        data[o++] = 255;
+                    }
+                    else
+                    {
+                        data[o++] = red[colorIndex];
+                        data[o++] = green[colorIndex];
+                        data[o++] = blue[colorIndex];
+                        data[o++] = 0;
+                    }
                 }
             }
             else
