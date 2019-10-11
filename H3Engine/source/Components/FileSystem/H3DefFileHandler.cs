@@ -248,20 +248,22 @@ namespace H3Engine.Components.FileSystem
                             UInt32 code = segment >> 5;
                             UInt32 length = (segment & 31) + 1;
 
-                            byte[] data = new byte[length];
                             if (code == 7)  // Raw Data
                             {
+                                byte[] data = new byte[length];
                                 data = reader.ReadBytes((int)length);
+                                dataStream.Write(data, 0, (int)length);
+
                             }
                             else  // RLE
                             {
+                                byte[] val = BitConverter.GetBytes(code);
                                 ////
-                                for(int k = 0; k < length; k++)
+                                for (int k = 0; k < length; k++)
                                 {
-                                    data[i] = (byte)code;
+                                    dataStream.Write(val, 0, 4);
                                 }
                             }
-                            dataStream.Write(data, 0, (int)length);
                             totalRowLength += length;
                         }
 
