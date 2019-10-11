@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace H3Engine.Components.FileSystem
 {
-    public class FileInfo
+    public class ArchivedFileInfo
     {
         public string FileName
         {
@@ -40,7 +40,7 @@ namespace H3Engine.Components.FileSystem
     {
         private BinaryFileReader reader = null;
 
-        private List<FileInfo> fileInfos = null;
+        private List<ArchivedFileInfo> fileInfos = null;
 
         public H3ArchiveLoader(string lodFileFullPath)
         {
@@ -53,7 +53,7 @@ namespace H3Engine.Components.FileSystem
             reader.Seek(8);
             uint count = reader.ReadUInt32();
 
-            fileInfos = new List<FileInfo>();
+            fileInfos = new List<ArchivedFileInfo>();
             reader.Seek(92);
 
             for (int fileIndex = 0; fileIndex < count; fileIndex++)
@@ -71,7 +71,7 @@ namespace H3Engine.Components.FileSystem
                 uint placeholder = reader.ReadUInt32();
                 uint csize = reader.ReadUInt32();
                 
-                FileInfo info = new FileInfo();
+                ArchivedFileInfo info = new ArchivedFileInfo();
                 info.FileName = filename;
                 info.Offset = offset;
                 info.Size = size;
@@ -86,7 +86,7 @@ namespace H3Engine.Components.FileSystem
         {
             for (int fileIndex = 0; fileIndex < fileInfos.Count; fileIndex++)
             {
-                FileInfo info = fileInfos[fileIndex];
+                ArchivedFileInfo info = fileInfos[fileIndex];
 
                 Dump(info, outputFolder);
             }
@@ -96,7 +96,7 @@ namespace H3Engine.Components.FileSystem
         {
             for (int fileIndex = 0; fileIndex < fileInfos.Count; fileIndex++)
             {
-                FileInfo info = fileInfos[fileIndex];
+                ArchivedFileInfo info = fileInfos[fileIndex];
 
                 if (info.FileName.Equals(fileName, StringComparison.InvariantCultureIgnoreCase))
                 {
@@ -105,7 +105,7 @@ namespace H3Engine.Components.FileSystem
             }
         }
 
-        private void Dump(FileInfo fileInfo, string outputFolder)
+        private void Dump(ArchivedFileInfo fileInfo, string outputFolder)
         {
             try
             {
@@ -256,7 +256,7 @@ namespace H3Engine.Components.FileSystem
 
             Console.WriteLine("Total count: " + count);
 
-            List<FileInfo> fileList = new List<FileInfo>();
+            List<ArchivedFileInfo> fileList = new List<ArchivedFileInfo>();
             reader.Seek(92);
             for (int fileIndex = 0; fileIndex < count; fileIndex++)
             {
@@ -275,7 +275,7 @@ namespace H3Engine.Components.FileSystem
 
                 Console.WriteLine(string.Format("[{4}] filename:{0} offset:{1} size:{2} csize:{3}", filename, offset, size, csize, fileIndex));
 
-                FileInfo info = new FileInfo();
+                ArchivedFileInfo info = new ArchivedFileInfo();
                 info.FileName = filename;
                 info.Offset = offset;
                 info.Size = size;
@@ -290,7 +290,7 @@ namespace H3Engine.Components.FileSystem
                                 
             for (int fileIndex = 0; fileIndex < count; fileIndex++)
             {
-                FileInfo info = fileList[fileIndex];
+                ArchivedFileInfo info = fileList[fileIndex];
 
                 //// reader.Seek(info.Offset);
                 byte[] content;

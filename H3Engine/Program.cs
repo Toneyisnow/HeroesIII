@@ -16,7 +16,7 @@ namespace H3Engine
     {
         public static void Main(string[] args)
         {
-            TestArchiveLoader();
+            TestH3DefHandler();
 
             Console.WriteLine("Press Any Key...");
             Console.ReadKey();
@@ -34,6 +34,16 @@ namespace H3Engine
             H3MapLoader mapLoader = new H3MapLoader(@"D:\Toney\Personal\Git\toneyisnow\HeroesIII\MapLoader\maps\HoMM3 Map Pack by HoMMdb\Shadow of Death & HoMM3 Complete\Andrews Exploits\Andrews Exploits");
             H3Map map = mapLoader.LoadMap();
 
+        }
+
+        public static void TestH3DefHandler()
+        {
+            using (FileStream file = new FileStream(@"D:\Temp\h3\H3ab_spr\AVWench.def", FileMode.Open, FileAccess.Read))
+            {
+                H3DefFileHandler def = new H3DefFileHandler(file);
+
+                def.DumpFrame(0, 1);
+            }
         }
 
         public static void TestGZip()
