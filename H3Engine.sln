@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "H3Engine", "H3Engine\H3Engine.csproj", "{C3F08EE2-31E9-4126-86C4-6CBEA292915D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3F08EE2-31E9-4126-86C4-6CBEA292915D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3F08EE2-31E9-4126-86C4-6CBEA292915D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3F08EE2-31E9-4126-86C4-6CBEA292915D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3F08EE2-31E9-4126-86C4-6CBEA292915D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78585EC7-A86E-46B8-923D-01A6A44C95EE}
+	EndGlobalSection
+EndGlobal
