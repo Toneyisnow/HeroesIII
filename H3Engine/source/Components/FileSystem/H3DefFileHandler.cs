@@ -69,17 +69,22 @@ namespace H3Engine.Components.FileSystem
             // Read header
             LoadHeader();
         }
+        
+        public AnimationDefinition GetAnimation()
+        {
+            return animation;
+        }
 
         private void InitializePalete()
         {
             h3Palette = new Color[8]
             {
-                Color.FromArgb(0, 0, 0, 0),
+                Color.FromArgb(0, 255, 255, 0), //// Color.FromArgb(0, 0, 0, 0),
                 Color.FromArgb(32, 0, 0, 0),
                 Color.FromArgb(64, 0, 0, 0),
                 Color.FromArgb(128, 0, 0, 0),
                 Color.FromArgb(128, 0, 0, 0),
-                Color.FromArgb(0, 0, 0, 0),
+                Color.FromArgb(0, 0, 255, 255), //// Color.FromArgb(0, 0, 0, 0),
                 Color.FromArgb(128, 0, 0, 0),
                 Color.FromArgb(64, 0, 0, 0)
             };
@@ -98,9 +103,9 @@ namespace H3Engine.Components.FileSystem
             Color[] palette = new Color[256];
             for(int i = 0; i < 256; i++)
             {
-                byte red = reader.ReadByte();
-                byte green = reader.ReadByte();
                 byte blue = reader.ReadByte();
+                byte green = reader.ReadByte();
+                byte red = reader.ReadByte();
 
                 palette[i] = Color.FromArgb(red, green, blue);
             }
@@ -153,6 +158,7 @@ namespace H3Engine.Components.FileSystem
                     break;
             }
 
+            animation.Palette = palette;
             Console.WriteLine(string.Format("Type: {0} Width: {1} Height: {2} GroupCount: {3}", animation.Type, animation.Width, animation.Height, groupCount));
 
             for(int i = 0; i < groupCount; i++)
@@ -178,17 +184,42 @@ namespace H3Engine.Components.FileSystem
             }
         }
 
-        public void DumpFrame(int groupIndex, int frameIndex)
+        public void LoadAllFrames()
+        {
+            if (animation == null)
+            {
+                return;
+            }
+
+            animation.Groups = new List<AnimationGroup>(this.offsets.Count);
+
+            for(int groupIndex = 0; groupIndex < this.offsets.Count; groupIndex++)
+            {
+                AnimationGroup group = new AnimationGroup();
+                for (int fIndex = 0; fIndex < this.offsets[groupIndex].Count; fIndex++)
+                {
+                    AnimationFrame frame = LoadFrame(groupIndex, fIndex);
+                    if (frame != null)
+                    {
+                        group.Frames.Add(frame);
+                    }
+                }
+
+                animation.Groups.Add(group);
+            }
+        }
+
+        private AnimationFrame LoadFrame(int groupIndex, int frameIndex)
         {
             if (groupIndex >= offsets.Count)
             {
-                return;
+                return null;
             }
 
             var groupOffset = offsets[groupIndex];
             if (frameIndex >= groupOffset.Count)
             {
-                return;
+                return null;
             }
 
             var offset = groupOffset[frameIndex];
@@ -218,8 +249,8 @@ namespace H3Engine.Components.FileSystem
                 baseOffset = 16;
             }
 
-            Console.WriteLine(string.Format(@"Frame [{0}][{1}]: format={2} FullWidth={3} FullHeight={4} Width={5} Height={6} Left={7} Top={8}", 
-                                        groupIndex, frameIndex, format, frame.FullWidth, frame.FullHeight, frame.Width, frame.Height, frame.LeftMargin, frame.TopMargin));
+            Console.WriteLine(string.Format(@"Frame [{0}][{1}]: format={2} FullWidth={3} FullHeight={4} Width={5} Height={6} Left={7} Top={8} Size={9}", 
+                                        groupIndex, frameIndex, format, frame.FullWidth, frame.FullHeight, frame.Width, frame.Height, frame.LeftMargin, frame.TopMargin, size));
 
             UInt32 currentOffset = baseOffset;
             long basePosition = inputStream.Position;
@@ -239,34 +270,38 @@ namespace H3Engine.Components.FileSystem
 
                     for(int i = 0; i < frame.Height; i++)
                     {
-                        inputStream.Seek(basePosition + baseOffset + i * 2 * (frame.Width / 32), SeekOrigin.Begin);
+                        inputStream.Seek(basePosition + i * 2 * (frame.Width / 32), SeekOrigin.Begin);
+                        UInt16 subOffset = reader.ReadUInt16();
+                        inputStream.Seek(basePosition + subOffset, SeekOrigin.Begin);
+                        
+                        //Console.WriteLine("Data on line " + i + ": ");
 
                         uint totalRowLength = 0;
                         while( totalRowLength < frame.Width)
                         {
-                            UInt32 segment = reader.ReadUInt32();
-                            UInt32 code = segment >> 5;
-                            UInt32 length = (segment & 31) + 1;
+                            byte segment = reader.ReadByte();
+                            byte code = (byte)(segment >> 5);
+                            byte length = (byte)((segment & 31) + 1);
 
                             if (code == 7)  // Raw Data
                             {
+                                //Console.WriteLine("Code is 7, length = " + length);
+
                                 byte[] data = new byte[length];
                                 data = reader.ReadBytes((int)length);
                                 dataStream.Write(data, 0, (int)length);
-
                             }
                             else  // RLE
                             {
-                                byte[] val = BitConverter.GetBytes(code);
-                                ////
+                                //Console.WriteLine(string.Format("Code = {0}, length = {1}", code.ToString("X"), length));
                                 for (int k = 0; k < length; k++)
                                 {
-                                    dataStream.Write(val, 0, 4);
+                                    dataStream.WriteByte(code);
                                 }
                             }
                             totalRowLength += length;
                         }
-
+                        //Console.WriteLine("Data on line " + i + ": Total length=" + totalRowLength);
                     }
 
                     break;
@@ -275,7 +310,9 @@ namespace H3Engine.Components.FileSystem
             }
 
             frame.Data = dataStream.ToArray();
-            Console.WriteLine("Total Data Length: " + frame.Data.Length);
+            //Console.WriteLine("Total Data Length: " + frame.Data.Length);
+
+            return frame;
         }
     }
 }

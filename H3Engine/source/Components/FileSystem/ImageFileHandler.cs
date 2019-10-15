@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace H3Engine.Components.FileSystem
 {
-    public class ImageFileHandler
+    public class H3PcxFileHandler
     {
         /// <summary>
         /// Check whether a stream format is PCX: [size][width][height][DATA]
@@ -35,7 +35,7 @@ namespace H3Engine.Components.FileSystem
         /// </summary>
         /// <param name="inputStream"></param>
         /// <param name="outputStream"></param>
-        public static void ExtractPCXStream(Stream inputStream, Stream outputStream)
+        public static ImageData ExtractPCXStream(Stream inputStream)
         {
             BinaryReader reader = new BinaryReader(inputStream);
 
@@ -43,7 +43,8 @@ namespace H3Engine.Components.FileSystem
             int width = reader.ReadInt32();
             int height = reader.ReadInt32();
 
-            byte[] data = new byte[width * height * 4];
+            ImageData image = new ImageData(width, height);
+            /// byte[] data = new byte[width * height * 4];
 
             if (size == width * height)
             {
@@ -75,17 +76,19 @@ namespace H3Engine.Components.FileSystem
                     if (colorIndex == 0 || transparentColorIndexes.Contains(colorIndex))
                     {
                         // Transparent bit
-                        data[o++] = 0;
-                        data[o++] = 0;
-                        data[o++] = 0;
-                        data[o++] = 255;
+                        image.WriteData(0, 0, 0, 255);
+                        //data[o++] = 0;
+                        //data[o++] = 0;
+                        //data[o++] = 0;
+                        //data[o++] = 255;
                     }
                     else
                     {
-                        data[o++] = red[colorIndex];
-                        data[o++] = green[colorIndex];
-                        data[o++] = blue[colorIndex];
-                        data[o++] = 0;
+                        image.WriteData(red[colorIndex], green[colorIndex], blue[colorIndex], 0);
+                        //data[o++] = red[colorIndex];
+                        //data[o++] = green[colorIndex];
+                        //data[o++] = blue[colorIndex];
+                        //data[o++] = 0;
                     }
                 }
             }
@@ -94,24 +97,18 @@ namespace H3Engine.Components.FileSystem
                 int o = 0;
                 for (int i = 0; i < width * height; i++)
                 {
-                    data[o++] = reader.ReadByte();
-                    data[o++] = reader.ReadByte();
-                    data[o++] = reader.ReadByte();
-                    data[o++] = 0;
+                    var r = reader.ReadByte();
+                    var g = reader.ReadByte();
+                    var b = reader.ReadByte();
+                    image.WriteData(r, g, b, 0);
+                    //data[o++] = reader.ReadByte();
+                    //data[o++] = reader.ReadByte();
+                    //data[o++] = reader.ReadByte();
+                    //data[o++] = 0;
                 }
             }
 
-            unsafe
-            {
-                fixed (byte* ptr = data)
-                {
-
-                    using (Bitmap image = new Bitmap(width, height, width * 4, PixelFormat.Format32bppRgb, new IntPtr(ptr)))
-                    {
-                        image.Save(outputStream, ImageFormat.Png);
-                    }
-                }
-            }
+            return image;
         }
 
     }

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="source\Components\FileSystem\ImageData.cs" />
     <Compile Include="source\Components\GUI\AnimationDefinition.cs" />
     <Compile Include="source\Components\Core\H3Artifact.cs" />
     <Compile Include="source\Components\Core\H3Creature.cs" />

@@ -144,9 +144,10 @@ namespace H3Engine.Components.FileSystem
                 {
                     outputStream.Seek(0, SeekOrigin.Begin);
 
-                    if (ImageFileHandler.IsPCX(outputStream))
+                    if (H3PcxFileHandler.IsPCX(outputStream))
                     {
-                        ImageFileHandler.ExtractPCXStream(outputStream, outputFile);
+                        ImageData image = H3PcxFileHandler.ExtractPCXStream(outputStream);
+                        image.SaveAsPng(outputFile);
                     }
                     else
                     {

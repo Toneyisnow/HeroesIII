@@ -1,5 +1,6 @@
 ﻿using FreeImageAPI;
 using H3Engine.Components.FileSystem;
+using H3Engine.Components.GUI;
 using H3Engine.Components.Mapping;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,9 @@ namespace H3Engine
 
         public static void TestArchiveLoader()
         {
-            H3ArchiveLoader loader = new H3ArchiveLoader(@"D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\HeroesIII_Data\H3ab_bmp.lod");
-            loader.DumpAllFiles(@"D:\Temp\h3\H3ab_bmp");
+            // H3ArchiveLoader loader = new H3ArchiveLoader(@"D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\HeroesIII_Data\H3ab_bmp.lod");
+            H3ArchiveLoader loader = new H3ArchiveLoader(@"D:\GitRoot\toneyisnow\HeroesIII\External\HeroesIII_Data\H3ab_spr.lod");
+            loader.DumpAllFiles(@"D:\PlayGround\H3ab_spr");
         }
         
         public static void TestH3MReader()
@@ -38,11 +40,22 @@ namespace H3Engine
 
         public static void TestH3DefHandler()
         {
-            using (FileStream file = new FileStream(@"D:\Temp\h3\H3ab_spr\AVWench.def", FileMode.Open, FileAccess.Read))
+            using (FileStream file = new FileStream(@"D:\PlayGround\H3ab_spr\AVG2elw.def", FileMode.Open, FileAccess.Read))
             {
                 H3DefFileHandler def = new H3DefFileHandler(file);
 
-                def.DumpFrame(0, 1);
+                def.LoadAllFrames();
+
+                AnimationDefinition animation = def.GetAnimation();
+
+                for (int i = 0; i < animation.Groups[0].Frames.Count; i++)
+                {
+                    ImageData image = animation.ComposeFrameImage(0, i);
+                    using (FileStream outputFile = new FileStream(@"D:\PlayGround\H3ab_spr\AVG2elw." + i + ".png", FileMode.Create, FileAccess.Write))
+                    {
+                        image.SaveAsPng(outputFile);
+                    }
+                }
             }
         }
 
