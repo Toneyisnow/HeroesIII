@@ -665,7 +665,7 @@ namespace H3Engine.Components.Mapping
 
         private void ReadObjects(BinaryFileReader reader)
         {
-            H3Object resultObject = null;
+            MapObject resultObject = null;
 
             int objectCount = (int)reader.ReadUInt32();
             Console.WriteLine(string.Format("Totally {0} objects.", objectCount));
@@ -805,11 +805,14 @@ namespace H3Engine.Components.Mapping
             }
         }
 
-        private H3Object ReadHero(BinaryFileReader reader, int objectId, MapPosition objectPosition)
+        private MapObject ReadHero(BinaryFileReader reader, int objectId, MapPosition objectPosition)
         {
+            HeroObject hero = new HeroObject();
 
 
-            return null;
+
+
+            return hero;
         }
         
         private void ReadMessageAndGuards(BinaryFileReader reader, H3Event eventObject)
