@@ -1,4 +1,4 @@
-﻿using H3Engine.Components.FileSystem;
+﻿using H3Engine.FileSystem;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H3Engine.Components.GUI
+namespace H3Engine.GUI
 {
     public enum EAnimationDefType
     {

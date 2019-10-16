@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace H3Engine.Components.FileSystem
+namespace H3Engine.FileSystem
 {
     public class ArchivedFileInfo
     {

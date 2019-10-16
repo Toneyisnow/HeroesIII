@@ -1,4 +1,4 @@
-﻿using H3Engine.Components.GUI;
+﻿using H3Engine.GUI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H3Engine.Components.FileSystem
+namespace H3Engine.FileSystem
 {
     public class H3DefFile
     {
