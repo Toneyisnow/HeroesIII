@@ -1,9 +1,11 @@
-﻿using H3Engine.Components.Core;
-using H3Engine.Components.FileSystem;
-using H3Engine.Components.MapObjects;
+﻿using H3Engine.Common;
+using H3Engine.Core;
+using H3Engine.FileSystem;
+using H3Engine.MapObjects;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,34 +26,37 @@ namespace H3Engine.Components.Mapping
         public H3Map LoadMap()
         {
             mapObject = new H3Map();
-            
-            using (BinaryFileReader reader = new BinaryFileReader(h3mFileFullPath))
+
+            using (FileStream file = new FileStream(h3mFileFullPath, FileMode.Open, FileAccess.Read))
             {
+                using (BinaryReader reader = new BinaryReader(file))
+                {
 
-                ReadHeader(reader);
+                    ReadHeader(reader);
 
-                ReadDisposedHeroes(reader);
+                    ReadDisposedHeroes(reader);
 
-                ReadAllowedArtifacts(reader);
+                    ReadAllowedArtifacts(reader);
 
-                ReadAllowedSpellsAbilities(reader);
+                    ReadAllowedSpellsAbilities(reader);
 
-                ReadRumors(reader);
+                    ReadRumors(reader);
 
-                ReadPredefinedHeroes(reader);
+                    ReadPredefinedHeroes(reader);
 
-                ReadTerrain(reader);
+                    ReadTerrain(reader);
 
-                ReadObjectTemplates(reader);
+                    ReadObjectTemplates(reader);
 
-                // ReadObjects(reader);
+                    // ReadObjects(reader);
 
+                }
             }
 
             return mapObject;
         }
         
-        private void ReadHeader(BinaryFileReader reader)
+        private void ReadHeader(BinaryReader reader)
         {
             // Check map for validity
             // Note: disabled, causes decompression of the entire file ( = SLOW)
@@ -66,14 +71,14 @@ namespace H3Engine.Components.Mapping
             mapObject.Header.Version = (EMapFormat)byte1;
 
 
-            mapObject.Header.AreAnyPlayers = reader.ReadBool();
+            mapObject.Header.AreAnyPlayers = reader.ReadBoolean();
             Console.WriteLine("AreAnyPlayers:" + mapObject.Header.AreAnyPlayers);
 
             mapObject.Header.Height = reader.ReadUInt32();
             mapObject.Header.Width = mapObject.Header.Height;
             Console.WriteLine("Map Height and Width:" + mapObject.Header.Height);
 
-            mapObject.Header.IsTwoLevel = reader.ReadBool();
+            mapObject.Header.IsTwoLevel = reader.ReadBoolean();
             Console.WriteLine("twoLevel:" + mapObject.Header.IsTwoLevel);
 
 
@@ -83,10 +88,10 @@ namespace H3Engine.Components.Mapping
             mapObject.Header.Description = reader.ReadString();
             Console.WriteLine("Description:" + mapObject.Header.Description);
 
-            mapObject.Header.Difficulty = reader.ReadUInt8();
+            mapObject.Header.Difficulty = reader.ReadByte();
             Console.WriteLine("Difficulty:" + mapObject.Header.Difficulty);
 
-            int heroLevelLimit = reader.ReadUInt8();
+            int heroLevelLimit = reader.ReadByte();
             Console.WriteLine("HeroLevelLimit:" + heroLevelLimit);
 
 
@@ -100,7 +105,7 @@ namespace H3Engine.Components.Mapping
         }
 
 
-        private void ReadPlayerInfo(BinaryFileReader reader)
+        private void ReadPlayerInfo(BinaryReader reader)
         {
             for (int i = 0; i < GameConstants.PLAYER_LIMIT_T; i++)
             {
@@ -108,8 +113,8 @@ namespace H3Engine.Components.Mapping
 
                 Console.WriteLine("Reading Player [" + i.ToString() + "]");
 
-                playerInfo.CanHumanPlay = reader.ReadBool();
-                playerInfo.CanComputerPlay = reader.ReadBool();
+                playerInfo.CanHumanPlay = reader.ReadBoolean();
+                playerInfo.CanComputerPlay = reader.ReadBoolean();
                 Console.WriteLine("canHumanPlay: " + playerInfo.CanHumanPlay);
                 Console.WriteLine("canComputerPlay: " + playerInfo.CanComputerPlay);
 
@@ -131,12 +136,12 @@ namespace H3Engine.Components.Mapping
                     continue;
                 }
 
-                playerInfo.AiTactic = (EAiTactic)reader.ReadUInt8();
+                playerInfo.AiTactic = (EAiTactic)reader.ReadByte();
                 Console.WriteLine("aiTactic:" + playerInfo.AiTactic);
 
                 if (mapObject.Header.Version == EMapFormat.SOD || mapObject.Header.Version == EMapFormat.WOG)
                 {
-                    playerInfo.P7 = reader.ReadUInt8();
+                    playerInfo.P7 = reader.ReadByte();
                 }
                 else
                 {
@@ -147,12 +152,12 @@ namespace H3Engine.Components.Mapping
 
                 // Reading the Factions for Player
                 playerInfo.AllowedFactions = new List<int>();
-                int allowedFactionsMask = reader.ReadUInt8();
+                int allowedFactionsMask = reader.ReadByte();
                 Console.WriteLine("allowedFactionsMask:" + allowedFactionsMask);
 
                 int totalFactionCount = GameConstants.F_NUMBER;
                 if (mapObject.Header.Version != EMapFormat.ROE)
-                    allowedFactionsMask += reader.ReadUInt8() << 8;
+                    allowedFactionsMask += reader.ReadByte() << 8;
                 else
                     totalFactionCount--; //exclude conflux for ROE
                 
@@ -164,8 +169,8 @@ namespace H3Engine.Components.Mapping
                     }
                 }
 
-                playerInfo.IsFactionRandom = reader.ReadBool();
-                playerInfo.HasMainTown = reader.ReadBool();
+                playerInfo.IsFactionRandom = reader.ReadBoolean();
+                playerInfo.HasMainTown = reader.ReadBoolean();
                 Console.WriteLine("isFactionRandom:" + playerInfo.IsFactionRandom);
                 Console.WriteLine("hasMainTown:" + playerInfo.HasMainTown);
 
@@ -174,8 +179,8 @@ namespace H3Engine.Components.Mapping
                     /// Added in new version, not tested yet
                     if (mapObject.Header.Version != EMapFormat.ROE)
                     {
-                        playerInfo.GenerateHeroAtMainTown = reader.ReadBool();
-                        playerInfo.GenerateHero = reader.ReadBool();
+                        playerInfo.GenerateHeroAtMainTown = reader.ReadBoolean();
+                        playerInfo.GenerateHero = reader.ReadBoolean();
                     }
                     else
                     {
@@ -188,15 +193,15 @@ namespace H3Engine.Components.Mapping
                     playerInfo.MainTownPosition = townPosition;
                 }
 
-                playerInfo.HasRandomHero = reader.ReadBool();
+                playerInfo.HasRandomHero = reader.ReadBoolean();
                 Console.WriteLine("hasRandomHero:" + playerInfo.HasRandomHero);
 
-                playerInfo.MainCustomHeroId = reader.ReadUInt8();
+                playerInfo.MainCustomHeroId = reader.ReadByte();
                 Console.WriteLine("mainCustomHeroId:" + playerInfo.MainCustomHeroId);
 
                 if (playerInfo.MainCustomHeroId != 0xff)
                 {
-                    playerInfo.MainCustomHeroPortrait = reader.ReadUInt8();
+                    playerInfo.MainCustomHeroPortrait = reader.ReadByte();
                     if (playerInfo.MainCustomHeroPortrait == 0xff)
                     {
                         playerInfo.MainCustomHeroPortrait = -1;
@@ -214,15 +219,15 @@ namespace H3Engine.Components.Mapping
 
                 if (mapObject.Header.Version != EMapFormat.ROE)
                 {
-                    playerInfo.PowerPlaceHolders = reader.ReadUInt8();
-                    int heroCount = reader.ReadUInt8();
+                    playerInfo.PowerPlaceHolders = reader.ReadByte();
+                    int heroCount = reader.ReadByte();
                     reader.Skip(3);
 
                     playerInfo.HeroIds = new List<H3HeroId>();
                     for (int pp = 0; pp < heroCount; ++pp)
                     {
                         H3HeroId heroId = new H3HeroId();
-                        heroId.Id = reader.ReadUInt8();
+                        heroId.Id = reader.ReadByte();
                         heroId.Name = reader.ReadString();
                         playerInfo.HeroIds.Add(heroId);
                     }
@@ -230,11 +235,11 @@ namespace H3Engine.Components.Mapping
             }
         }
         
-        private void ReadVictoryLossConditions(BinaryFileReader reader)
+        private void ReadVictoryLossConditions(BinaryReader reader)
         {
             //// mapObject.Header.TrigggeredEvents = new List<TrigggeredEvent>();
 
-            var vicCondition = (EVictoryConditionType)reader.ReadUInt8();
+            var vicCondition = (EVictoryConditionType)reader.ReadByte();
 
             if (vicCondition == EVictoryConditionType.WINSTANDARD)
             {
@@ -243,8 +248,8 @@ namespace H3Engine.Components.Mapping
             }
             else
             {
-                bool allowNormalVictory = reader.ReadBool();
-                bool appliesToAI = reader.ReadBool();
+                bool allowNormalVictory = reader.ReadBoolean();
+                bool appliesToAI = reader.ReadBoolean();
 
                 if (allowNormalVictory)
                 {
@@ -260,26 +265,26 @@ namespace H3Engine.Components.Mapping
                 {
                     case EVictoryConditionType.ARTIFACT:
                         {
-                            int objectType = reader.ReadUInt8();
+                            int objectType = reader.ReadByte();
                             break;
                         }
                     case EVictoryConditionType.GATHERTROOP:
                         {
-                            int objectType = reader.ReadUInt8();
+                            int objectType = reader.ReadByte();
                             uint value = reader.ReadUInt32();
                             break;
                         }
                     case EVictoryConditionType.GATHERRESOURCE:
                         {
-                            int objectType = reader.ReadUInt8();
+                            int objectType = reader.ReadByte();
                             uint value = reader.ReadUInt32();
                             break;
                         }
                     case EVictoryConditionType.BUILDCITY:
                         {
                             var pos = reader.ReadPosition();
-                            int objectType = reader.ReadUInt8();
-                            int objectType2 = reader.ReadUInt8();
+                            int objectType = reader.ReadByte();
+                            int objectType2 = reader.ReadByte();
 
                             break;
                         }
@@ -326,7 +331,7 @@ namespace H3Engine.Components.Mapping
             }
 
 
-            ELossConditionType loseCondition = (ELossConditionType)reader.ReadUInt8();
+            ELossConditionType loseCondition = (ELossConditionType)reader.ReadByte();
             Console.WriteLine("Lose Condition:" + loseCondition);
             if (loseCondition != ELossConditionType.LOSSSTANDARD)
             {
@@ -355,15 +360,15 @@ namespace H3Engine.Components.Mapping
         }
 
 
-        private void ReadTeamInfo(BinaryFileReader reader)
+        private void ReadTeamInfo(BinaryReader reader)
         {
-            int howManyTeams = reader.ReadUInt8();
+            int howManyTeams = reader.ReadByte();
             Console.WriteLine("How Many Teams: " + howManyTeams);
             if (howManyTeams > 0)
             {
                 for (int i = 0; i < GameConstants.PLAYER_LIMIT_T; i++)
                 {
-                    int team = reader.ReadUInt8();
+                    int team = reader.ReadByte();
                 }
             }
             else
@@ -376,7 +381,7 @@ namespace H3Engine.Components.Mapping
         }
 
 
-        private void ReadAllowedHeroes(BinaryFileReader reader)
+        private void ReadAllowedHeroes(BinaryReader reader)
         {
             int byteCount = 20; //// mapHeader->version == EMapFormat::ROE ? 16 : 20;
 
@@ -394,24 +399,24 @@ namespace H3Engine.Components.Mapping
                 //
                 //		for(int p = 0; p < placeholdersQty; ++p)
                 //		{
-                //			placeholdedHeroes.push_back(reader.readUInt8());
+                //			placeholdedHeroes.push_back(reader.ReadByte());
                 //		}
             }
 
         }
 
-        private void ReadDisposedHeroes(BinaryFileReader reader)
+        private void ReadDisposedHeroes(BinaryReader reader)
         {
             if (mapObject.Header.Version >= EMapFormat.SOD)
             {
-                int disp = reader.ReadUInt8();
+                int disp = reader.ReadByte();
                 Console.WriteLine("ReadDisposedHeroes: Total=" + disp);
                 for (int g = 0; g < disp; ++g)
                 {
-                    int heroId = reader.ReadUInt8();
-                    int portrait = reader.ReadUInt8();
+                    int heroId = reader.ReadByte();
+                    int portrait = reader.ReadByte();
                     string name = reader.ReadString();
-                    int players = reader.ReadUInt8();
+                    int players = reader.ReadByte();
                     Console.WriteLine(string.Format("ReadDisposedHeroes: id={0} portrait={1} name={2} players={3}", heroId, portrait, name, players));
 
                 }
@@ -421,7 +426,7 @@ namespace H3Engine.Components.Mapping
             reader.Skip(31);
         }
 
-        private void ReadAllowedArtifacts(BinaryFileReader reader)
+        private void ReadAllowedArtifacts(BinaryReader reader)
         {
             if (mapObject.Header.Version != EMapFormat.ROE)
             {
@@ -432,7 +437,7 @@ namespace H3Engine.Components.Mapping
             }
         }
 
-        private void ReadAllowedSpellsAbilities(BinaryFileReader reader)
+        private void ReadAllowedSpellsAbilities(BinaryReader reader)
         {
             if (mapObject.Header.Version >= EMapFormat.SOD)
             {
@@ -452,7 +457,7 @@ namespace H3Engine.Components.Mapping
             }
         }
 
-        private void ReadRumors(BinaryFileReader reader)
+        private void ReadRumors(BinaryReader reader)
         {
             uint rumNr = reader.ReadUInt32();
             Console.WriteLine("Rumor count: " + rumNr);
@@ -465,7 +470,7 @@ namespace H3Engine.Components.Mapping
             }
         }
 
-        private void ReadPredefinedHeroes(BinaryFileReader reader)
+        private void ReadPredefinedHeroes(BinaryReader reader)
         {
             if (mapObject.Header.Version == EMapFormat.WOG || mapObject.Header.Version == EMapFormat.SOD)
             {
@@ -473,7 +478,7 @@ namespace H3Engine.Components.Mapping
                 {
                     Console.WriteLine(string.Format("===Reading Predefined Hero [{0}]", z));
 
-                    int custom = reader.ReadUInt8();
+                    int custom = reader.ReadByte();
                     if (custom == 0)
                     {
                         Console.WriteLine("is not custom.");
@@ -481,14 +486,14 @@ namespace H3Engine.Components.Mapping
                     }
 
                     // Create Hero
-                    bool hasExp = reader.ReadBool();
+                    bool hasExp = reader.ReadBoolean();
                     if (hasExp)
                     {
                         uint exp = reader.ReadUInt32();
                         Console.WriteLine("Has exp:" + exp);
                     }
 
-                    bool hasSecondSkills = reader.ReadBool();
+                    bool hasSecondSkills = reader.ReadBoolean();
                     if (hasSecondSkills)
                     {
                         uint howMany = reader.ReadUInt32();
@@ -496,14 +501,14 @@ namespace H3Engine.Components.Mapping
 
                         for (int yy = 0; yy < howMany; ++yy)
                         {
-                            int first = reader.ReadUInt8();
-                            int second = reader.ReadUInt8();
+                            int first = reader.ReadByte();
+                            int second = reader.ReadByte();
                             Console.WriteLine(string.Format("Skill First: {0} Second: {1}", first, second));
                         }
                     }
 
                     // Set Artifacts
-                    bool artSet = reader.ReadBool();
+                    bool artSet = reader.ReadBoolean();
                     if (artSet)
                     {
                         Console.WriteLine("Artifact is set.");
@@ -538,18 +543,18 @@ namespace H3Engine.Components.Mapping
                         }
                     }
 
-                    bool hasCustomBio = reader.ReadBool();
+                    bool hasCustomBio = reader.ReadBoolean();
                     if (hasCustomBio)
                     {
                         string biography = reader.ReadString();
                         Console.WriteLine("biography: " + biography);
                     }
 
-                    int sex = reader.ReadUInt8();
+                    int sex = reader.ReadByte();
                     Console.WriteLine("sex: " + sex);
 
                     // Spells
-                    bool hasCustomSpells = reader.ReadBool();
+                    bool hasCustomSpells = reader.ReadBoolean();
                     if (hasCustomSpells)
                     {
                         HashSet<int> spells = new HashSet<int>();
@@ -557,13 +562,13 @@ namespace H3Engine.Components.Mapping
                         Console.WriteLine("Spells: " + JsonConvert.SerializeObject(spells));
                     }
 
-                    bool hasCustomPrimSkills = reader.ReadBool();
+                    bool hasCustomPrimSkills = reader.ReadBoolean();
                     if (hasCustomPrimSkills)
                     {
                         Console.WriteLine("Has Custom Primary Skills.");
                         for (int xx = 0; xx < GameConstants.PRIMARY_SKILLS; xx++)
                         {
-                            int value = reader.ReadUInt8();
+                            int value = reader.ReadByte();
                             Console.WriteLine("Primary Skills: " + value);
                         }
                     }
@@ -572,7 +577,7 @@ namespace H3Engine.Components.Mapping
             }
         }
 
-        private bool LoadArtifactToSlot(BinaryFileReader reader, object hero, int slot)
+        private bool LoadArtifactToSlot(BinaryReader reader, object hero, int slot)
         {
             //// const int artmask = map->version == EMapFormat::ROE ? 0xff : 0xffff;
             const int artmask = 0xffff;
@@ -590,7 +595,7 @@ namespace H3Engine.Components.Mapping
             return false;
         }
 
-        private void ReadTerrain(BinaryFileReader reader)
+        private void ReadTerrain(BinaryReader reader)
         {
             int mapLevel = mapObject.Header.IsTwoLevel ? 2 : 1;
             uint mapHeight = mapObject.Header.Height;
@@ -602,13 +607,13 @@ namespace H3Engine.Components.Mapping
                 {
                     for (int xx = 0; xx < mapWidth; xx++)
                     {
-                        int terrainType = reader.ReadUInt8();
-                        int terrainView = reader.ReadUInt8();
-                        int riverType = reader.ReadUInt8();
-                        int riverDir = reader.ReadUInt8();
-                        int roadType = reader.ReadUInt8();
-                        int roadDir = reader.ReadUInt8();
-                        int extTileFlags = reader.ReadUInt8();
+                        int terrainType = reader.ReadByte();
+                        int terrainView = reader.ReadByte();
+                        int riverType = reader.ReadByte();
+                        int riverDir = reader.ReadByte();
+                        int roadType = reader.ReadByte();
+                        int roadDir = reader.ReadByte();
+                        int extTileFlags = reader.ReadByte();
 
                         ////Console.WriteLine("Terrain at [{0}, {1}]: type={2} view={3} riverType={4} riverDir={5} roadType={6} roadDir={7}",
                         ////    xx, yy, terrainType, terrainView, riverType, riverDir, roadType, roadDir);
@@ -617,7 +622,7 @@ namespace H3Engine.Components.Mapping
             }
         }
 
-        private void ReadObjectTemplates(BinaryFileReader reader)
+        private void ReadObjectTemplates(BinaryReader reader)
         {
             uint templateCount = reader.ReadUInt32();
             Console.WriteLine("ReadObjectTemplates totally:" + templateCount);
@@ -635,13 +640,13 @@ namespace H3Engine.Components.Mapping
 
                 foreach (int val in blockMask)
                 {
-                    int r = reader.ReadUInt8();
+                    int r = reader.ReadByte();
                     //Console.WriteLine("BlockMask: " + r);
                 }
 
                 foreach (int val in visitMask)
                 {
-                    int r = reader.ReadUInt8();
+                    int r = reader.ReadByte();
                     //Console.WriteLine("VisitMask: " + r);
                 }
 
@@ -654,8 +659,8 @@ namespace H3Engine.Components.Mapping
                 Console.WriteLine(string.Format("Object Type: {0} SubId: {1}", objectTemplate.Type, objectTemplate.SubId));
 
                 // This type is not the template type, used in isOnVisitableFromTopList
-                int type = reader.ReadUInt8();
-                int printPriority = reader.ReadUInt8() * 100;
+                int type = reader.ReadByte();
+                int printPriority = reader.ReadByte() * 100;
 
                 reader.Skip(16);
 
@@ -663,9 +668,9 @@ namespace H3Engine.Components.Mapping
             }
         }
 
-        private void ReadObjects(BinaryFileReader reader)
+        private void ReadObjects(BinaryReader reader)
         {
-            MapObject resultObject = null;
+            CGObject resultObject = null;
 
             int objectCount = (int)reader.ReadUInt32();
             Console.WriteLine(string.Format("Totally {0} objects.", objectCount));
@@ -690,28 +695,28 @@ namespace H3Engine.Components.Mapping
 
                         var gainedExp = reader.ReadUInt32();
                         var manaDiff = reader.ReadUInt32();
-                        var moraleDiff = reader.ReadUInt8();
-                        var luckDiff = reader.ReadUInt8();
+                        var moraleDiff = reader.ReadByte();
+                        var luckDiff = reader.ReadByte();
 
                         ReadResouces(reader);
 
                         for(int x = 0; x < 4; x++)
                         {
-                            var primSkill = (EPrimarySkill)reader.ReadUInt8();
+                            var primSkill = (EPrimarySkill)reader.ReadByte();
                         }
 
-                        int gainedAbilities = reader.ReadUInt8();
+                        int gainedAbilities = reader.ReadByte();
                         for (int i = 0; i < gainedAbilities; i++)
                         {
-                            h3event.Abilities.Add((ESecondarySkill)reader.ReadUInt8());
+                            h3event.Abilities.Add((ESecondarySkill)reader.ReadByte());
                         }
 
-                        int gainedArtifacts = reader.ReadUInt8();
+                        int gainedArtifacts = reader.ReadByte();
                         for (int i = 0; i < gainedArtifacts; i++)
                         {
                             if (mapObject.Header.Version == EMapFormat.ROE)
                             {
-                                var artId = (EArtifactId)reader.ReadUInt8();
+                                var artId = (EArtifactId)reader.ReadByte();
                             }
                             else
                             {
@@ -719,20 +724,20 @@ namespace H3Engine.Components.Mapping
                             }
                         }
 
-                        int gainedSpells = reader.ReadUInt8();
+                        int gainedSpells = reader.ReadByte();
                         for (int i = 0; i < gainedSpells; i++)
                         {
-                            var spellId = (ESpellId)reader.ReadUInt8();
+                            var spellId = (ESpellId)reader.ReadByte();
                         }
 
-                        int gainedCreatures = reader.ReadUInt8();
+                        int gainedCreatures = reader.ReadByte();
                         var creatureSet = ReadCreatureSet(reader, gainedCreatures);
 
                         reader.Skip(8);
 
-                        var availableForPlayer = reader.ReadUInt8();
-                        var computerActivate = reader.ReadUInt8();
-                        var removeAfterVisit = reader.ReadUInt8();
+                        var availableForPlayer = reader.ReadByte();
+                        var computerActivate = reader.ReadByte();
+                        var removeAfterVisit = reader.ReadByte();
                         var humanActivate = true;
 
                         reader.Skip(4);
@@ -756,6 +761,14 @@ namespace H3Engine.Components.Mapping
                     case EObjectType.RANDOM_MONSTER_L7:
 
                         // Create Creature
+                        CGCreature creature = new CGCreature();
+
+                        if (mapObject.Header.Version > EMapFormat.ROE)
+                        {
+                            creature.Id = (int)reader.ReadUInt32();
+                            // Quest Identifier?
+                        }
+
 
 
                         break;
@@ -805,9 +818,9 @@ namespace H3Engine.Components.Mapping
             }
         }
 
-        private MapObject ReadHero(BinaryFileReader reader, int objectId, MapPosition objectPosition)
+        private CGObject ReadHero(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            HeroObject hero = new HeroObject();
+            HeroInstance hero = new HeroInstance();
 
 
 
@@ -815,12 +828,12 @@ namespace H3Engine.Components.Mapping
             return hero;
         }
         
-        private void ReadMessageAndGuards(BinaryFileReader reader, H3Event eventObject)
+        private void ReadMessageAndGuards(BinaryReader reader, H3Event eventObject)
         {
 
         }
 
-        private void ReadResouces(BinaryFileReader reader)
+        private void ReadResouces(BinaryReader reader)
         {
             for (int x = 0; x < 7; ++x)
             {
@@ -828,7 +841,7 @@ namespace H3Engine.Components.Mapping
             }
         }
 
-        private object ReadCreatureSet(BinaryFileReader reader, int numberToRead)
+        private object ReadCreatureSet(BinaryReader reader, int numberToRead)
         {
             bool isHighVersion = mapObject.Header.Version > EMapFormat.ROE;
             int maxID = isHighVersion ? 0xffff : 0xff;
@@ -843,7 +856,7 @@ namespace H3Engine.Components.Mapping
                 }
                 else
                 {
-                    creatureId = (ECreatureId)(reader.ReadUInt8());
+                    creatureId = (ECreatureId)(reader.ReadByte());
                 }
 
                 int amount = reader.ReadUInt16();

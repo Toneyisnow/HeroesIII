@@ -38,13 +38,15 @@ namespace H3Engine.FileSystem
     }
     public class H3ArchiveLoader
     {
-        private BinaryFileReader reader = null;
+        private BinaryReader reader = null;
+        private FileStream file = null;
 
         private List<ArchivedFileInfo> fileInfos = null;
 
         public H3ArchiveLoader(string lodFileFullPath)
         {
-            reader = new BinaryFileReader(lodFileFullPath);
+            file = new FileStream(lodFileFullPath, FileMode.Open, FileAccess.Read);
+            reader = new BinaryReader(file);
             LoadHeader();
         }
 
@@ -200,10 +202,11 @@ namespace H3Engine.FileSystem
 
         static void TestZStream()
         {
+            /*
             ////string filename = @"C:\Users\charl\source\repos\ConsoleApp3\bin\Debug\output\AdvEvent.txt.zip";
             string filename = @"C:\Users\charl\source\repos\ConsoleApp3\bin\Debug\output\Dwelling.txt.zip";
             using (FileStream output = new FileStream(@"D:\Temp\Dwelling.txt", FileMode.Create, FileAccess.Write))
-            using (BinaryFileReader reader = new BinaryFileReader(filename))
+            using (BinaryReader reader = new BinaryReader(filename))
             {
                 using (CompressedStreamReader compressedStream = new CompressedStreamReader(null, false))
                 {
@@ -223,6 +226,7 @@ namespace H3Engine.FileSystem
                     while (readSize > 0);
                 }
             }
+            */
         }
 
         static void TestUnzip()
@@ -250,7 +254,8 @@ namespace H3Engine.FileSystem
 
         static void Test()
         {
-            BinaryFileReader reader = new BinaryFileReader(@"D:\PlayGround\SOD_Data\h3ab_bmp.lod");
+            // BinaryReader reader = new BinaryReader(@"D:\PlayGround\SOD_Data\h3ab_bmp.lod");
+            BinaryReader reader = null;
 
             reader.Skip(8);
             uint count = reader.ReadUInt32();

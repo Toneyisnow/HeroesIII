@@ -540,10 +540,26 @@ namespace H3Engine.Common
         MAGIC_UNIVERSITY = SPECIAL_2, // Conflux
     };
 
+    /// <summary>
+    /// Should be replaced to EEthnicity?
+    /// </summary>
     public enum ETownType
     {
         ANY = -1,
         CASTLE, RAMPART, TOWER, INFERNO, NECROPOLIS, DUNGEON, STRONGHOLD, FORTRESS, CONFLUX, NEUTRAL
+    };
+
+    public enum EEthnicity
+    {
+        CASTLE = 0,
+        RAMPART = 1,
+        TOWER = 2,
+        INFERNO = 3,
+        NECROPOLIS = 4,
+        DUNGEON = 5,
+        STRONGHOLD = 6,
+        FORTRESS = 7,
+        CONFLUX = 8
     };
 
     public enum EAlignment
@@ -651,4 +667,15 @@ namespace H3Engine.Common
         FIRST_AID, SKILL_SIZE
     };
 
+    public enum ESecondarySkillType
+    {
+        Adventure = 1,
+        Battle = 2
+    }
+
+    public enum ESpecialtyType
+    {
+        MasterCreature = 1,
+        MasterResource = 2,
+    }
 }

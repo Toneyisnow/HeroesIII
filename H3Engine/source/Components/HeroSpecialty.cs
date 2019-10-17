@@ -5,20 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H3Engine.MapObjects
+namespace H3Engine.Components
 {
-    public class H3Event : H3Object
+    public class HeroSpecialty
     {
-        public H3Event()
+        public HeroSpecialty()
         {
-            this.Abilities = new List<ESecondarySkill>();
+
         }
 
-        public List<ESecondarySkill> Abilities
+        public ESpecialtyType Type
         {
             get; set;
         }
 
+        public int SubType
+        {
+            get; set;
+        }
 
     }
 }
