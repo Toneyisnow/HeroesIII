@@ -15,7 +15,7 @@ namespace H3Engine.MapObjects
 
         }
 
-        public int Id
+        public uint Identifier
         {
             get;set;
         }
@@ -60,7 +60,10 @@ namespace H3Engine.MapObjects
             return null;
         }
 
-
+        public void SetOwner(EPlayerColor color)
+        {
+            this.CurrentOwner = color;
+        }
 
 
 

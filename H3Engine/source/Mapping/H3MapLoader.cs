@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H3Engine.Components.Mapping
+namespace H3Engine.Mapping
 {
     public class H3MapLoader
     {
@@ -683,208 +683,19 @@ namespace H3Engine.Components.Mapping
                 int objectTemplateIndex = (int)reader.ReadUInt32();
 
                 ObjectTemplate objTemplate = mapObject.ObjectTemplates[objectTemplateIndex];
-
                 reader.Skip(5);
 
-                switch(objTemplate.Type)
-                {
-                    case EObjectType.EVENT:
+                MapObjectReader objectReader = MapObjectReaderFactory.GetObjectReader(objTemplate.Type);
+                objectReader.MapHeader = this.mapObject.Header;
+                objectReader.ObjectTemplate = objTemplate;
 
-                        H3Event h3event = new H3Event();
-                        ReadMessageAndGuards(reader, h3event);
-
-                        var gainedExp = reader.ReadUInt32();
-                        var manaDiff = reader.ReadUInt32();
-                        var moraleDiff = reader.ReadByte();
-                        var luckDiff = reader.ReadByte();
-
-                        ReadResouces(reader);
-
-                        for(int x = 0; x < 4; x++)
-                        {
-                            var primSkill = (EPrimarySkill)reader.ReadByte();
-                        }
-
-                        int gainedAbilities = reader.ReadByte();
-                        for (int i = 0; i < gainedAbilities; i++)
-                        {
-                            h3event.Abilities.Add((ESecondarySkill)reader.ReadByte());
-                        }
-
-                        int gainedArtifacts = reader.ReadByte();
-                        for (int i = 0; i < gainedArtifacts; i++)
-                        {
-                            if (mapObject.Header.Version == EMapFormat.ROE)
-                            {
-                                var artId = (EArtifactId)reader.ReadByte();
-                            }
-                            else
-                            {
-                                var artId = (EArtifactId)reader.ReadUInt16();
-                            }
-                        }
-
-                        int gainedSpells = reader.ReadByte();
-                        for (int i = 0; i < gainedSpells; i++)
-                        {
-                            var spellId = (ESpellId)reader.ReadByte();
-                        }
-
-                        int gainedCreatures = reader.ReadByte();
-                        var creatureSet = ReadCreatureSet(reader, gainedCreatures);
-
-                        reader.Skip(8);
-
-                        var availableForPlayer = reader.ReadByte();
-                        var computerActivate = reader.ReadByte();
-                        var removeAfterVisit = reader.ReadByte();
-                        var humanActivate = true;
-
-                        reader.Skip(4);
-                        break;
-
-                    case EObjectType.HERO:
-                    case EObjectType.RANDOM_HERO:
-                    case EObjectType.PRISON:
-
-                        resultObject = ReadHero(reader, objectId, objectPosition);
-                        break;
-
-                    case EObjectType.MONSTER:  //Monster
-                    case EObjectType.RANDOM_MONSTER:
-                    case EObjectType.RANDOM_MONSTER_L1:
-                    case EObjectType.RANDOM_MONSTER_L2:
-                    case EObjectType.RANDOM_MONSTER_L3:
-                    case EObjectType.RANDOM_MONSTER_L4:
-                    case EObjectType.RANDOM_MONSTER_L5:
-                    case EObjectType.RANDOM_MONSTER_L6:
-                    case EObjectType.RANDOM_MONSTER_L7:
-
-                        // Create Creature
-                        CGCreature creature = new CGCreature();
-
-                        if (mapObject.Header.Version > EMapFormat.ROE)
-                        {
-                            creature.Id = (int)reader.ReadUInt32();
-                            // Quest Identifier?
-                        }
-
-
-
-                        break;
-
-                    case EObjectType.OCEAN_BOTTLE:
-                    case EObjectType.SIGN:
-                        {
-
-                            break;
-                        }
-                    case EObjectType.SEER_HUT:
-                        {
-                            
-                            break;
-                        }
-                    case EObjectType.WITCH_HUT:
-                        {
-                            
-                            break;
-                        }
-                    case EObjectType.SCHOLAR:
-                        {
-                            
-                            break;
-                        }
-                    case EObjectType.GARRISON:
-                    case EObjectType.GARRISON2:
-                        {
-                            
-                            break;
-                        }
-                    case EObjectType.ARTIFACT:
-                    case EObjectType.RANDOM_ART:
-                    case EObjectType.RANDOM_TREASURE_ART:
-                    case EObjectType.RANDOM_MINOR_ART:
-                    case EObjectType.RANDOM_MAJOR_ART:
-                    case EObjectType.RANDOM_RELIC_ART:
-                    case EObjectType.SPELL_SCROLL:
-                        {
-                            
-                            break;
-                        }
-
-                    default:
-                        break;
-                }
+                resultObject = objectReader.ReadObject(reader, objectId, objectPosition);
             }
-        }
-
-        private CGObject ReadHero(BinaryReader reader, int objectId, MapPosition objectPosition)
-        {
-            HeroInstance hero = new HeroInstance();
-
-
-
-
-            return hero;
         }
         
-        private void ReadMessageAndGuards(BinaryReader reader, H3Event eventObject)
-        {
+        
 
-        }
 
-        private void ReadResouces(BinaryReader reader)
-        {
-            for (int x = 0; x < 7; ++x)
-            {
-                var num = reader.ReadUInt32();
-            }
-        }
 
-        private object ReadCreatureSet(BinaryReader reader, int numberToRead)
-        {
-            bool isHighVersion = mapObject.Header.Version > EMapFormat.ROE;
-            int maxID = isHighVersion ? 0xffff : 0xff;
-
-            for (int ir = 0; ir < numberToRead; ++ir)
-            {
-                ECreatureId creatureId;
-
-                if (isHighVersion)
-                {
-                    creatureId = (ECreatureId)(reader.ReadUInt16());
-                }
-                else
-                {
-                    creatureId = (ECreatureId)(reader.ReadByte());
-                }
-
-                int amount = reader.ReadUInt16();
-
-                // Empty slot
-                if ((int)creatureId == maxID)
-                    continue;
-
-                // Create StackInstance
-                //auto hlp = new CStackInstance();
-                // hlp->count = count;
-
-                if ((int)creatureId > maxID - 0xf)
-                {
-                    //this will happen when random object has random army
-                    //hlp->idRand = maxID - (int)creatureId - 1;
-                }
-                else
-                {
-                    //hlp->setType((int)creatureId);
-                }
-
-		        // out->putStack(SlotID(ir), hlp);
-            }
-
-            //out->validTypes(true);
-
-            return null;
-        }
     }
 }

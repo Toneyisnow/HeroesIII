@@ -9,8 +9,12 @@ namespace H3Engine.MapObjects
 {
     public class ArmedInstance : CGObject
     {
+        public string Message
+        {
+            get; set;
+        }
 
-        public CreatureSet Army
+        public CreatureSet GuardArmy
         {
             get; set;
         }

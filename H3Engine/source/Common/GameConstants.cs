@@ -629,6 +629,12 @@ namespace H3Engine.Common
 	    RESOURCE
     };
 
+    public enum EResourceType
+    {
+        GOLD = 0,
+
+    };
+
     public enum EHealLevel
     {
         HEAL,
@@ -640,6 +646,12 @@ namespace H3Engine.Common
     {
         ONE_BATTLE,
 	    PERMANENT
+    };
+
+    public enum EArmyFormationType
+    {
+        Wide = 0,
+        Tight = 1
     };
 
     public enum EPrimarySkill

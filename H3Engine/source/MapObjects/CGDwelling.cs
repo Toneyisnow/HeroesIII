@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace H3Engine.MapObjects
 {
-    public class Dwelling : ArmedInstance
+    public class CGDwelling : ArmedInstance
     {
     }
 }

@@ -1,11 +1,11 @@
-﻿using H3Engine.Components.MapObjects;
+﻿using H3Engine.MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H3Engine.Components.Mapping
+namespace H3Engine.Mapping
 {
     public class H3Map
     {
@@ -20,7 +20,7 @@ namespace H3Engine.Components.Mapping
             get; private set;
         }
 
-        public List<H3Object> Objects
+        public List<CGObject> Objects
         {
             get; set;
         }

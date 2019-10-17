@@ -1,4 +1,5 @@
-﻿using System;
+﻿using H3Engine.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,32 +19,70 @@ namespace H3Engine.MapObjects
 
     public class CGSignBottle : CGObject
     {
+        public string Message
+        {
+            get; set;
+        }
 
     }
 
     public class CGWitchHut : CGObject
     {
+        public CGWitchHut()
+        {
+            this.AllowedAbilities = new List<int>();
+        }
+
+        public List<int> AllowedAbilities
+        {
+            get; set;
+        }
 
     }
 
     public class CGScholar : CGObject
     {
+        public enum EBonusType
+        {
+            PrimarySkill = 0,
+            SecondarySkill = 1,
+            Spell = 2,
+            Random = 255
+        }
 
+        public EBonusType BonusType
+        {
+            get; set;
+        }
+
+        public int BonusId
+        {
+            get; set;
+        }
     }
 
     public class CGGarrison : CGObject
     {
-
+        public bool RemovableUnits
+        {
+            get; set;
+        }
     }
 
     public class CGArtifact : ArmedInstance
     {
+        public CGArtifact(EArtifactId artId)
+        {
 
+        }
     }
 
     public class CGResource : ArmedInstance
     {
-
+        public int Amount
+        {
+            get; set;
+        }
     }
 
     public class CGShrine : ITeamVisited

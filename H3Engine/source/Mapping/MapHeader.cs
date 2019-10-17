@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H3Engine.Components.Mapping
+namespace H3Engine.Mapping
 {
     public enum EMapFormat
     {

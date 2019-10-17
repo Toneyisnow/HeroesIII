@@ -83,15 +83,18 @@
     <Compile Include="source\GUI\AnimationFrame.cs" />
     <Compile Include="source\GUI\AnimationGroup.cs" />
     <Compile Include="source\MapObjects\ArmedInstance.cs" />
-    <Compile Include="source\MapObjects\Dwelling.cs" />
-    <Compile Include="source\MapObjects\H3Event.cs" />
+    <Compile Include="source\MapObjects\CQuest.cs" />
+    <Compile Include="source\MapObjects\CGDwelling.cs" />
+    <Compile Include="source\MapObjects\CGEvent.cs" />
     <Compile Include="source\MapObjects\HeroInstance.cs" />
-    <Compile Include="source\MapObjects\H3Object.cs" />
+    <Compile Include="source\MapObjects\CGObject.cs" />
+    <Compile Include="source\MapObjects\MiscObjects.cs" />
     <Compile Include="source\MapObjects\ObjectTemplate.cs" />
     <Compile Include="source\MapObjects\TownInstance.cs" />
     <Compile Include="source\Mapping\H3Map.cs" />
     <Compile Include="source\Mapping\MapHeader.cs" />
     <Compile Include="source\Mapping\H3MapLoader.cs" />
+    <Compile Include="source\Mapping\MapObjectReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
