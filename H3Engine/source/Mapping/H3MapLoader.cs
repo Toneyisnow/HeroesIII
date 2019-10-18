@@ -50,6 +50,8 @@ namespace H3Engine.Mapping
 
                     // ReadObjects(reader);
 
+
+                    ConsolidateAndAdjustData();
                 }
             }
 
@@ -693,8 +695,18 @@ namespace H3Engine.Mapping
             }
         }
         
-        
+        /// <summary>
+        /// Update part of the data according to data alignment and conflict
+        /// </summary>
+        private void ConsolidateAndAdjustData()
+        {
+            // 1. Town should not allow Spells that the Map doesn't allow
 
+
+            // 2. Random artifact should not generate the ones that CQuest will give
+
+
+        }
 
 
     }

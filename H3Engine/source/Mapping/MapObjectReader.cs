@@ -93,7 +93,7 @@ namespace H3Engine.Mapping
             return null;
         }
 
-        protected void ReadQuest(BinaryReader reader, IQuestObject questObject)
+        protected CQuest ReadQuest(BinaryReader reader)
         {
             guard->quest->missionType = static_cast<CQuest::Emission>(reader.readUInt8());
 
