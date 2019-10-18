@@ -93,6 +93,86 @@ namespace H3Engine.Mapping
             return null;
         }
 
+        protected void ReadQuest(BinaryReader reader, IQuestObject questObject)
+        {
+            guard->quest->missionType = static_cast<CQuest::Emission>(reader.readUInt8());
+
+            switch (guard->quest->missionType)
+            {
+                case CQuest::MISSION_NONE:
+                    return;
+                case CQuest::MISSION_PRIMARY_STAT:
+                    {
+                        guard->quest->m2stats.resize(4);
+                        for (int x = 0; x < 4; ++x)
+                        {
+                            guard->quest->m2stats[x] = reader.readUInt8();
+                        }
+                    }
+                    break;
+                case CQuest::MISSION_LEVEL:
+                case CQuest::MISSION_KILL_HERO:
+                case CQuest::MISSION_KILL_CREATURE:
+                    {
+                        guard->quest->m13489val = reader.readUInt32();
+                        break;
+                    }
+                case CQuest::MISSION_ART:
+                    {
+                        int artNumber = reader.readUInt8();
+                        for (int yy = 0; yy < artNumber; ++yy)
+                        {
+                            int artid = reader.readUInt16();
+                            guard->quest->m5arts.push_back(artid);
+                            map->allowedArtifact[artid] = false; //these are unavailable for random generation
+                        }
+                        break;
+                    }
+                case CQuest::MISSION_ARMY:
+                    {
+                        int typeNumber = reader.readUInt8();
+                        guard->quest->m6creatures.resize(typeNumber);
+                        for (int hh = 0; hh < typeNumber; ++hh)
+                        {
+                            guard->quest->m6creatures[hh].type = VLC->creh->creatures[reader.readUInt16()];
+                            guard->quest->m6creatures[hh].count = reader.readUInt16();
+                        }
+                        break;
+                    }
+                case CQuest::MISSION_RESOURCES:
+                    {
+                        guard->quest->m7resources.resize(7);
+                        for (int x = 0; x < 7; ++x)
+                        {
+                            guard->quest->m7resources[x] = reader.readUInt32();
+                        }
+                        break;
+                    }
+                case CQuest::MISSION_HERO:
+                case CQuest::MISSION_PLAYER:
+                    {
+                        guard->quest->m13489val = reader.readUInt8();
+                        break;
+                    }
+            }
+
+            int limit = reader.readUInt32();
+            if (limit == (static_cast<int>(0xffffffff)))
+            {
+                guard->quest->lastDay = -1;
+            }
+            else
+            {
+                guard->quest->lastDay = limit;
+            }
+            guard->quest->firstVisitText = reader.readString();
+            guard->quest->nextVisitText = reader.readString();
+            guard->quest->completedText = reader.readString();
+            guard->quest->isCustomFirst = guard->quest->firstVisitText.size() > 0;
+            guard->quest->isCustomNext = guard->quest->nextVisitText.size() > 0;
+            guard->quest->isCustomComplete = guard->quest->completedText.size() > 0;
+        }
+
     }
 
     public class MapObjectReaderFactory
@@ -266,6 +346,112 @@ namespace H3Engine.Mapping
         {
             CGSeerHut seerHut = new CGSeerHut();
 
+            if (MapHeader.Version > EMapFormat.ROE)
+            {
+                ReadQuest(reader, seerHut);
+            }
+            else
+            {
+                //RoE
+                byte artifactId = reader.ReadByte();
+                if (artifactId != 255)
+                {
+                    //not none quest
+                    seerHut.Quest.m5arts.push_back(artifactId);
+                    hut->quest->missionType = CQuest::MISSION_ART;
+                }
+                else
+                {
+                    hut->quest->missionType = CQuest::MISSION_NONE;
+                }
+                hut->quest->lastDay = -1; //no timeout
+                hut->quest->isCustomFirst = hut->quest->isCustomNext = hut->quest->isCustomComplete = false;
+            }
+
+            if (hut->quest->missionType)
+            {
+                auto rewardType = static_cast<CGSeerHut::ERewardType>(reader.readUInt8());
+                hut->rewardType = rewardType;
+                switch (rewardType)
+                {
+                    case CGSeerHut::EXPERIENCE:
+                        {
+                            hut->rVal = reader.readUInt32();
+                            break;
+                        }
+                    case CGSeerHut::MANA_POINTS:
+                        {
+                            hut->rVal = reader.readUInt32();
+                            break;
+                        }
+                    case CGSeerHut::MORALE_BONUS:
+                        {
+                            hut->rVal = reader.readUInt8();
+                            break;
+                        }
+                    case CGSeerHut::LUCK_BONUS:
+                        {
+                            hut->rVal = reader.readUInt8();
+                            break;
+                        }
+                    case CGSeerHut::RESOURCES:
+                        {
+                            hut->rID = reader.readUInt8();
+                            // Only the first 3 bytes are used. Skip the 4th.
+                            hut->rVal = reader.readUInt32() & 0x00ffffff;
+                            break;
+                        }
+                    case CGSeerHut::PRIMARY_SKILL:
+                        {
+                            hut->rID = reader.readUInt8();
+                            hut->rVal = reader.readUInt8();
+                            break;
+                        }
+                    case CGSeerHut::SECONDARY_SKILL:
+                        {
+                            hut->rID = reader.readUInt8();
+                            hut->rVal = reader.readUInt8();
+                            break;
+                        }
+                    case CGSeerHut::ARTIFACT:
+                        {
+                            if (map->version == EMapFormat::ROE)
+                            {
+                                hut->rID = reader.readUInt8();
+                            }
+                            else
+                            {
+                                hut->rID = reader.readUInt16();
+                            }
+                            break;
+                        }
+                    case CGSeerHut::SPELL:
+                        {
+                            hut->rID = reader.readUInt8();
+                            break;
+                        }
+                    case CGSeerHut::CREATURE:
+                        {
+                            if (map->version > EMapFormat::ROE)
+                            {
+                                hut->rID = reader.readUInt16();
+                                hut->rVal = reader.readUInt16();
+                            }
+                            else
+                            {
+                                hut->rID = reader.readUInt8();
+                                hut->rVal = reader.readUInt16();
+                            }
+                            break;
+                        }
+                }
+                reader.skip(2);
+            }
+            else
+            {
+                // missionType==255
+                reader.skip(3);
+            }
 
             return seerHut;
         }

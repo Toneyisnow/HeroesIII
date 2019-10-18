@@ -14,12 +14,18 @@ namespace H3Engine.MapObjects
 
     public interface IQuestObject
     {
-
+        CQuest Quest
+        {
+            get; set;
+        }
     }
 
     public class CGSeerHut : ArmedInstance, IQuestObject
     {
-
+        public CQuest Quest
+        {
+            get; set;
+        }
     }
 
     public class CGQuestGuard : CGSeerHut
