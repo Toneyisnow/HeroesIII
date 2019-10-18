@@ -27,12 +27,14 @@ namespace H3Engine.Mapping
         public abstract CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition);
 
 
-        protected void ReadResouces(BinaryReader reader)
+        protected ResourceSet ReadResouces(BinaryReader reader)
         {
             for (int x = 0; x < 7; ++x)
             {
                 var num = reader.ReadUInt32();
             }
+
+            return null;
         }
 
         /// <summary>
@@ -427,11 +429,14 @@ namespace H3Engine.Mapping
             bool hasCustomBuildings = reader.ReadBoolean();
             if (hasCustomBuildings)
             {
-                reader.ReadBitMask(town.Buildings, 6, 48, false);
-                reader.ReadBitMask(town.ForbiddenBuildings, 6, 48, false);
+                HashSet<int> buildings = new HashSet<int>();
+                reader.ReadBitMask(buildings, 6, 48, false);
 
-                town.Buildings = ConvertBuildings(town.Buildings, castleId);
-                town.ForbiddenBuildings = ConvertBuildings(town.ForbiddenBuildings, castleId);
+                HashSet<int> forbiddenBuildings = new HashSet<int>();
+                reader.ReadBitMask(forbiddenBuildings, 6, 48, false);
+
+                town.Buildings = ConvertBuildings(buildings, castleId);
+                town.ForbiddenBuildings = ConvertBuildings(forbiddenBuildings, castleId);
             }
             // Standard buildings
             else
@@ -457,7 +462,7 @@ namespace H3Engine.Mapping
                         {
                             if (c == (c | 1 << yy)) //add obligatory spell even if it's banned on a map (?)
                             {
-                                nt->obligatorySpells.push_back(ESpellId(i * 8 + yy));
+                                town.ObligatorySpells.Add((ESpellId)(i * 8 + yy));
                             }
                         }
                     }
@@ -466,76 +471,85 @@ namespace H3Engine.Mapping
 
             for (int i = 0; i < 9; ++i)
             {
-                ui8 c = reader.readUInt8();
+                byte c = reader.ReadByte();
                 for (int yy = 0; yy < 8; ++yy)
                 {
                     int spellid = i * 8 + yy;
-                    if (spellid < GameConstants::SPELLS_QUANTITY)
+                    if (spellid < GameConstants.SPELLS_QUANTITY)
                     {
-                        if (c != (c | static_cast<ui8>(std::pow(2., yy))) && map->allowedSpell[spellid]) //add random spell only if it's allowed on entire map
+                        if (c != (c | 1 << yy)) //add random spell only if it's allowed on entire map
                         {
-                            nt->possibleSpells.push_back(SpellID(spellid));
+                            town.PossibleSpells.Add((ESpellId)(spellid));
                         }
                     }
                 }
             }
+
             //add all spells from mods
             //TODO: allow customize new spells in towns
-            for (int i = SpellID::AFTER_LAST; i < VLC->spellh->objects.size(); ++i)
-            {
-                nt->possibleSpells.push_back(SpellID(i));
-            }
+            //for (int i = SpellID::AFTER_LAST; i < VLC->spellh->objects.size(); ++i)
+            //{
+            //    nt->possibleSpells.push_back(SpellID(i));
+            //}
 
             // Read castle events
-            int numberOfEvent = reader.readUInt32();
-
+            int numberOfEvent = (int)reader.ReadUInt32();
             for (int gh = 0; gh < numberOfEvent; ++gh)
             {
-                CCastleEvent nce;
-                nce.town = nt;
-                nce.name = reader.readString();
-                nce.message = reader.readString();
+                CCastleEvent castleEvent = new CCastleEvent();
+                castleEvent.Town = town;
+                castleEvent.Name = reader.ReadString();
+                castleEvent.Message = reader.ReadString();
 
-                readResourses(nce.resources);
+                castleEvent.Resources = ReadResouces(reader);
 
-                nce.players = reader.readUInt8();
-                if (map->version > EMapFormat::AB)
+                castleEvent.Players = reader.ReadByte();
+                
+                if (MapHeader.Version > EMapFormat.AB)
                 {
-                    nce.humanAffected = reader.readUInt8();
+                    castleEvent.HumanAffected = reader.ReadByte();
                 }
                 else
                 {
-                    nce.humanAffected = true;
+                    castleEvent.HumanAffected = 0x01;
                 }
 
-                nce.computerAffected = reader.readUInt8();
-                nce.firstOccurence = reader.readUInt16();
-                nce.nextOccurence = reader.readUInt8();
+                castleEvent.ComputerAffected = reader.ReadByte();
+                castleEvent.FirstOccurence = reader.ReadUInt16();
+                castleEvent.NextOccurence = reader.ReadByte();
 
-                reader.skip(17);
+                reader.Skip(17);
 
                 // New buildings
+                HashSet<int> buildings = new HashSet<int>();
+                reader.ReadBitMask(buildings, 6, 48, false);
 
-                readBitmask(nce.buildings, 6, 48, false);
+                //// castleEvent.Buildings = ConvertBuildings(buildings, castleId, false);
 
-                nce.buildings = convertBuildings(nce.buildings, castleID, false);
-
-                nce.creatures.resize(7);
+                castleEvent.Creatures.Clear();
                 for (int vv = 0; vv < 7; ++vv)
                 {
-                    nce.creatures[vv] = reader.readUInt16();
+                    var creatureId = reader.ReadUInt16();
+                    castleEvent.Creatures.Add((ECreatureId)creatureId);
                 }
-                reader.skip(4);
-                nt->events.push_back(nce);
+
+                reader.Skip(4);
+                town.Events.Add(castleEvent);
             }
 
-            if (map->version > EMapFormat::AB)
+            if (MapHeader.Version > EMapFormat.AB)
             {
-                nt->alignment = reader.readUInt8();
+                town.Alignment = reader.ReadByte();
             }
-            reader.skip(3);
+            reader.Skip(3);
 
-            return nt;
+            return town;
+        }
+
+        private HashSet<EBuildingId> ConvertBuildings(HashSet<int> buildings, int castleId)
+        {
+
+            return null;
         }
     }
 
