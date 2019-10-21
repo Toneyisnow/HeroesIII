@@ -748,7 +748,10 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGMine mine = new CGMine();
+            mine.SetOwner((EPlayerColor)(reader.ReadByte()));
+            reader.Skip(3);
+            return mine;
         }
     }
 
@@ -756,7 +759,21 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            var shrine = new CGShrine();
+
+            byte rawId = reader.ReadByte();
+
+            if (255 == rawId)
+            {
+                shrine.SpellId = ESpellId.NONE;
+            }
+            else
+            {
+                shrine.SpellId = (ESpellId)rawId;
+            }
+
+            reader.Skip(3);
+            return shrine;
         }
     }
 
@@ -764,7 +781,59 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGPandoraBox box = new CGPandoraBox();
+
+            ReadMessageAndGuards(reader, box);
+
+            box.GainExperience = reader.ReadUInt32();
+            box.ManaDiff = reader.ReadUInt32();
+            box.MoraleDiff = reader.ReadByte();
+            box.LuckDiff = reader.ReadByte();
+
+            box.GainResources = ReadResouces(reader);
+
+            box.GainPrimarySkills = new List<int>(4);
+            for (int x = 0; x < 4; ++x)
+            {
+                box.GainPrimarySkills.Add(reader.ReadByte());
+            }
+
+            box.GainSecondarySkills = new List<ESecondarySkill>();
+            box.GainAbilityLevels = new List<int>();
+            int gabn = reader.ReadByte();//number of gained abilities
+            for (int oo = 0; oo < gabn; ++oo)
+            {
+                box.GainSecondarySkills.Add((ESecondarySkill)reader.ReadByte());
+                box.GainAbilityLevels.Add(reader.ReadByte());
+            }
+
+            box.GainArtifacts = new List<EArtifactId>();
+            int gart = reader.ReadByte(); //number of gained artifacts
+            for (int oo = 0; oo < gart; ++oo)
+            {
+                if (MapHeader.Version > EMapFormat.ROE)
+                {
+                    box.GainArtifacts.Add((EArtifactId)reader.ReadUInt16());
+                }
+                else
+                {
+                    box.GainArtifacts.Add((EArtifactId)reader.ReadByte());
+                }
+            }
+
+            box.GainSpells = new List<ESpellId>();
+            int gspel = reader.ReadByte(); //number of gained spells
+            for (int oo = 0; oo < gspel; ++oo)
+            {
+                box.GainSpells.Add((ESpellId)reader.ReadByte());
+            }
+
+            box.GainCreatures = new CreatureSet();
+            int gcre = reader.ReadByte(); //number of gained creatures
+            box.GainCreatures = ReadCreatureSet(reader, gcre);
+            reader.Skip(8);
+
+            return box;
         }
     }
 
@@ -772,7 +841,12 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGGrail grail = new CGGrail();
+
+            grail.Position = objectPosition;
+            grail.Radius = reader.ReadUInt32();
+
+            return grail;
         }
     }
 
@@ -780,7 +854,11 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGDwelling dwelling = new CGDwelling();
+            dwelling.SetOwner((EPlayerColor)reader.ReadByte());
+            reader.Skip(3);
+
+            return dwelling;
         }
     }
 

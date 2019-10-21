@@ -82,6 +82,10 @@ namespace H3Engine.MapObjects
 
     public class CGShrine : ITeamVisited
     {
+        public ESpellId SpellId
+        {
+            get; set;
+        }
 
     }
 
@@ -161,6 +165,12 @@ namespace H3Engine.MapObjects
 
     }
 
-
+    public class CGGrail : CGObject
+    {
+        public uint Radius
+        {
+            get; set;
+        }
+    }
 
 }

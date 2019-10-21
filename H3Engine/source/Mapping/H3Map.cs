@@ -29,5 +29,10 @@ namespace H3Engine.Mapping
         {
             get; set;
         }
+
+        public CGGrail Grail
+        {
+            get; set;
+        }
     }
 }
