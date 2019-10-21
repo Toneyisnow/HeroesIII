@@ -12,11 +12,6 @@ namespace H3Engine.MapObjects
 
     }
 
-    public class CGCreature : CGObject
-    {
-
-    }
-
     public class CGSignBottle : CGObject
     {
         public string Message

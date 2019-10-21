@@ -95,86 +95,80 @@ namespace H3Engine.Mapping
 
         protected CQuest ReadQuest(BinaryReader reader)
         {
-
-
-            guard->quest->missionType = static_cast<CQuest::Emission>(reader.readUInt8());
-
-            switch (guard->quest->missionType)
+            CQuest quest = new CQuest();
+            quest.MissionType = (CQuest.EMissionType)reader.ReadByte();
+            
+            switch (quest.MissionType)
             {
-                case CQuest::MISSION_NONE:
-                    return;
-                case CQuest::MISSION_PRIMARY_STAT:
+                case CQuest.EMissionType.MISSION_NONE:
+                    break;
+                case CQuest.EMissionType.MISSION_PRIMARY_STAT:
+                    quest.M2Stats = new List<uint>(4);
+                    for (int x = 0; x < 4; ++x)
                     {
-                        guard->quest->m2stats.resize(4);
-                        for (int x = 0; x < 4; ++x)
-                        {
-                            guard->quest->m2stats[x] = reader.readUInt8();
-                        }
+                        uint val = (uint)reader.ReadByte();
+                        quest.M2Stats.Add(val);
                     }
                     break;
-                case CQuest::MISSION_LEVEL:
-                case CQuest::MISSION_KILL_HERO:
-                case CQuest::MISSION_KILL_CREATURE:
+                case CQuest.EMissionType.MISSION_LEVEL:
+                case CQuest.EMissionType.MISSION_KILL_HERO:
+                case CQuest.EMissionType.MISSION_KILL_CREATURE:
+                    quest.M13489val = reader.ReadUInt32();
+                    break;
+                case CQuest.EMissionType.MISSION_ART:
+                    int artNumber = reader.ReadByte();
+                    for (int yy = 0; yy < artNumber; ++yy)
                     {
-                        guard->quest->m13489val = reader.readUInt32();
-                        break;
+                        ushort artid = reader.ReadUInt16();
+                        quest.M5Artifacts.Add(artid);
+                        ///// map->allowedArtifact[artid] = false; //these are unavailable for random generation
                     }
-                case CQuest::MISSION_ART:
+                    break;
+                case CQuest.EMissionType.MISSION_ARMY:
+                    int typeNumber = (int)reader.ReadByte();
+                    quest.M6Creatures = new List<StackDescriptor>(typeNumber);
+                    for (int hh = 0; hh < typeNumber; ++hh)
                     {
-                        int artNumber = reader.readUInt8();
-                        for (int yy = 0; yy < artNumber; ++yy)
-                        {
-                            int artid = reader.readUInt16();
-                            guard->quest->m5arts.push_back(artid);
-                            map->allowedArtifact[artid] = false; //these are unavailable for random generation
-                        }
-                        break;
+                        UInt16 creatureId = reader.ReadUInt16();
+                        StackDescriptor stack = new StackDescriptor();
+                        stack.Creature = new H3Creature();
+                        stack.Amount = reader.ReadUInt16();
                     }
-                case CQuest::MISSION_ARMY:
+                    break;
+                case CQuest.EMissionType.MISSION_RESOURCES:
+
+                    quest.M7Resources = new List<uint>(7);
+                    for (int x = 0; x < 7; ++x)
                     {
-                        int typeNumber = reader.readUInt8();
-                        guard->quest->m6creatures.resize(typeNumber);
-                        for (int hh = 0; hh < typeNumber; ++hh)
-                        {
-                            guard->quest->m6creatures[hh].type = VLC->creh->creatures[reader.readUInt16()];
-                            guard->quest->m6creatures[hh].count = reader.readUInt16();
-                        }
-                        break;
+                        uint amount = reader.ReadUInt32();
+                        quest.M7Resources.Add(amount);
                     }
-                case CQuest::MISSION_RESOURCES:
-                    {
-                        guard->quest->m7resources.resize(7);
-                        for (int x = 0; x < 7; ++x)
-                        {
-                            guard->quest->m7resources[x] = reader.readUInt32();
-                        }
-                        break;
-                    }
-                case CQuest::MISSION_HERO:
-                case CQuest::MISSION_PLAYER:
-                    {
-                        guard->quest->m13489val = reader.readUInt8();
-                        break;
-                    }
+                    break;
+                case CQuest.EMissionType.MISSION_HERO:
+                case CQuest.EMissionType.MISSION_PLAYER:
+                    quest.M13489val = reader.ReadByte();
+                    break;
             }
 
-            int limit = reader.readUInt32();
-            if (limit == (static_cast<int>(0xffffffff)))
+            uint limit = reader.ReadUInt32();
+            if (limit == 0xffffffff)
             {
-                guard->quest->lastDay = -1;
+                quest.LastDay = -1;
             }
             else
             {
-                guard->quest->lastDay = limit;
+                quest.LastDay = (int)limit;
             }
-            guard->quest->firstVisitText = reader.readString();
-            guard->quest->nextVisitText = reader.readString();
-            guard->quest->completedText = reader.readString();
-            guard->quest->isCustomFirst = guard->quest->firstVisitText.size() > 0;
-            guard->quest->isCustomNext = guard->quest->nextVisitText.size() > 0;
-            guard->quest->isCustomComplete = guard->quest->completedText.size() > 0;
-        }
 
+            quest.FirstVisitText = reader.ReadString();
+            quest.NextVisitText = reader.ReadString();
+            quest.CompletedText = reader.ReadString();
+            quest.IsCustomFirst = quest.FirstVisitText.Length > 0;
+            quest.IsCustomNext = quest.NextVisitText.Length > 0;
+            quest.IsCustomComplete = quest.CompletedText.Length > 0;
+
+            return quest;
+        }
     }
 
     public class MapObjectReaderFactory
@@ -350,7 +344,7 @@ namespace H3Engine.Mapping
 
             if (MapHeader.Version > EMapFormat.ROE)
             {
-                ReadQuest(reader, seerHut);
+                seerHut.Quest = ReadQuest(reader);
             }
             else
             {
@@ -359,100 +353,101 @@ namespace H3Engine.Mapping
                 if (artifactId != 255)
                 {
                     //not none quest
-                    seerHut.Quest.m5arts.push_back(artifactId);
-                    hut->quest->missionType = CQuest::MISSION_ART;
+                    seerHut.Quest.M5Artifacts.Add(artifactId);
+                    seerHut.Quest.MissionType = CQuest.EMissionType.MISSION_ART;
                 }
                 else
                 {
-                    hut->quest->missionType = CQuest::MISSION_NONE;
+                    seerHut.Quest.MissionType = CQuest.EMissionType.MISSION_NONE;
                 }
-                hut->quest->lastDay = -1; //no timeout
-                hut->quest->isCustomFirst = hut->quest->isCustomNext = hut->quest->isCustomComplete = false;
+
+                seerHut.Quest.LastDay = -1; //no timeout
+                seerHut.Quest.IsCustomFirst = seerHut.Quest.IsCustomNext = seerHut.Quest.IsCustomComplete = false;
             }
 
-            if (hut->quest->missionType)
+            if (seerHut.Quest.MissionType != CQuest.EMissionType.MISSION_NONE)
             {
-                auto rewardType = static_cast<CGSeerHut::ERewardType>(reader.readUInt8());
-                hut->rewardType = rewardType;
-                switch (rewardType)
+                seerHut.RewardType = (CGSeerHut.ERewardType)reader.ReadByte();
+                switch (seerHut.RewardType)
                 {
-                    case CGSeerHut::EXPERIENCE:
+                    case CGSeerHut.ERewardType.EXPERIENCE:
                         {
-                            hut->rVal = reader.readUInt32();
+                            seerHut.RewardValue = (int)reader.ReadUInt32();
                             break;
                         }
-                    case CGSeerHut::MANA_POINTS:
+                    case CGSeerHut.ERewardType.MANA_POINTS:
                         {
-                            hut->rVal = reader.readUInt32();
+                            seerHut.RewardValue = (int)reader.ReadUInt32();
                             break;
                         }
-                    case CGSeerHut::MORALE_BONUS:
+                    case CGSeerHut.ERewardType.MORALE_BONUS:
                         {
-                            hut->rVal = reader.readUInt8();
+                            seerHut.RewardValue = (int)reader.ReadByte();
                             break;
                         }
-                    case CGSeerHut::LUCK_BONUS:
+                    case CGSeerHut.ERewardType.LUCK_BONUS:
                         {
-                            hut->rVal = reader.readUInt8();
+                            seerHut.RewardValue = (int)reader.ReadByte();
                             break;
                         }
-                    case CGSeerHut::RESOURCES:
+                    case CGSeerHut.ERewardType.RESOURCES:
                         {
-                            hut->rID = reader.readUInt8();
+                            seerHut.RewardId = (int)reader.ReadByte();
+
                             // Only the first 3 bytes are used. Skip the 4th.
-                            hut->rVal = reader.readUInt32() & 0x00ffffff;
+                            seerHut.RewardValue = (int)reader.ReadUInt32() & 0x00ffffff;
                             break;
                         }
-                    case CGSeerHut::PRIMARY_SKILL:
+                    case CGSeerHut.ERewardType.PRIMARY_SKILL:
                         {
-                            hut->rID = reader.readUInt8();
-                            hut->rVal = reader.readUInt8();
+                            seerHut.RewardId = (int)reader.ReadByte();
+                            seerHut.RewardValue = (int)reader.ReadByte();
                             break;
                         }
-                    case CGSeerHut::SECONDARY_SKILL:
+                    case CGSeerHut.ERewardType.SECONDARY_SKILL:
                         {
-                            hut->rID = reader.readUInt8();
-                            hut->rVal = reader.readUInt8();
+                            seerHut.RewardId = (int)reader.ReadByte();
+                            seerHut.RewardValue = (int)reader.ReadByte();
                             break;
                         }
-                    case CGSeerHut::ARTIFACT:
+                    case CGSeerHut.ERewardType.ARTIFACT:
                         {
-                            if (map->version == EMapFormat::ROE)
+                            if (MapHeader.Version == EMapFormat.ROE)
                             {
-                                hut->rID = reader.readUInt8();
+                                seerHut.RewardId = (int)reader.ReadByte();
                             }
                             else
                             {
-                                hut->rID = reader.readUInt16();
+                                seerHut.RewardId = (int)reader.ReadUInt16();
                             }
                             break;
                         }
-                    case CGSeerHut::SPELL:
+                    case CGSeerHut.ERewardType.SPELL:
                         {
-                            hut->rID = reader.readUInt8();
+                            seerHut.RewardId = (int)reader.ReadByte();
                             break;
                         }
-                    case CGSeerHut::CREATURE:
+                    case CGSeerHut.ERewardType.CREATURE:
                         {
-                            if (map->version > EMapFormat::ROE)
+                            if (MapHeader.Version > EMapFormat.ROE)
                             {
-                                hut->rID = reader.readUInt16();
-                                hut->rVal = reader.readUInt16();
+                                seerHut.RewardId = (int)reader.ReadUInt16();
+                                seerHut.RewardValue = (int)reader.ReadUInt16();
                             }
                             else
                             {
-                                hut->rID = reader.readUInt8();
-                                hut->rVal = reader.readUInt16();
+                                seerHut.RewardId = (int)reader.ReadByte();
+                                seerHut.RewardValue = (int)reader.ReadUInt16();
                             }
                             break;
                         }
                 }
-                reader.skip(2);
+                reader.Skip(2);
             }
             else
             {
                 // missionType==255
-                reader.skip(3);
+                reader.Skip(3);
             }
 
             return seerHut;

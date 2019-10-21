@@ -14,6 +14,8 @@ namespace H3Engine.Core
 
         }
 
+        #region Basic Values
+
         public ECreatureId CreatureId
         {
             get; set;
@@ -54,10 +56,48 @@ namespace H3Engine.Core
             get; set;
         }
 
-        // Values
-        public 
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<ECreatureId> UpgradesTo
+        {
+            get; set;
+        }
+
+        #endregion
+
+        #region Skill Values
+        
+        public int Attack
+        {
+            get; set;
+        }
+
+        public int Defense
+        {
+            get; set;
+        }
+
+        public int AmmunitionAmount
+        {
+            get; set;
+        }
+
+        public int Cost
+        {
+            get; set;
+        }
+
+        #endregion
+
+        #region Battle Field
+
+        public bool IsDoubleWide
+        {
+            get; set;
+        }
 
 
-
+        #endregion
     }
 }
