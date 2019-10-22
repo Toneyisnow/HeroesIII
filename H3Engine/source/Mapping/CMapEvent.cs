@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace H3Engine.Mapping
 {
-    public class CMapEvent
+    public class MapEvent
     {
-        public CMapEvent()
+        public MapEvent()
         {
 
         }
@@ -60,9 +60,9 @@ namespace H3Engine.Mapping
 
     }
 
-    public class CCastleEvent : CMapEvent
+    public class CastleEvent : MapEvent
     {
-        public CCastleEvent()
+        public CastleEvent()
         {
             this.Buildings = new List<EBuildingId>();
             this.Creatures = new List<ECreatureId>();

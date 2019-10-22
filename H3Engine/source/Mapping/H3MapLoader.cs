@@ -52,6 +52,7 @@ namespace H3Engine.Mapping
 
                     ReadObjects(reader);
 
+                    ReadEvents(reader);
 
                     ConsolidateAndAdjustData();
                 }
@@ -583,55 +584,7 @@ namespace H3Engine.Mapping
                 }
             }
         }
-
-        private bool LoadArtifactToSlot(BinaryReader reader, HeroInstance hero, int slotIndex)
-        {
-            int artmask = 0xffff;
-            if (this.mapObject.Header.Version == EMapFormat.ROE)
-            {
-                artmask = 0xff;
-            }
-
-            int aid = reader.ReadUInt16();
-
-            bool isArt = (aid != artmask);
-            if (isArt)
-            {
-                Console.WriteLine("loadArtifactToSlot: id={0}, slot={1}", aid, slotIndex);
-
-                ArtifactSet artifactSet = hero.Data.Artifacts;
-
-                EArtifactId artifactId = (EArtifactId)aid;
-                H3Artifact artifact = new H3Artifact(artifactId);
-
-                if (artifact.IsBig() && slotIndex > 19)
-                {
-                    return false;
-                }
-
-                EArtifactPosition slot = (EArtifactPosition)slotIndex;
-                if (aid == 0 && slot == EArtifactPosition.MISC5)
-                {
-                    //TODO: check how H3 handles it -> art 0 in slot 18 in AB map
-                    slot = EArtifactPosition.SPELLBOOK;
-                }
-
-                // this is needed, because some H3M maps (last scenario of ROE map) contain invalid data like misplaced artifacts
-                //// auto artifact = CArtifactInstance::createArtifact(map, aid);
-                //// auto artifactPos = ArtifactPosition(slot);
-
-                if (artifactSet.CanPutAt(artifactId, slot))
-                {
-                    artifactSet.PutAt(artifactId, slot);
-                }
-
-
-                return true;
-            }
-
-            return false;
-        }
-
+        
         private void ReadTerrain(BinaryReader reader)
         {
             int mapLevel = mapObject.Header.IsTwoLevel ? 2 : 1;
@@ -773,6 +726,40 @@ namespace H3Engine.Mapping
             }
         }
         
+        private void ReadEvents(BinaryReader reader)
+        {
+            mapObject.Events = new List<MapEvent>();
+
+            uint numberOfEvents = reader.ReadUInt32();
+            for (int yyoo = 0; yyoo < numberOfEvents; ++yyoo)
+            {
+                MapEvent mEvent = new MapEvent();
+                mEvent.Name = reader.ReadStringWithLength();
+                mEvent.Message = reader.ReadStringWithLength();
+
+                mEvent.Resources = MapObjectReader.ReadResources(reader);
+                mEvent.Players = reader.ReadByte();
+                if (mapObject.Header.Version > EMapFormat.AB)
+                {
+                    mEvent.HumanAffected = reader.ReadByte();
+                }
+                else
+                {
+                    mEvent.HumanAffected = 0xff;
+                }
+
+                mEvent.ComputerAffected = reader.ReadByte();
+                mEvent.FirstOccurence = reader.ReadUInt16();
+                mEvent.NextOccurence = reader.ReadByte();
+
+                reader.Skip(17);
+
+                Console.WriteLine(string.Format("Map Event: {0} Name={1} Message={2}", yyoo, mEvent.Name, mEvent.Message));
+
+                mapObject.Events.Add(mEvent);
+            }
+        }
+
         /// <summary>
         /// Update part of the data according to data alignment and conflict
         /// </summary>

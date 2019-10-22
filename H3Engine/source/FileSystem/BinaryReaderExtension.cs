@@ -81,6 +81,12 @@ namespace H3Engine.FileSystem
                 {
                 //    break;
                 }
+
+                if (reader.BaseStream.Position >= reader.BaseStream.Length)
+                {
+                    // If the reader is beyond the file length, just skip
+                    break;
+                }
             }
 
             return Encoding.ASCII.GetString(result);

@@ -22,7 +22,7 @@ namespace H3Engine.MapObjects
             this.PossibleSpells = new List<ESpellId>();
             this.ObligatorySpells = new List<ESpellId>();
 
-            this.Events = new List<CCastleEvent>();
+            this.Events = new List<CastleEvent>();
         }
 
 
@@ -51,7 +51,7 @@ namespace H3Engine.MapObjects
             get; private set;
         }
 
-        public List<CCastleEvent> Events
+        public List<CastleEvent> Events
         {
             get; private set;
         }

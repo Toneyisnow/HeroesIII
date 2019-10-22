@@ -33,10 +33,9 @@ namespace H3Engine.Mapping
         public abstract CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition);
 
 
-        protected ResourceSet ReadResources(BinaryReader reader)
+        public static ResourceSet ReadResources(BinaryReader reader)
         {
             ResourceSet resources = new ResourceSet();
-
             for (int x = 0; x < 7; ++x)
             {
                 var num = reader.ReadUInt32();
@@ -1088,7 +1087,7 @@ namespace H3Engine.Mapping
             int numberOfEvent = (int)reader.ReadUInt32();
             for (int gh = 0; gh < numberOfEvent; ++gh)
             {
-                CCastleEvent castleEvent = new CCastleEvent();
+                CastleEvent castleEvent = new CastleEvent();
                 castleEvent.Town = town;
                 castleEvent.Name = reader.ReadStringWithLength();
                 castleEvent.Message = reader.ReadStringWithLength();
