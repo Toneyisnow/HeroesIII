@@ -33,7 +33,8 @@ namespace H3Engine
         public static void TestH3MReader()
         {
             // H3MapLoader mapLoader = new H3MapLoader(@"D:\Toney\Personal\Git\toneyisnow\HeroesIII\MapLoader\maps\Coop_Campaing_Shadow_of_Death\Sandro B\Sandro B");
-            H3MapLoader mapLoader = new H3MapLoader(@"D:\Toney\Personal\Git\toneyisnow\HeroesIII\MapLoader\maps\HoMM3 Map Pack by HoMMdb\Shadow of Death & HoMM3 Complete\Andrews Exploits\Andrews Exploits");
+            string file = @"D:\Toney\Personal\Git\toneyisnow\HeroesIII\MapLoader\maps\HoMM3 Map Pack by HoMMdb\Shadow of Death & HoMM3 Complete\Astrogonia\Astrogonia.h3m";
+            H3MapLoader mapLoader = new H3MapLoader(file);
             H3Map map = mapLoader.LoadMap();
 
         }

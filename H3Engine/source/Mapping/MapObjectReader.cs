@@ -279,6 +279,9 @@ namespace H3Engine.Mapping
                 case EObjectType.QUEST_GUARD:
                     return new CGQuestGuardReader();
 
+                case EObjectType.SHIPYARD:
+                    return new CGShipyardReader();
+
                 case EObjectType.HERO_PLACEHOLDER:
                     return new CGHeroPlaceholderReader();
 
@@ -1371,6 +1374,7 @@ namespace H3Engine.Mapping
         {
             CGShipyard shipyard = new CGShipyard();
             shipyard.SetOwner((EPlayerColor)reader.ReadUInt32());
+            ///// shipyard.SetOwner((EPlayerColor)reader.ReadByte());
 
             return shipyard;
         }
