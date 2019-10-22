@@ -9,6 +9,12 @@ namespace H3Engine.MapObjects
 {
     public class ArmedInstance : CGObject
     {
+        public ArmedInstance()
+        {
+            this.GuardArmy = new CreatureSet();
+        }
+
+
         public string Message
         {
             get; set;
@@ -17,6 +23,11 @@ namespace H3Engine.MapObjects
         public CreatureSet GuardArmy
         {
             get; set;
+        }
+
+        public void AddStack(int slotIndex, StackDescriptor stack)
+        {
+            this.GuardArmy.Stacks.Add(stack);
         }
 
     }

@@ -5,14 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace H3Engine.Components
+namespace H3Engine.Core
 {
-    /// <summary>
-    /// Handling the use of secondary skill
-    /// </summary>
-    public class HeroSkill
+    public class AbilitySkill
     {
-        public HeroSkill(ESecondarySkill skillId, ESecondarySkillLevel level)
+
+        public AbilitySkill(ESecondarySkill skillId, ESecondarySkillLevel level)
         {
 
         }

@@ -8,6 +8,27 @@ using System.Threading.Tasks;
 
 namespace H3Engine.Core
 {
+
+    public class HeroSpecialty
+    {
+        public HeroSpecialty()
+        {
+
+        }
+
+        public ESpecialtyType Type
+        {
+            get; set;
+        }
+
+        public int SubType
+        {
+            get; set;
+        }
+
+    }
+
+
     public class H3HeroId
     {
         public H3HeroId()
@@ -84,6 +105,17 @@ namespace H3Engine.Core
             get; set;
         }
 
+        public string Biography
+        {
+            get; set;
+        }
+
+        public byte Sex
+        {
+            get; set;
+        }
+    
+
         public long Experience
         {
             get; set;
@@ -115,7 +147,7 @@ namespace H3Engine.Core
         /// <summary>
         /// Key: Skill Id Value: Level of Skill - (1 - basic, 2 - adv., 3 - expert)
         /// </summary>
-        public Dictionary<int, int> SecondarySkills
+        public List<AbilitySkill> SecondarySkills
         {
             get; set;
         }
@@ -126,6 +158,11 @@ namespace H3Engine.Core
         }
 
         public ArtifactSet Artifacts
+        {
+            get; set;
+        }
+        
+        public HeroSpecialty Specialty
         {
             get; set;
         }

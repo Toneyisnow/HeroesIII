@@ -14,6 +14,11 @@ namespace H3Engine.Mapping
 {
     public abstract class MapObjectReader
     {
+        public H3Map Map
+        {
+            get; set;
+        }
+
         public MapHeader MapHeader
         {
             get; set;
@@ -27,14 +32,16 @@ namespace H3Engine.Mapping
         public abstract CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition);
 
 
-        protected ResourceSet ReadResouces(BinaryReader reader)
+        protected ResourceSet ReadResources(BinaryReader reader)
         {
+            ResourceSet resources = new ResourceSet();
+
             for (int x = 0; x < 7; ++x)
             {
                 var num = reader.ReadUInt32();
             }
 
-            return null;
+            return resources;
         }
 
         /// <summary>
@@ -44,7 +51,17 @@ namespace H3Engine.Mapping
         /// <param name="eventObject"></param>
         protected void ReadMessageAndGuards(BinaryReader reader, ArmedInstance armedObject)
         {
-
+            bool hasMessage = reader.ReadBoolean();
+            if (hasMessage)
+            {
+                armedObject.Message = reader.ReadStringWithLength();
+                bool hasGuards = reader.ReadBoolean();
+                if (hasGuards)
+                {
+                    armedObject.GuardArmy = ReadCreatureSet(reader, 7);
+                }
+                reader.Skip(4);
+            }
         }
 
         protected CreatureSet ReadCreatureSet(BinaryReader reader, int numberToRead)
@@ -52,6 +69,7 @@ namespace H3Engine.Mapping
             bool isHighVersion = this.MapHeader.Version > EMapFormat.ROE;
             int maxID = isHighVersion ? 0xffff : 0xff;
 
+            CreatureSet creatureSet = new CreatureSet();
             for (int ir = 0; ir < numberToRead; ++ir)
             {
                 ECreatureId creatureId;
@@ -90,7 +108,7 @@ namespace H3Engine.Mapping
 
             //out->validTypes(true);
 
-            return null;
+            return creatureSet;
         }
 
         protected CQuest ReadQuest(BinaryReader reader)
@@ -160,9 +178,9 @@ namespace H3Engine.Mapping
                 quest.LastDay = (int)limit;
             }
 
-            quest.FirstVisitText = reader.ReadString();
-            quest.NextVisitText = reader.ReadString();
-            quest.CompletedText = reader.ReadString();
+            quest.FirstVisitText = reader.ReadStringWithLength();
+            quest.NextVisitText = reader.ReadStringWithLength();
+            quest.CompletedText = reader.ReadStringWithLength();
             quest.IsCustomFirst = quest.FirstVisitText.Length > 0;
             quest.IsCustomNext = quest.NextVisitText.Length > 0;
             quest.IsCustomComplete = quest.CompletedText.Length > 0;
@@ -224,6 +242,58 @@ namespace H3Engine.Mapping
                 case EObjectType.SPELL_SCROLL:
                     return new CGArtifactReader();
 
+                case EObjectType.RANDOM_RESOURCE:
+                case EObjectType.RESOURCE:
+                    return new CGResourceReader();
+                
+                case EObjectType.RANDOM_TOWN:
+                case EObjectType.TOWN:
+                    return new CGTownReader();
+
+                case EObjectType.MINE:
+                case EObjectType.ABANDONED_MINE:
+                    return new CGMineReader();
+
+                case EObjectType.CREATURE_GENERATOR1:
+                case EObjectType.CREATURE_GENERATOR2:
+                case EObjectType.CREATURE_GENERATOR3:
+                case EObjectType.CREATURE_GENERATOR4:
+                    return new CGDwellingSimpleReader();
+
+                case EObjectType.SHRINE_OF_MAGIC_GESTURE:
+                case EObjectType.SHRINE_OF_MAGIC_INCANTATION:
+                case EObjectType.SHRINE_OF_MAGIC_THOUGHT:
+                    return new CGShrineReader();
+
+                case EObjectType.PANDORAS_BOX:
+                    return new CGPandoraBoxReader();
+
+                case EObjectType.GRAIL:
+                    return new CGGrailReader();
+
+                case EObjectType.RANDOM_DWELLING:
+                case EObjectType.RANDOM_DWELLING_FACTION:
+                case EObjectType.RANDOM_DWELLING_LVL:
+                    return new CGDwellingReader();
+
+                case EObjectType.QUEST_GUARD:
+                    return new CGQuestGuardReader();
+
+                case EObjectType.HERO_PLACEHOLDER:
+                    return new CGHeroPlaceholderReader();
+
+                case EObjectType.BORDERGUARD:
+                    return new CGBorderGuardReader();
+
+                case EObjectType.BORDER_GATE:
+                    return new CGBorderGateReader();
+
+                case EObjectType.PYRAMID:
+                    return new CGPyramidReader();
+
+                case EObjectType.LIGHTHOUSE:
+                    return new CGLightHouseReader();
+                    
                 default:
                     break;
             }
@@ -245,7 +315,7 @@ namespace H3Engine.Mapping
             var moraleDiff = reader.ReadByte();
             var luckDiff = reader.ReadByte();
 
-            ReadResouces(reader);
+            ReadResources(reader);
 
             for (int x = 0; x < 4; x++)
             {
@@ -297,12 +367,293 @@ namespace H3Engine.Mapping
 
     public class CGHeroReader : MapObjectReader
     {
+        public static bool LoadArtifactToSlot(BinaryReader reader, H3Map map, HeroInstance hero, int slotIndex)
+        {
+            int artmask = 0xffff;
+            if (map.Header.Version == EMapFormat.ROE)
+            {
+                artmask = 0xff;
+            }
+
+            int aid = reader.ReadUInt16();
+
+            bool isArt = (aid != artmask);
+            if (isArt)
+            {
+                Console.WriteLine("loadArtifactToSlot: id={0}, slot={1}", aid, slotIndex);
+
+                ArtifactSet artifactSet = hero.Data.Artifacts;
+
+                EArtifactId artifactId = (EArtifactId)aid;
+                H3Artifact artifact = new H3Artifact(artifactId);
+
+                if (artifact.IsBig() && slotIndex > 19)
+                {
+                    return false;
+                }
+
+                EArtifactPosition slot = (EArtifactPosition)slotIndex;
+                if (aid == 0 && slot == EArtifactPosition.MISC5)
+                {
+                    //TODO: check how H3 handles it -> art 0 in slot 18 in AB map
+                    slot = EArtifactPosition.SPELLBOOK;
+                }
+
+                // this is needed, because some H3M maps (last scenario of ROE map) contain invalid data like misplaced artifacts
+                //// auto artifact = CArtifactInstance::createArtifact(map, aid);
+                //// auto artifactPos = ArtifactPosition(slot);
+
+                if (artifactSet.CanPutAt(artifactId, slot))
+                {
+                    artifactSet.PutAt(artifactId, slot);
+                }
+
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public static void LoadArtifactsOfHero(BinaryReader reader, H3Map map, HeroInstance hero)
+        {
+            hero.Data.Artifacts = new ArtifactSet();
+            bool artSet = reader.ReadBoolean();
+            if (artSet)
+            {
+                Console.WriteLine("Artifact is set.");
+
+                if (false)
+                {
+                    // Already set the pack
+                }
+
+                for (int pom = 0; pom < 16; pom++)
+                {
+                    LoadArtifactToSlot(reader, map, hero, pom);
+                }
+
+                // misc5 art 17
+                if (map.Header.Version >= EMapFormat.SOD)
+                {
+                    if (!LoadArtifactToSlot(reader, map, hero, (int)EArtifactPosition.MACH4))   //catapult
+                    {
+                        hero.Data.Artifacts.PutAt(EArtifactId.CATAPULT, EArtifactPosition.MACH4);
+                    }
+                }
+
+                LoadArtifactToSlot(reader, map, hero, (int)EArtifactPosition.SPELLBOOK);   //SpellBook
+
+
+                // Misc5 possibly
+                if (map.Header.Version > EMapFormat.ROE)
+                {
+                    LoadArtifactToSlot(reader, map, hero, (int)EArtifactPosition.MISC5);   //Misc
+                }
+                else
+                {
+                    reader.Skip(1);
+                }
+
+                // Backpack items
+                int amount = reader.ReadUInt16();
+                Console.WriteLine("Backpack item amount:" + amount);
+                for (int ss = 0; ss < amount; ++ss)
+                {
+                    LoadArtifactToSlot(reader, map, hero, 19 + ss);
+                }
+            }
+        }
+
+        private void ReadSpells(BinaryReader reader, HeroInstance hero)
+        {
+            hero.Data.Spells = new List<ESpellId>();
+            hero.Data.Spells.Add(ESpellId.PRESET);
+
+            HashSet<int> result = new HashSet<int>();
+            reader.ReadBitMask(result, 9, GameConstants.SPELLS_QUANTITY, false);
+            
+            foreach (int sp in result)
+            {
+                hero.Data.Spells.Add((ESpellId)sp);
+            }
+        }
+
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
             HeroInstance hero = new HeroInstance();
 
+            if (MapHeader.Version > EMapFormat.ROE)
+            {
+                uint identifier = reader.ReadUInt32();
+                //// map->questIdentifierToId[identifier] = objectId;
+            }
 
+            EPlayerColor owner = (EPlayerColor)reader.ReadByte();
+            hero.SubId = reader.ReadByte();
+            
+            //If hero of this type has been predefined, use that as a base.
+            //Instance data will overwrite the predefined values where appropriate.
+            foreach(var preHero in this.Map.PredefinedHeroes)
+            {
+                if (preHero.SubId == hero.SubId)
+                {
+                    //logGlobal->debug("Hero %d will be taken from the predefined heroes list.", nhi->subID);
+                    //delete nhi;
+                    hero = preHero;
+                    break;
+                }
+            }
+            hero.SetOwner(owner);
+            
+            //// nhi->portrait = nhi->subID;
+            foreach( DisposedHero disHero in this.Map.DisposedHeroes)
+            {
+                if (disHero.HeroId == hero.SubId)
+                {
+                    hero.Data.Name = disHero.Name;
+                    hero.Data.PortaitIndex = disHero.Portrait;
+                    break;
+                }
+            }
 
+            bool hasName = reader.ReadBoolean();
+            if (hasName)
+            {
+                hero.Data.Name = reader.ReadStringWithLength();
+            }
+
+            if (MapHeader.Version > EMapFormat.AB)
+            {
+                bool hasExp = reader.ReadBoolean();
+                if (hasExp)
+                {
+                    hero.Data.Experience = reader.ReadUInt32();
+                }
+                else
+                {
+                    hero.Data.Experience = 0xffffffff;
+                }
+            }
+            else
+            {
+                hero.Data.Experience = reader.ReadUInt32();
+
+                //0 means "not set" in <=AB maps
+                if (hero.Data.Experience == 0)
+                {
+                    hero.Data.Experience = 0xffffffff;
+                }
+            }
+
+            bool hasPortrait = reader.ReadBoolean();
+            if (hasPortrait)
+            {
+                hero.Data.PortaitIndex = reader.ReadByte();
+            }
+
+            bool hasSecSkills = reader.ReadBoolean();
+            if (hasSecSkills)
+            {
+                // Replacing with current data
+                hero.Data.SecondarySkills = new List<AbilitySkill>();
+
+                uint howMany = reader.ReadUInt32();
+                for (int yy = 0; yy < howMany; ++yy)
+                {
+                    ESecondarySkill skill = (ESecondarySkill)reader.ReadByte();
+                    ESecondarySkillLevel level = (ESecondarySkillLevel)reader.ReadByte();
+
+                    AbilitySkill abilitySkill = new AbilitySkill(skill, level);
+                    hero.Data.SecondarySkills.Add(abilitySkill);
+                }
+            }
+
+            bool hasGarison = reader.ReadBoolean();
+            if (hasGarison)
+            {
+                hero.Data.Army = ReadCreatureSet(reader, 7);
+                hero.Data.Army.FormationType = (EArmyFormationType)reader.ReadByte();
+            }
+            else
+            {
+                reader.ReadByte();
+            }
+
+            LoadArtifactsOfHero(reader, this.Map, hero);
+
+            hero.Patrol = new HeroPatrol();
+            hero.Patrol.PatrolRadius = reader.ReadByte();
+            
+            if (hero.Patrol.PatrolRadius == 0xff)
+            {
+                hero.Patrol.IsPatrolling = false;
+            }
+            else
+            {
+                hero.Patrol.IsPatrolling = true;
+                hero.Patrol.InitialPosition = objectPosition;
+            }
+
+            if (this.MapHeader.Version > EMapFormat.ROE)
+            {
+                bool hasCustomBiography = reader.ReadBoolean();
+                if (hasCustomBiography)
+                {
+                    hero.Data.Biography = reader.ReadStringWithLength();
+                }
+                hero.Data.Sex = reader.ReadByte();
+
+                // Remove trash
+                if (hero.Data.Sex != 0xFF)
+                {
+                    hero.Data.Sex &= 1;
+                }
+            }
+            else
+            {
+                hero.Data.Sex = 0xFF;
+            }
+
+            // Spells
+            if (this.MapHeader.Version > EMapFormat.AB)
+            {
+                bool hasCustomSpells = reader.ReadBoolean();
+                if (hasCustomSpells)
+                {
+                    ReadSpells(reader, hero);
+                }
+            }
+            else if (this.MapHeader.Version == EMapFormat.AB)
+            {
+                //we can read one spell
+                byte buff = reader.ReadByte();
+                if (buff != 254)
+                {
+                    hero.Data.Spells = new List<ESpellId>();
+                    hero.Data.Spells.Add(ESpellId.PRESET);
+                    
+                    if (buff < 254) //255 means no spells
+                    {
+                        hero.Data.Spells.Add((ESpellId)buff);
+                    }
+                }
+            }
+
+            if (this.MapHeader.Version > EMapFormat.AB)
+            {
+                bool hasCustomPrimSkills = reader.ReadBoolean();
+                if (hasCustomPrimSkills)
+                {
+                    hero.Data.PrimarySkills = new List<int>();
+                    for (int xx = 0; xx < GameConstants.PRIMARY_SKILLS; ++xx)
+                    {
+                        hero.Data.PrimarySkills.Add(reader.ReadByte());
+                    }
+                }
+            }
+
+            reader.Skip(16);
 
             return hero;
         }
@@ -321,6 +672,45 @@ namespace H3Engine.Mapping
                 // Quest Identifier?
             }
 
+            StackDescriptor stack = new StackDescriptor();
+            stack.Amount = reader.ReadUInt16();
+
+            //type will be set during initialization
+            creature.AddStack(0, stack);
+
+            creature.Friendliness = reader.ReadByte();
+
+            bool hasMessage = reader.ReadBoolean();
+            if (hasMessage)
+            {
+                creature.Message = reader.ReadStringWithLength();
+                creature.GainResources = ReadResources(reader);
+
+                int artId;
+                if (this.MapHeader.Version == EMapFormat.ROE)
+                {
+                    artId = reader.ReadByte();
+                }
+                else
+                {
+                    artId = reader.ReadUInt16();
+                }
+
+                if (this.MapHeader.Version == EMapFormat.ROE && artId != 0xff || this.MapHeader.Version != EMapFormat.ROE && artId != 0xffff)
+                {
+                    creature.GainArtifact = (EArtifactId)artId;
+                }
+                else
+                {
+                    creature.GainArtifact = EArtifactId.NONE;
+                }
+            }
+
+            creature.NeverFlee = (reader.ReadByte() > 0);
+            creature.NotGrowingTeam = (reader.ReadByte() > 0);
+
+            reader.Skip(2);
+
             return creature;
         }
     }
@@ -330,7 +720,8 @@ namespace H3Engine.Mapping
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
             CGSignBottle signBottle = new CGSignBottle();
-            signBottle.Message = reader.ReadString();
+            signBottle.Message = reader.ReadStringWithLength();
+            reader.Skip(4);
 
             return signBottle;
         }
@@ -597,16 +988,19 @@ namespace H3Engine.Mapping
             bool hasName = reader.ReadBoolean();
             if (hasName)
             {
-                town.TownName = reader.ReadString();
+                town.TownName = reader.ReadStringWithLength();
             }
 
             bool hasGarrison = reader.ReadBoolean();
             if (hasGarrison)
             {
                 town.GuardArmy = ReadCreatureSet(reader, 7);
+                town.GuardArmy.FormationType = (EArmyFormationType)reader.ReadByte();
             }
-
-            town.GuardArmy.FormationType = (EArmyFormationType)reader.ReadByte();
+            else
+            {
+                reader.ReadByte();
+            }
 
             int castleId = this.ObjectTemplate.SubId;
             bool hasCustomBuildings = reader.ReadBoolean();
@@ -681,10 +1075,10 @@ namespace H3Engine.Mapping
             {
                 CCastleEvent castleEvent = new CCastleEvent();
                 castleEvent.Town = town;
-                castleEvent.Name = reader.ReadString();
-                castleEvent.Message = reader.ReadString();
+                castleEvent.Name = reader.ReadStringWithLength();
+                castleEvent.Message = reader.ReadStringWithLength();
 
-                castleEvent.Resources = ReadResouces(reader);
+                castleEvent.Resources = ReadResources(reader);
 
                 castleEvent.Players = reader.ReadByte();
                 
@@ -740,7 +1134,12 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGMine mine = new CGMine();
+
+            mine.SetOwner((EPlayerColor)reader.ReadByte());
+            reader.Skip(3);
+
+            return mine;
         }
     }
 
@@ -790,7 +1189,7 @@ namespace H3Engine.Mapping
             box.MoraleDiff = reader.ReadByte();
             box.LuckDiff = reader.ReadByte();
 
-            box.GainResources = ReadResouces(reader);
+            box.GainResources = ReadResources(reader);
 
             box.GainPrimarySkills = new List<int>(4);
             for (int x = 0; x < 4; ++x)

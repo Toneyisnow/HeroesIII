@@ -69,5 +69,32 @@ namespace H3Engine.FileSystem
             }
         }
 
+        public static string ReadStringWithLength(this BinaryReader reader)
+        {
+            UInt32 length = reader.ReadUInt32();
+            byte[] result = new byte[length];
+
+            for (var i = 0; i < length; i++)
+            {
+                result[i] = reader.ReadByte();
+            }
+
+            return Encoding.ASCII.GetString(result);
+        }
+
+        public static string ReadStringToEnd(this BinaryReader reader)
+        {
+            byte[] result = new byte[1024];
+            for (var i = 0; i < 1024; i++)
+            {
+                result[i] = reader.ReadByte();
+                if (result[i] == '\0')
+                    break;
+            }
+
+            return Encoding.ASCII.GetString(result);
+        }
+
+
     }
 }

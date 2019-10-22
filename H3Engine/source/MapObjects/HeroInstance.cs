@@ -17,13 +17,43 @@ namespace H3Engine.MapObjects
 
     }
 
+    public class HeroPatrol
+    {
+        public HeroPatrol()
+        {
 
+        }
+
+        public bool IsPatrolling
+        {
+            get; set;
+        }
+
+        public MapPosition InitialPosition
+        {
+            get; set;
+        }
+
+        public uint PatrolRadius
+        {
+            get; set;
+        }
+
+
+    }
 
     public class HeroInstance : ArmedInstance
     {
-        public HeroInstance()
+        public HeroInstance(H3Hero data = null)
         {
-
+            if (data == null)
+            {
+                this.Data = new H3Hero();
+            }
+            else
+            {
+                this.Data = data;
+            }
         }
 
         public H3Hero Data
@@ -37,11 +67,11 @@ namespace H3Engine.MapObjects
             get; set;
         }
         
+        /*
         public int Mana
         {
             get; set;
         }
-
 
         public ArtifactSet ArtifactSet
         {
@@ -54,6 +84,12 @@ namespace H3Engine.MapObjects
         }
 
         public HeroSpecialty Specialty
+        {
+            get; set;
+        }
+        */
+
+        public HeroPatrol Patrol
         {
             get; set;
         }

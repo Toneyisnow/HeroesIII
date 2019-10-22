@@ -35,6 +35,11 @@ namespace H3Engine.Components
     /// </summary>
     public class CreatureSet
     {
+        public CreatureSet()
+        {
+            this.Stacks = new List<StackDescriptor>();
+        }
+
 
         public EArmyFormationType FormationType
         {

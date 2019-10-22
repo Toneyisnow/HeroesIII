@@ -27,6 +27,15 @@ namespace H3Engine.MapObjects
             COMPLETE
         };
 
+        public CQuest()
+        {
+            this.M2Stats = new List<uint>();
+            this.M5Artifacts = new List<ushort>();
+            this.M6Creatures = new List<StackDescriptor>();
+            this.M7Resources = new List<uint>();
+
+        }
+
         public int QuestId
         {
             get; set;

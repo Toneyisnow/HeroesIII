@@ -64,9 +64,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="source\Components\ArtifactSet.cs" />
     <Compile Include="source\Components\CreatureSet.cs" />
-    <Compile Include="source\Components\HeroSkill.cs" />
-    <Compile Include="source\Components\HeroSpecialty.cs" />
     <Compile Include="source\Components\ResourceSet.cs" />
+    <Compile Include="source\Core\AbilitySkill.cs" />
     <Compile Include="source\FileSystem\BinaryReaderExtension.cs" />
     <Compile Include="source\FileSystem\ImageData.cs" />
     <Compile Include="source\GUI\AnimationDefinition.cs" />

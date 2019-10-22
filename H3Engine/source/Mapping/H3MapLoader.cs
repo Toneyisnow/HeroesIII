@@ -1,4 +1,5 @@
 ﻿using H3Engine.Common;
+using H3Engine.Components;
 using H3Engine.Core;
 using H3Engine.FileSystem;
 using H3Engine.MapObjects;
@@ -84,10 +85,10 @@ namespace H3Engine.Mapping
             Console.WriteLine("twoLevel:" + mapObject.Header.IsTwoLevel);
 
 
-            mapObject.Header.Name = reader.ReadString();
+            mapObject.Header.Name = reader.ReadStringWithLength();
             Console.WriteLine("Name:" + mapObject.Header.Name);
 
-            mapObject.Header.Description = reader.ReadString();
+            mapObject.Header.Description = reader.ReadStringWithLength();
             Console.WriteLine("Description:" + mapObject.Header.Description);
 
             mapObject.Header.Difficulty = reader.ReadByte();
@@ -209,7 +210,7 @@ namespace H3Engine.Mapping
                         playerInfo.MainCustomHeroPortrait = -1;
                     }
 
-                    playerInfo.MainCustomHeroName = reader.ReadString();
+                    playerInfo.MainCustomHeroName = reader.ReadStringWithLength();
                     Console.WriteLine("mainCustomHeroPortrait:" + playerInfo.MainCustomHeroPortrait);
                     Console.WriteLine("heroName:" + playerInfo.MainCustomHeroName);
 
@@ -230,7 +231,7 @@ namespace H3Engine.Mapping
                     {
                         H3HeroId heroId = new H3HeroId();
                         heroId.Id = reader.ReadByte();
-                        heroId.Name = reader.ReadString();
+                        heroId.Name = reader.ReadStringWithLength();
                         playerInfo.HeroIds.Add(heroId);
                     }
                 }
@@ -409,18 +410,27 @@ namespace H3Engine.Mapping
 
         private void ReadDisposedHeroes(BinaryReader reader)
         {
+            mapObject.DisposedHeroes = new List<DisposedHero>();
+
             if (mapObject.Header.Version >= EMapFormat.SOD)
             {
                 int disp = reader.ReadByte();
                 Console.WriteLine("ReadDisposedHeroes: Total=" + disp);
                 for (int g = 0; g < disp; ++g)
                 {
-                    int heroId = reader.ReadByte();
-                    int portrait = reader.ReadByte();
-                    string name = reader.ReadString();
-                    int players = reader.ReadByte();
+                    uint heroId = reader.ReadByte();
+                    ushort portrait = reader.ReadByte();
+                    string name = reader.ReadStringWithLength();
+                    byte players = reader.ReadByte();
                     Console.WriteLine(string.Format("ReadDisposedHeroes: id={0} portrait={1} name={2} players={3}", heroId, portrait, name, players));
 
+                    DisposedHero disHero = new DisposedHero();
+                    disHero.HeroId = heroId;
+                    disHero.Portrait = portrait;
+                    disHero.Name = name;
+                    disHero.Players = players;
+
+                    mapObject.DisposedHeroes.Add(disHero);
                 }
             }
 
@@ -464,16 +474,23 @@ namespace H3Engine.Mapping
             uint rumNr = reader.ReadUInt32();
             Console.WriteLine("Rumor count: " + rumNr);
 
+            mapObject.Rumors = new List<Rumor>();
             for (int it = 0; it < rumNr; it++)
             {
-                string name = reader.ReadString();
-                string text = reader.ReadString();
+                string name = reader.ReadStringWithLength();
+                string text = reader.ReadStringWithLength();
                 Console.WriteLine(string.Format("Rumor: name={0} text={1}", name, text));
+
+                Rumor rumor = new Rumor();
+                rumor.Name = name;
+                rumor.Text = text;
+                mapObject.Rumors.Add(rumor);
             }
         }
 
         private void ReadPredefinedHeroes(BinaryReader reader)
         {
+            mapObject.PredefinedHeroes = new List<HeroInstance>();
             if (mapObject.Header.Version == EMapFormat.WOG || mapObject.Header.Version == EMapFormat.SOD)
             {
                 for (int z = 0; z < GameConstants.HEROES_QUANTITY; z++)
@@ -488,13 +505,18 @@ namespace H3Engine.Mapping
                     }
 
                     // Create Hero
+                    HeroInstance hero = new HeroInstance();
+                    hero.ObjectType = EObjectType.HERO;
+                    hero.SubId = z;
+
                     bool hasExp = reader.ReadBoolean();
                     if (hasExp)
                     {
-                        uint exp = reader.ReadUInt32();
-                        Console.WriteLine("Has exp:" + exp);
+                        hero.Data.Experience = (int)reader.ReadUInt32();
+                        Console.WriteLine("Has exp:" + hero.Data.Experience);
                     }
 
+                    hero.Data.SecondarySkills = new List<AbilitySkill>();
                     bool hasSecondSkills = reader.ReadBoolean();
                     if (hasSecondSkills)
                     {
@@ -506,54 +528,26 @@ namespace H3Engine.Mapping
                             int first = reader.ReadByte();
                             int second = reader.ReadByte();
                             Console.WriteLine(string.Format("Skill First: {0} Second: {1}", first, second));
+                            AbilitySkill skill = new AbilitySkill((ESecondarySkill)first, (ESecondarySkillLevel)second);
+                            hero.Data.SecondarySkills.Add(skill);
                         }
                     }
 
                     // Set Artifacts
-                    bool artSet = reader.ReadBoolean();
-                    if (artSet)
-                    {
-                        Console.WriteLine("Artifact is set.");
-
-                        if (false)
-                        {
-                            // Already set the pack
-                        }
-
-                        for (int pom = 0; pom < 16; pom++)
-                        {
-                            LoadArtifactToSlot(reader, null, pom);
-                        }
-
-                        if (true)
-                        {
-                            LoadArtifactToSlot(reader, null, 0);   //catapult
-                        }
-
-                        LoadArtifactToSlot(reader, null, 0);   //SpellBook
-
-
-                        // Misc5 possibly
-                        LoadArtifactToSlot(reader, null, 0);   //Misc
-
-                        // Backpack items
-                        int amount = reader.ReadUInt16();
-                        Console.WriteLine("Backpack item amount:" + amount);
-                        for (int ss = 0; ss < amount; ++ss)
-                        {
-                            LoadArtifactToSlot(reader, null, 0);
-                        }
-                    }
+                    CGHeroReader.LoadArtifactsOfHero(reader, mapObject, hero);
 
                     bool hasCustomBio = reader.ReadBoolean();
                     if (hasCustomBio)
                     {
-                        string biography = reader.ReadString();
+                        string biography = reader.ReadStringWithLength();
                         Console.WriteLine("biography: " + biography);
+
+                        hero.Data.Biography = biography;
                     }
 
-                    int sex = reader.ReadByte();
+                    byte sex = reader.ReadByte();
                     Console.WriteLine("sex: " + sex);
+                    hero.Data.Sex = sex;
 
                     // Spells
                     bool hasCustomSpells = reader.ReadBoolean();
@@ -562,35 +556,75 @@ namespace H3Engine.Mapping
                         HashSet<int> spells = new HashSet<int>();
                         reader.ReadBitMask(spells, 9, GameConstants.SPELLS_QUANTITY, false);
                         Console.WriteLine("Spells: " + JsonConvert.SerializeObject(spells));
+
+                        hero.Data.Spells = new List<ESpellId>();
+                        foreach (int spell in spells)
+                        {
+                            hero.Data.Spells.Add((ESpellId)spell);
+                        }
                     }
 
                     bool hasCustomPrimSkills = reader.ReadBoolean();
                     if (hasCustomPrimSkills)
                     {
                         Console.WriteLine("Has Custom Primary Skills.");
+
+                        hero.Data.PrimarySkills = new List<int>();
                         for (int xx = 0; xx < GameConstants.PRIMARY_SKILLS; xx++)
                         {
                             int value = reader.ReadByte();
                             Console.WriteLine("Primary Skills: " + value);
+                            hero.Data.PrimarySkills.Add(value);
                         }
                     }
 
+                    mapObject.PredefinedHeroes.Add(hero);
                 }
             }
         }
 
-        private bool LoadArtifactToSlot(BinaryReader reader, object hero, int slot)
+        private bool LoadArtifactToSlot(BinaryReader reader, HeroInstance hero, int slotIndex)
         {
-            //// const int artmask = map->version == EMapFormat::ROE ? 0xff : 0xffff;
-            const int artmask = 0xffff;
-            int aid;
+            int artmask = 0xffff;
+            if (this.mapObject.Header.Version == EMapFormat.ROE)
+            {
+                artmask = 0xff;
+            }
 
-            aid = reader.ReadUInt16();
+            int aid = reader.ReadUInt16();
 
             bool isArt = (aid != artmask);
             if (isArt)
             {
-                Console.WriteLine("loadArtifactToSlot: id={0}, slot={1}", aid, slot);
+                Console.WriteLine("loadArtifactToSlot: id={0}, slot={1}", aid, slotIndex);
+
+                ArtifactSet artifactSet = hero.Data.Artifacts;
+
+                EArtifactId artifactId = (EArtifactId)aid;
+                H3Artifact artifact = new H3Artifact(artifactId);
+
+                if (artifact.IsBig() && slotIndex > 19)
+                {
+                    return false;
+                }
+
+                EArtifactPosition slot = (EArtifactPosition)slotIndex;
+                if (aid == 0 && slot == EArtifactPosition.MISC5)
+                {
+                    //TODO: check how H3 handles it -> art 0 in slot 18 in AB map
+                    slot = EArtifactPosition.SPELLBOOK;
+                }
+
+                // this is needed, because some H3M maps (last scenario of ROE map) contain invalid data like misplaced artifacts
+                //// auto artifact = CArtifactInstance::createArtifact(map, aid);
+                //// auto artifactPos = ArtifactPosition(slot);
+
+                if (artifactSet.CanPutAt(artifactId, slot))
+                {
+                    artifactSet.PutAt(artifactId, slot);
+                }
+
+
                 return true;
             }
 
@@ -629,12 +663,14 @@ namespace H3Engine.Mapping
             uint templateCount = reader.ReadUInt32();
             Console.WriteLine("ReadObjectTemplates totally:" + templateCount);
 
+            this.mapObject.ObjectTemplates = new List<ObjectTemplate>((int)templateCount);
+
             // Read custom defs
             for (int idd = 0; idd < templateCount; ++idd)
             {
                 ObjectTemplate objectTemplate = new ObjectTemplate();
 
-                objectTemplate.AnimationFile = reader.ReadString();
+                objectTemplate.AnimationFile = reader.ReadStringWithLength();
                 Console.WriteLine("Object Animation File:" + objectTemplate.AnimationFile);
 
                 int[] blockMask = new int[6];
@@ -666,7 +702,7 @@ namespace H3Engine.Mapping
 
                 reader.Skip(16);
 
-
+                this.mapObject.ObjectTemplates.Add(objectTemplate);
             }
         }
 
@@ -674,8 +710,10 @@ namespace H3Engine.Mapping
         {
             int objectCount = (int)reader.ReadUInt32();
             Console.WriteLine(string.Format("Totally {0} objects.", objectCount));
-            
-            for(int ww = 0; ww < objectCount; ww ++)
+
+            this.mapObject.Objects = new List<CGObject>(objectCount);
+
+            for (int ww = 0; ww < objectCount; ww ++)
             {
                 int objectId = this.mapObject.Objects.Count();
 
@@ -686,13 +724,23 @@ namespace H3Engine.Mapping
                 reader.Skip(5);
 
                 MapObjectReader objectReader = MapObjectReaderFactory.GetObjectReader(objTemplate.Type);
-                objectReader.MapHeader = this.mapObject.Header;
-                objectReader.ObjectTemplate = objTemplate;
-
-                CGObject resultObject = objectReader.ReadObject(reader, objectId, objectPosition);
-                if (resultObject == null)
+                CGObject resultObject = null;
+                if (objectReader != null)
                 {
-                    continue;
+                    objectReader.Map = this.mapObject;
+                    objectReader.MapHeader = this.mapObject.Header;
+                    objectReader.ObjectTemplate = objTemplate;
+
+                    resultObject = objectReader.ReadObject(reader, objectId, objectPosition);
+                    if (resultObject == null)
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    // Normal Object, load from JSON
+                    resultObject = new CGObject();
                 }
 
                 resultObject.Position = objectPosition;
