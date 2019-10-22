@@ -89,6 +89,11 @@ namespace H3Engine.MapObjects
 
     }
 
+    public class CGShipyard : CGObject
+    {
+
+    }
+
     public class CGMine : ArmedInstance
     {
 
@@ -145,7 +150,7 @@ namespace H3Engine.MapObjects
 
     }
 
-    public class CCartographer : ITeamVisited
+    public class CGCartographer : ITeamVisited
     {
 
     }

@@ -8,6 +8,17 @@ using System.Threading.Tasks;
 
 namespace H3Engine.MapObjects
 {
+    public class CGHeroPlaceHolder : CGObject
+    {
+        public byte Power
+        {
+            get; set;
+        }
+
+    }
+
+
+
     public class HeroInstance : ArmedInstance
     {
         public HeroInstance()

@@ -85,6 +85,7 @@
     <Compile Include="source\GUI\AnimationGroup.cs" />
     <Compile Include="source\MapObjects\ArmedInstance.cs" />
     <Compile Include="source\MapObjects\CGCreature.cs" />
+    <Compile Include="source\MapObjects\CGPandoraBox.cs" />
     <Compile Include="source\MapObjects\CQuest.cs" />
     <Compile Include="source\MapObjects\CGDwelling.cs" />
     <Compile Include="source\MapObjects\CGEvent.cs" />

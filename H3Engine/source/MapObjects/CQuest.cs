@@ -1,9 +1,6 @@
 ﻿using H3Engine.Components;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace H3Engine.MapObjects
 {
@@ -188,7 +185,7 @@ namespace H3Engine.MapObjects
 
     }
 
-    public class CGBoarderGuard : CGKeys, IQuestObject
+    public class CGBorderGuard : CGKeys, IQuestObject
     {
         public CQuest Quest
         {
@@ -196,7 +193,7 @@ namespace H3Engine.MapObjects
         }
     }
 
-    public class CGBorderGate : CGBoarderGuard
+    public class CGBorderGate : CGBorderGuard
     {
 
     }

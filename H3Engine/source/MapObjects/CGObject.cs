@@ -20,6 +20,11 @@ namespace H3Engine.MapObjects
             get;set;
         }
 
+        public int SubId
+        {
+            get; set;
+        }
+
         public MapPosition Position
         {
             get; set;

@@ -850,7 +850,7 @@ namespace H3Engine.Mapping
         }
     }
 
-    public class CGDwellingReader : MapObjectReader
+    public class CGDwellingSimpleReader : MapObjectReader
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
@@ -862,11 +862,93 @@ namespace H3Engine.Mapping
         }
     }
 
+    public class CGDwellingReader : MapObjectReader
+    {
+        public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
+        {
+            CGDwelling dwelling = new CGDwelling();
+
+            CreatureGeneratorAsCastleInfo castleInfo = null;
+            CreatureGeneratorAsLeveledInfo levelInfo = null;
+            
+            DwellingSpecInfo spec = null;
+            switch (this.ObjectTemplate.Type)
+            {
+                case EObjectType.RANDOM_DWELLING:
+                    castleInfo = new CreatureGeneratorAsCastleInfo(dwelling);
+                    levelInfo = new CreatureGeneratorAsLeveledInfo(dwelling);
+                    break;
+                case EObjectType.RANDOM_DWELLING_LVL:
+                    castleInfo = new CreatureGeneratorAsCastleInfo(dwelling);
+                    break;
+                case EObjectType.RANDOM_DWELLING_FACTION:
+                    levelInfo = new CreatureGeneratorAsLeveledInfo(dwelling);
+                    break;
+                default:
+                    break;
+            }
+            spec.Owner = dwelling;
+
+            dwelling.SetOwner((EPlayerColor)reader.ReadUInt32());
+
+            //216 and 217
+            if (castleInfo != null)
+		    {
+                castleInfo.InstanceId = string.Empty;
+                castleInfo.Identifier = reader.ReadUInt32();
+                
+                if (castleInfo.Identifier == 0)
+                {
+                    castleInfo.AsCastle = false;
+                    
+                    const int MASK_SIZE = 8;
+                    byte[] mask = new byte[2];
+                    mask[0] = reader.ReadByte();
+                    mask[1] = reader.ReadByte();
+
+                    castleInfo.AllowedFactions = new List<bool>();
+
+                    for (int i = 0; i < MASK_SIZE; i++)
+                    {
+                        bool val = ((mask[0] & (1 << i)) > 0);
+                        castleInfo.AllowedFactions.Add(val);
+                    }
+
+                    for (int i = 0; i < (GameConstants.F_NUMBER - MASK_SIZE); i++)
+                    {
+                        bool val = ((mask[1] & (1 << i)) > 0);
+                        castleInfo.AllowedFactions.Add(val);
+                    }
+                }
+                else
+                {
+                    castleInfo.AsCastle = true;
+                }
+
+                dwelling.SpecAsCastle = castleInfo;
+            }
+
+            //216 and 218
+            if (levelInfo != null)
+	        {
+                levelInfo.MinLevel = Math.Max(reader.ReadByte(), (byte)1);
+                levelInfo.MaxLevel = Math.Max(reader.ReadByte(), (byte)7);
+
+                dwelling.SpecAsLeveled = levelInfo;
+            }
+
+            return dwelling;
+        }
+    }
+
     public class CGQuestGuardReader : MapObjectReader
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGQuestGuard guard = new CGQuestGuard();
+            guard.Quest = ReadQuest(reader);
+
+            return guard;
         }
     }
 
@@ -874,7 +956,10 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGShipyard shipyard = new CGShipyard();
+            shipyard.SetOwner((EPlayerColor)reader.ReadUInt32());
+
+            return shipyard;
         }
     }
 
@@ -882,7 +967,23 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGHeroPlaceHolder heroPlaceHolder = new CGHeroPlaceHolder();
+
+            heroPlaceHolder.SetOwner((EPlayerColor)reader.ReadByte());
+
+            int heroTypeId = reader.ReadByte();
+            heroPlaceHolder.SubId = heroTypeId;
+
+            if (heroTypeId == 0xff)
+            {
+                heroPlaceHolder.Power = reader.ReadByte();
+            }
+            else
+            {
+                heroPlaceHolder.Power = 0;
+            }
+
+            return heroPlaceHolder;
         }
     }
 
@@ -890,7 +991,9 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGBorderGuard guard = new CGBorderGuard();
+
+            return guard;
         }
     }
 
@@ -898,7 +1001,8 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGBorderGate gate = new CGBorderGate();
+            return gate;
         }
     }
 
@@ -906,16 +1010,20 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
+            // This is WOG Object, ignore it for now
             throw new NotImplementedException();
         }
     }
-
 
     public class CGLightHouseReader : MapObjectReader
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
-            throw new NotImplementedException();
+            CGLighthouse lighthouse = new CGLighthouse();
+
+            lighthouse.SetOwner((EPlayerColor)reader.ReadUInt32());
+
+            return lighthouse;
         }
     }
 

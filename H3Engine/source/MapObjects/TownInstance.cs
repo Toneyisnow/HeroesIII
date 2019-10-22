@@ -10,6 +10,10 @@ namespace H3Engine.MapObjects
 {
     public class TownInstance : CGDwelling
     {
+        public enum EFortLevel { NONE = 0, FORT = 1, CITADEL = 2, CASTLE = 3 };
+
+
+
         public TownInstance()
         {
             this.Buildings = new HashSet<EBuildingId>();

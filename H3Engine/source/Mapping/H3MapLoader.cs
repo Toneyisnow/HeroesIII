@@ -48,7 +48,7 @@ namespace H3Engine.Mapping
 
                     ReadObjectTemplates(reader);
 
-                    // ReadObjects(reader);
+                    ReadObjects(reader);
 
 
                     ConsolidateAndAdjustData();
@@ -672,8 +672,6 @@ namespace H3Engine.Mapping
 
         private void ReadObjects(BinaryReader reader)
         {
-            CGObject resultObject = null;
-
             int objectCount = (int)reader.ReadUInt32();
             Console.WriteLine(string.Format("Totally {0} objects.", objectCount));
             
@@ -691,7 +689,25 @@ namespace H3Engine.Mapping
                 objectReader.MapHeader = this.mapObject.Header;
                 objectReader.ObjectTemplate = objTemplate;
 
-                resultObject = objectReader.ReadObject(reader, objectId, objectPosition);
+                CGObject resultObject = objectReader.ReadObject(reader, objectId, objectPosition);
+                if (resultObject == null)
+                {
+                    continue;
+                }
+
+                resultObject.Position = objectPosition;
+                resultObject.Identifier = (uint)objectId;
+                resultObject.Template = objTemplate;
+
+                if (resultObject.Template.Type != EObjectType.HERO && resultObject.Template.Type != EObjectType.HERO_PLACEHOLDER && resultObject.Template.Type != EObjectType.PRISON)
+                {
+                    resultObject.SubId = resultObject.Template.SubId;
+                }
+
+                resultObject.InstanceName = string.Format("{0}_{1}", resultObject.Identifier, resultObject.Template.Type);
+                Console.WriteLine("Readed object " + resultObject.InstanceName);
+
+                mapObject.Objects.Add(resultObject);
             }
         }
         

@@ -1,7 +1,7 @@
 ﻿using FreeImageAPI;
-using H3Engine.Components.FileSystem;
-using H3Engine.Components.GUI;
-using H3Engine.Components.Mapping;
+using H3Engine.FileSystem;
+using H3Engine.GUI;
+using H3Engine.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,7 +17,7 @@ namespace H3Engine
     {
         public static void Main(string[] args)
         {
-            TestH3DefHandler();
+            TestH3MReader();
 
             Console.WriteLine("Press Any Key...");
             Console.ReadKey();
