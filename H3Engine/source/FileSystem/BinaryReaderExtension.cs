@@ -77,10 +77,15 @@ namespace H3Engine.FileSystem
             for (var i = 0; i < length; i++)
             {
                 result[i] = reader.ReadByte();
+                //if (result[i] == '\0')
+                {
+                //    break;
+                }
             }
 
             return Encoding.ASCII.GetString(result);
         }
+        
 
         public static string ReadStringToEnd(this BinaryReader reader)
         {

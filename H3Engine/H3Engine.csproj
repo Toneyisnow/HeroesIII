@@ -99,6 +99,7 @@
     <Compile Include="source\Mapping\H3MapLoader.cs" />
     <Compile Include="source\Mapping\MapObjectReader.cs" />
     <Compile Include="source\Mapping\TerrainTile.cs" />
+    <Compile Include="source\Utils\StringUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

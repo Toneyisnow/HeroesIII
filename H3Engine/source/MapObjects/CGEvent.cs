@@ -1,4 +1,5 @@
 ﻿using H3Engine.Common;
+using H3Engine.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace H3Engine.MapObjects
     {
         public CGEvent()
         {
-            this.Abilities = new List<ESecondarySkill>();
+            this.Abilities = new List<AbilitySkill>();
         }
 
-        public List<ESecondarySkill> Abilities
+        public List<AbilitySkill> Abilities
         {
             get; set;
         }

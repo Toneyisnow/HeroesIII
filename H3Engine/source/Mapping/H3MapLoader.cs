@@ -3,6 +3,7 @@ using H3Engine.Components;
 using H3Engine.Core;
 using H3Engine.FileSystem;
 using H3Engine.MapObjects;
+using H3Engine.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -717,6 +718,19 @@ namespace H3Engine.Mapping
             {
                 int objectId = this.mapObject.Objects.Count();
 
+                /*
+                if (objectId >= 2351)
+                {
+                    for (int i = 0; i < 20; i++)
+                    {
+                        byte[] data = reader.ReadBytes(10);
+                        Console.WriteLine(StringUtils.ByteArrayToString(data));
+                    }
+
+                    reader.BaseStream.Seek(-200, SeekOrigin.Current);
+                }
+                */
+
                 MapPosition objectPosition = reader.ReadPosition();
                 int objectTemplateIndex = (int)reader.ReadUInt32();
 
@@ -753,7 +767,7 @@ namespace H3Engine.Mapping
                 }
 
                 resultObject.InstanceName = string.Format("{0}_{1}", resultObject.Identifier, resultObject.Template.Type);
-                Console.WriteLine("Readed object " + resultObject.InstanceName);
+                Console.WriteLine(string.Format(@"Readed object {0}, Position: [{1}, {2}, {3}]", resultObject.InstanceName, objectPosition.PosX, objectPosition.PosY, objectPosition.Level));
 
                 mapObject.Objects.Add(resultObject);
             }

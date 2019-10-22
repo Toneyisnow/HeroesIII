@@ -3,6 +3,7 @@ using H3Engine.Components;
 using H3Engine.Core;
 using H3Engine.FileSystem;
 using H3Engine.MapObjects;
+using H3Engine.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -315,7 +316,7 @@ namespace H3Engine.Mapping
             var moraleDiff = reader.ReadByte();
             var luckDiff = reader.ReadByte();
 
-            ReadResources(reader);
+            ResourceSet resources = ReadResources(reader);
 
             for (int x = 0; x < 4; x++)
             {
@@ -325,7 +326,10 @@ namespace H3Engine.Mapping
             int gainedAbilities = reader.ReadByte();
             for (int i = 0; i < gainedAbilities; i++)
             {
-                eventObject.Abilities.Add((ESecondarySkill)reader.ReadByte());
+                ESecondarySkill skill = (ESecondarySkill)reader.ReadByte();
+                ESecondarySkillLevel level = (ESecondarySkillLevel)reader.ReadByte();
+
+                eventObject.Abilities.Add(new AbilitySkill(skill, level));
             }
 
             int gainedArtifacts = reader.ReadByte();
@@ -663,6 +667,17 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
+            if (this.ObjectTemplate.Type == EObjectType.RANDOM_MONSTER)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    byte[] data = reader.ReadBytes(10);
+                    Console.WriteLine(StringUtils.ByteArrayToString(data));
+                }
+
+                reader.BaseStream.Seek(-200, SeekOrigin.Current);
+            }
+
             // Create Creature
             CGCreature creature = new CGCreature();
 
@@ -671,7 +686,7 @@ namespace H3Engine.Mapping
                 creature.Identifier = reader.ReadUInt32();
                 // Quest Identifier?
             }
-
+            
             StackDescriptor stack = new StackDescriptor();
             stack.Amount = reader.ReadUInt16();
 
@@ -696,13 +711,13 @@ namespace H3Engine.Mapping
                     artId = reader.ReadUInt16();
                 }
 
-                if (this.MapHeader.Version == EMapFormat.ROE && artId != 0xff || this.MapHeader.Version != EMapFormat.ROE && artId != 0xffff)
+                if (this.MapHeader.Version == EMapFormat.ROE && artId == 0xff || this.MapHeader.Version != EMapFormat.ROE && artId == 0xffff)
                 {
-                    creature.GainArtifact = (EArtifactId)artId;
+                    creature.GainArtifact = EArtifactId.NONE;
                 }
                 else
                 {
-                    creature.GainArtifact = EArtifactId.NONE;
+                    creature.GainArtifact = (EArtifactId)artId;
                 }
             }
 
@@ -1410,7 +1425,8 @@ namespace H3Engine.Mapping
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
             // This is WOG Object, ignore it for now
-            throw new NotImplementedException();
+
+            return new CGObject();
         }
     }
 
