@@ -595,6 +595,7 @@ namespace H3Engine.Mapping
             {
                 for (int yy = 0; yy < mapHeight; yy++)
                 {
+                    StringBuilder builder = new StringBuilder();
                     for (int xx = 0; xx < mapWidth; xx++)
                     {
                         int terrainType = reader.ReadByte();
@@ -605,9 +606,12 @@ namespace H3Engine.Mapping
                         int roadDir = reader.ReadByte();
                         int extTileFlags = reader.ReadByte();
 
+                        builder.AppendFormat("[{0},{1}]", terrainType, terrainView);
                         ////Console.WriteLine("Terrain at [{0}, {1}]: type={2} view={3} riverType={4} riverDir={5} roadType={6} roadDir={7}",
                         ////    xx, yy, terrainType, terrainView, riverType, riverDir, roadType, roadDir);
                     }
+
+                    Console.WriteLine(builder.ToString());
                 }
             }
         }
@@ -720,7 +724,7 @@ namespace H3Engine.Mapping
                 }
 
                 resultObject.InstanceName = string.Format("{0}_{1}", resultObject.Identifier, resultObject.Template.Type);
-                Console.WriteLine(string.Format(@"Readed object {0}, Position: [{1}, {2}, {3}]", resultObject.InstanceName, objectPosition.PosX, objectPosition.PosY, objectPosition.Level));
+                //// Console.WriteLine(string.Format(@"Readed object {0}, Position: [{1}, {2}, {3}]", resultObject.InstanceName, objectPosition.PosX, objectPosition.PosY, objectPosition.Level));
 
                 mapObject.Objects.Add(resultObject);
             }

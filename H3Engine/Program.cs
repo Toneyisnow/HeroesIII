@@ -26,14 +26,16 @@ namespace H3Engine
         public static void TestArchiveLoader()
         {
             // H3ArchiveLoader loader = new H3ArchiveLoader(@"D:\Toney\Personal\Git\toneyisnow\HeroesIII\External\HeroesIII_Data\H3ab_bmp.lod");
-            H3ArchiveLoader loader = new H3ArchiveLoader(@"D:\GitRoot\toneyisnow\HeroesIII\External\HeroesIII_Data\H3ab_spr.lod");
-            loader.DumpAllFiles(@"D:\PlayGround\H3ab_spr");
+            // H3ArchiveLoader loader = new H3ArchiveLoader(@"D:\GitRoot\toneyisnow\HeroesIII\External\HeroesIII_Data\H3ab_bmp.lod");
+            H3ArchiveLoader loader = new H3ArchiveLoader(@"D:\PlayGround\SOD_Data\H3sprite.lod");
+            loader.DumpAllFiles(@"D:\PlayGround\H3sprite");
         }
         
         public static void TestH3MReader()
         {
             // H3MapLoader mapLoader = new H3MapLoader(@"D:\Toney\Personal\Git\toneyisnow\HeroesIII\MapLoader\maps\Coop_Campaing_Shadow_of_Death\Sandro B\Sandro B");
-            string file = @"D:\Toney\Personal\Git\toneyisnow\HeroesIII\MapLoader\maps\HoMM3 Map Pack by HoMMdb\Shadow of Death & HoMM3 Complete\Astral Venice\Astral Venice.h3m";
+            // string file = @"D:\Toney\Personal\Git\toneyisnow\HeroesIII\MapLoader\maps\HoMM3 Map Pack by HoMMdb\Shadow of Death & HoMM3 Complete\Astral Venice\Astral Venice.h3m";
+            string file = @"D:\GitRoot\toneyisnow\HeroesIII\MapLoader\maps\HoMM3 Map Pack by HoMMdb\Shadow of Death & HoMM3 Complete\Podarok 2001 eng\Podarok 2001 eng.h3m";
             H3MapLoader mapLoader = new H3MapLoader(file);
             H3Map map = mapLoader.LoadMap();
 

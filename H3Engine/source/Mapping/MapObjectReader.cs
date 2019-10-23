@@ -669,6 +669,7 @@ namespace H3Engine.Mapping
     {
         public override CGObject ReadObject(BinaryReader reader, int objectId, MapPosition objectPosition)
         {
+            /*
             if (this.ObjectTemplate.Type == EObjectType.RANDOM_MONSTER)
             {
                 for (int i = 0; i < 20; i++)
@@ -679,6 +680,7 @@ namespace H3Engine.Mapping
 
                 reader.BaseStream.Seek(-200, SeekOrigin.Current);
             }
+            */
 
             // Create Creature
             CGCreature creature = new CGCreature();
@@ -1287,23 +1289,25 @@ namespace H3Engine.Mapping
             CreatureGeneratorAsCastleInfo castleInfo = null;
             CreatureGeneratorAsLeveledInfo levelInfo = null;
             
-            DwellingSpecInfo spec = null;
             switch (this.ObjectTemplate.Type)
             {
                 case EObjectType.RANDOM_DWELLING:
                     castleInfo = new CreatureGeneratorAsCastleInfo(dwelling);
                     levelInfo = new CreatureGeneratorAsLeveledInfo(dwelling);
+                    castleInfo.Owner = dwelling;
+                    levelInfo.Owner = dwelling;
                     break;
                 case EObjectType.RANDOM_DWELLING_LVL:
                     castleInfo = new CreatureGeneratorAsCastleInfo(dwelling);
+                    castleInfo.Owner = dwelling;
                     break;
                 case EObjectType.RANDOM_DWELLING_FACTION:
                     levelInfo = new CreatureGeneratorAsLeveledInfo(dwelling);
+                    levelInfo.Owner = dwelling;
                     break;
                 default:
                     break;
             }
-            spec.Owner = dwelling;
 
             dwelling.SetOwner((EPlayerColor)reader.ReadUInt32());
 
