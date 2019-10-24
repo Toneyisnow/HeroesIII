@@ -255,14 +255,51 @@ namespace H3Engine.FileSystem
             UInt32 currentOffset = baseOffset;
             long basePosition = inputStream.Position;
             MemoryStream dataStream = new MemoryStream();
+            byte[] data = null;
+            uint totalRowLength = 0;
 
             switch (format)
             {
                 case 0:
-
-
+                    int rawlength = frame.Width * frame.Height;
+                    data = new byte[rawlength];
+                    data = reader.ReadBytes(rawlength);
+                    dataStream.Write(data, 0, rawlength);
                     break;
                 case 1:
+
+                    uint[] offsets = new uint[frame.Height];
+                    for(int i = 0; i < frame.Height; i++)
+                    {
+                        offsets[i] = reader.ReadUInt32();
+                    }
+
+                    for (int i = 0; i < frame.Height; i++)
+                    {
+                        inputStream.Seek(basePosition + offsets[i], SeekOrigin.Begin);
+                        totalRowLength = 0;
+                        while (totalRowLength < frame.Width)
+                        {
+                            byte segment = reader.ReadByte();
+                            int llength = reader.ReadByte() + 1;
+
+                            if (segment == 0xFF)  // Raw Data
+                            {
+                                data = new byte[llength];
+                                data = reader.ReadBytes(llength);
+                                dataStream.Write(data, 0, llength);
+                            }
+                            else
+                            {
+                                for (int k = 0; k < llength; k++)
+                                {
+                                    dataStream.WriteByte(segment);
+                                }
+                            }
+                            totalRowLength += (uint)llength;
+                        }
+                    }
+
                     break;
                 case 2:
                     break;
@@ -276,7 +313,7 @@ namespace H3Engine.FileSystem
                         
                         //Console.WriteLine("Data on line " + i + ": ");
 
-                        uint totalRowLength = 0;
+                        totalRowLength = 0;
                         while( totalRowLength < frame.Width)
                         {
                             byte segment = reader.ReadByte();
@@ -286,8 +323,7 @@ namespace H3Engine.FileSystem
                             if (code == 7)  // Raw Data
                             {
                                 //Console.WriteLine("Code is 7, length = " + length);
-
-                                byte[] data = new byte[length];
+                                data = new byte[length];
                                 data = reader.ReadBytes((int)length);
                                 dataStream.Write(data, 0, (int)length);
                             }

@@ -17,7 +17,7 @@ namespace H3Engine
     {
         public static void Main(string[] args)
         {
-            TestH3MReader();
+            TestH3DefHandler();
 
             Console.WriteLine("Press Any Key...");
             Console.ReadKey();
@@ -43,7 +43,7 @@ namespace H3Engine
 
         public static void TestH3DefHandler()
         {
-            using (FileStream file = new FileStream(@"D:\PlayGround\H3ab_spr\AVG2elw.def", FileMode.Open, FileAccess.Read))
+            using (FileStream file = new FileStream(@"D:\PlayGround\H3sprite\CABEHE.def", FileMode.Open, FileAccess.Read))
             {
                 H3DefFileHandler def = new H3DefFileHandler(file);
 
@@ -51,12 +51,16 @@ namespace H3Engine
 
                 AnimationDefinition animation = def.GetAnimation();
 
-                for (int i = 0; i < animation.Groups[0].Frames.Count; i++)
+                for (int g = 0; g < animation.Groups.Count; g++)
                 {
-                    ImageData image = animation.ComposeFrameImage(0, i);
-                    using (FileStream outputFile = new FileStream(@"D:\PlayGround\H3ab_spr\AVG2elw." + i + ".png", FileMode.Create, FileAccess.Write))
+                    for (int i = 0; i < animation.Groups[g].Frames.Count; i++)
                     {
-                        image.SaveAsPng(outputFile);
+                        ImageData image = animation.ComposeFrameImage(g, i);
+                        string filename = string.Format(@"D:\PlayGround\H3sprite\cabehe.{0:00}.{1:00}.png", g, i);
+                        using (FileStream outputFile = new FileStream(filename, FileMode.Create, FileAccess.Write))
+                        {
+                            image.SaveAsPng(outputFile);
+                        }
                     }
                 }
             }
