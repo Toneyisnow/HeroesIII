@@ -1,3 +1,5 @@
 *.LOD filter=lfs diff=lfs merge=lfs -text
 *.SND filter=lfs diff=lfs merge=lfs -text
 *.vid filter=lfs diff=lfs merge=lfs -text
+*.pak filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
