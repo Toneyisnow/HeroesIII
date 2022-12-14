@@ -1,0 +1,2 @@
+*.LOD filter=lfs diff=lfs merge=lfs -text
+*.SND filter=lfs diff=lfs merge=lfs -text
